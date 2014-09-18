@@ -1,3 +1,4 @@
+'use strict';
 var less = require('less');
 
 var style = {
@@ -5,10 +6,10 @@ var style = {
   'node': document.head,
 
   'content': function (arg) {
-    read = arg.read;
-    node = arg.node;
+    var address = arg.address;
+    var node = arg.node;
 
-  	file.read(read).then(function(res, err) {
+    file.read(address).then(function(res, err) {
       less.render(res, function (e, css) {
         node.textContent = css;
       });
@@ -17,17 +18,17 @@ var style = {
   'append': function (arg) {
     var node = style.node;
     var root = style.root;
+    var address = root + arg;
     var link;
-    
+  
     link = document.createElement('style');
     node.appendChild(link);
     style.content({
-      'read': root + arg,
+      'address': address,
       'node': link
     })
   },
   'default': window.addEventListener('load', function() {
     style.append('env.less');
-    style.append('agent.less');
   }, false)
 }

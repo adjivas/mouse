@@ -6,12 +6,12 @@
 */
 
 var tool = {
-  'target': 'click',
+  'target': 'mousetool',
   'attribute': 'selected',
 
   'clear': function (arg) {
     /* The function clears all tags who are selected. */
-    var target = document.querySelectorAll(tool.target);
+    var target = document.querySelectorAll(tool.target + ' *');
     var attribute = tool.attribute;
     var count = -1;
 
@@ -20,13 +20,17 @@ var tool = {
         target[count].removeAttribute(attribute);
   },
   'select': function (arg) {
-    /* The function selects the click's current tag. */
+    /* The function selects the mousetool's current parent tag. */
     var attribute = tool.attribute;
     var element = arg.toElement;
 
-    if (element.tagName.toLowerCase() === tool.target) {
-      tool.clear(arg);
-      element.setAttribute(attribute, attribute);
+    if (typeof element.parentNode.tagName === 'string') {
+      if (element.parentNode.tagName.toLowerCase() === tool.target) {
+        if (element.getAttribute(attribute) === null) {
+          tool.clear(arg);
+          element.setAttribute(attribute, attribute);
+        }
+      }
     }
   },
   'default': window.addEventListener('mouseup', function (arg) {

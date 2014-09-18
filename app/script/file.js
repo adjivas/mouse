@@ -1,3 +1,4 @@
+'use strict';
 var q  = require('q');
 var fs = require('fs');
 

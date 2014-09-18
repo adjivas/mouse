@@ -1,5 +1,5 @@
 'use strict';
-var py = require('python-shell');
+var py      = require('python-shell');
 
 /*
 ** The Exec's Object is thought for be call by Move's Object.
@@ -12,15 +12,15 @@ var exec = {
   'run': function (arg) {
     /* The function execs a move's python script who does the move
        of the cursor. */
-    var x = exec.speed * arg.x;
-    var y = exec.speed * arg.y * -1;
+    var click = !arg.click ? 0 : arg.click;
+    var x = !arg.x ? 0 : exec.speed * arg.x;
+    var y = !arg.y ? 0 : exec.speed * arg.y * -1;
 
     if (exec.silent)
       return ;
-    py.run('move.py', {
-      'pythonPath': 'C:/Python27/python.exe',
+    py.run('mouse.py', {
       'scriptPath': './app/python/',
-      'args': [x, y]
+      'args': click ? [x, y, click] : [x, y]
     }, function (err, results) {
       if (err)
         throw (err);

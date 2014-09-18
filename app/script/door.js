@@ -1,3 +1,4 @@
+'use strict';
 var py = require('python-shell');
 
 /*
@@ -5,11 +6,14 @@ var py = require('python-shell');
 */
 
 var door = {
+  'right': false,
   'listen': undefined,
-  'file': 'test.py',
+  'targetno': 'left',
+  'target': 'right',
+  'file': 'door.py',
   'args': {
-    'mode': 'text ',
-    'scriptPath': './app/python/'
+    'scriptPath': './app/python/',
+    'mode': 'text '
   },
 
   'open': function (arg) {
@@ -20,7 +24,23 @@ var door = {
     door.listen.end(door.close);
   },
   'info': function (message) {
-    move.mirror();
+    var target = document.querySelector(door.target);
+    var attribute = tool.attribute;
+
+    if (target && target.getAttribute(attribute)) {
+      if (door.right) {
+        move.mirror();
+        exec.run({
+          'click': 2
+        });
+        tool.select({
+          'toElement': document.querySelector(door.targetno)
+        });
+        door.right = false;
+      }
+      else
+        door.right = true
+    }
   },
   'close': function (err) {
     if (err)

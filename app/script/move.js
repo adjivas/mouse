@@ -1,3 +1,4 @@
+'use strict';
 var move = {
   'target': 'pointer',
   'attribute': 'style',
@@ -15,7 +16,8 @@ var move = {
     else
       move.degret = 0;
     value += 'rotate(' + move.degret + 'deg);';
-    target.setAttribute(attribute, value);
+    if (target)
+      target.setAttribute(attribute, value);
   },
   'mirror': function (arg) {
     if (move.time === undefined) {
