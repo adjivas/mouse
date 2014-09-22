@@ -6,45 +6,40 @@ var py = require('python-shell');
 */
 
 var door = {
-  'right': false,
   'listen': undefined,
-  'targetno': 'left',
-  'target': 'right',
   'file': 'door.py',
   'args': {
     'scriptPath': './app/python/',
-    'mode': 'text '
+    'mode': 'json '
   },
 
   'open': function (arg) {
     var file = (typeof arg === 'string' ? arg : door.file);
 
     door.listen = new py(file, door.args);
-    door.listen.on('message', door.info)
+    door.listen.on('message', door.call)
     door.listen.end(door.close);
   },
-  'info': function (message) {
-    var target = document.querySelector(door.target);
-    var attribute = tool.attribute;
+  'call': function (message) {
+    var find = tool.target + ' > *[' + tool.attribute + ']';
+    var mode = document.querySelector(find);
+    var time = JSON.parse(message);
 
-    if (target && target.getAttribute(attribute)) {
-      if (door.right) {
-        move.mirror();
-        exec.run({
-          'click': 2
-        });
-        tool.select({
-          'toElement': document.querySelector(door.targetno)
-        });
-        door.right = false;
-      }
-      else
-        door.right = true
+    time = (time.end - time.start);
+    if (2 < time)
+      tool.next();
+    else if (mode) {
+      mode = mode.tagName.toLowerCase();
+      exec.run({'click': window[mode].click});
+      if (window[mode].exec)
+        window[mode].exec();
+      if (window[mode].mirror)
+        window[mode].mirror();
     }
   },
   'close': function (err) {
     if (err)
-      throw err;
+      throw (err);
     door.open();
   },
   'default': window.addEventListener('load', function (arg) {

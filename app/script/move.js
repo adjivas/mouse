@@ -1,4 +1,5 @@
 'use strict';
+
 var move = {
   'target': 'pointer',
   'attribute': 'style',
@@ -28,7 +29,8 @@ var move = {
     else {
       move.time = window.clearInterval(move.time);
       if (move.timeno === undefined)
-        move.timeno = window.setInterval(exec.move, 100);
+        if (arg === undefined)
+          move.timeno = window.setInterval(exec.move, 100);
     }
   },
   'default': window.addEventListener('load', function() {

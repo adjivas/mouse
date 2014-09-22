@@ -33,6 +33,23 @@ var tool = {
       }
     }
   },
+  'next': function (arg) {
+    var attribute = tool.attribute;
+    var elemt = document.querySelectorAll(tool.target + ' *');
+    var limit = elemt.length - 1;
+    var count = -1;
+
+    if (elemt[limit].getAttribute(attribute) === null)
+      while (++count < limit)
+        if (elemt[count].getAttribute(attribute))
+          break ;
+    tool.select({
+      'toElement': elemt[count + 1]
+    });
+    speak.run({
+      'word': elemt[count + 1].tagName
+    });
+  },
   'default': window.addEventListener('mouseup', function (arg) {
     tool.select(arg);
   }, false)

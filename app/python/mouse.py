@@ -4,10 +4,10 @@ import sys
 
 class Mouse:
   """The class Mouse is a simple library of basing functions.""";
-  py    = PyMouse();
-  x     = 0;
-  y     = 1;
-  click = 2;
+  py       = PyMouse();
+  x        = 0;
+  y        = 1;
+  click    = 2;
 
   def __init__(self, ac, av):
     """The function defines x and y and calls

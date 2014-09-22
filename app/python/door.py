@@ -1,18 +1,21 @@
 #!/usr/bin/python
 from pymouse import PyMouseEvent
+import time
 
-class Clickonacci(PyMouseEvent):
-    def __init__(self):
-        PyMouseEvent.__init__(self)
+class Door(PyMouseEvent):
+  start    = None;
+  end      = None;
 
-    def click(self, x, y, button, press):
-        if button == 1:
-            if press:
-                print('end')
-                self.stop()
-        else:
-            print('end')
-            self.stop()
+  def __init__(self):
+    PyMouseEvent.__init__(self);
 
-C = Clickonacci()
-C.run()
+  def click(self, x, y, button, press):
+    if (press == True):
+      Door.start = time.time();
+    else:
+      Door.end = time.time();
+      self.stop();
+      print('{"start": ' + str(Door.end if (Door.start is None) else Door.start) + ', "end": ' + str(Door.end) + '}');
+
+C = Door();
+C.run();

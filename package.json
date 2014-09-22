@@ -3,6 +3,11 @@
   "name": "nw-demo",
   "description": "demo app of node-webkit",
   "version": "0.5.0",
+  "configuration": {
+    "speech_synthesizer": true,
+    "mouse_speed_pixel": 10,
+    "mouse_move_pixel": true
+  },
   "keywords": [
     "Special access system",
     "Scanning mechanisms",
@@ -10,7 +15,6 @@
     "Virtual mouse"
   ],
   "window": {
-    "title": "node-webkit demo",
     "icon": "link.png",
     "always-on-top": true,
     "frameless": false,
