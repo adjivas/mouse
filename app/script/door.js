@@ -8,6 +8,10 @@ var py = require('python-shell');
 var door = {
   'listen': undefined,
   'file': 'door.py',
+  'cord': {
+    'x': 0,
+    'y': 0
+  },
   'args': {
     'scriptPath': './app/python/',
     'mode': 'json '
@@ -17,25 +21,19 @@ var door = {
     var file = (typeof arg === 'string' ? arg : door.file);
 
     door.listen = new py(file, door.args);
-    door.listen.on('message', door.call)
+    door.listen.on('message', door.call);
     door.listen.end(door.close);
   },
   'call': function (message) {
     var find = tool.target + ' > *[' + tool.attribute + ']';
     var mode = document.querySelector(find);
-    var time = JSON.parse(message);
+    var json = JSON.parse(message);
 
-    time = (time.end - time.start);
-    if (2 < time)
+    json = (json.end - json.start);
+    door.cord.x = json.x;
+    door.cord.y = json.y;
+    if (2 < json)
       tool.next();
-    else if (mode) {
-      mode = mode.tagName.toLowerCase();
-      exec.run({'click': window[mode].click});
-      if (window[mode].exec)
-        window[mode].exec();
-      if (window[mode].mirror)
-        window[mode].mirror();
-    }
   },
   'close': function (err) {
     if (err)

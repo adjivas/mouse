@@ -20,7 +20,7 @@ var move = {
     if (target)
       target.setAttribute(attribute, value);
   },
-  'mirror': function (arg) {
+  'rotate': function (arg) {
     if (move.time === undefined) {
       move.time = window.setInterval(move.circular, 1);
       if (move.timeno !== undefined)
@@ -34,6 +34,6 @@ var move = {
     }
   },
   'default': window.addEventListener('load', function() {
-    move.mirror();
+    move.rotate();
   }, false)
 }

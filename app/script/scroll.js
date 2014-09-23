@@ -3,18 +3,21 @@ var py     = require('python-shell');
 
 var scroll = {
   'target': 'scroll',
+  'silent': !configuration.directional_move,
   'click': 0,
   'time': undefined,
   'key': undefined,
 
   'run': function (arg) {
-    py.run('keyboard.py', {
-      'scriptPath': './app/python/',
-      'args': scroll.key
-    }, function (err, results) {
-      if (err)
-        throw (err);
-    });
+    if (!scroll.silent) {
+      py.run('keyboard.py', {
+        'scriptPath': './app/python/',
+        'args': scroll.key
+      }, function (err, results) {
+        if (err)
+          throw (err);
+      });
+    }
   },
   'get': function (arg) {
     if (45 < move.degret && move.degret <= 135)
@@ -26,8 +29,8 @@ var scroll = {
     else
       return ('up');
   },
-  'mirror': function (arg) {
-    move.mirror(true);
+  'rotate': function (arg) {
+    move.rotate(true);
     if (scroll.time === undefined) {
       scroll.key = scroll.get();
       scroll.time = window.setInterval(scroll.run, 100);

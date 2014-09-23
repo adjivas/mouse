@@ -4,9 +4,10 @@
   "description": "demo app of node-webkit",
   "version": "0.5.0",
   "configuration": {
-    "speech_synthesizer": true,
+    "speech_synthesizer": false,
     "mouse_speed_pixel": 10,
-    "mouse_move_pixel": true
+    "mouse_move_pixel": false,
+    "directional_move": false
   },
   "keywords": [
     "Special access system",

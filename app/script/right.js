@@ -4,8 +4,8 @@ var right = {
   'target': 'right',
   'click': 2,
 
-  'mirror': function (arg) {
-    move.mirror();
+  'rotate': function (arg) {
+    move.rotate();
   },
   'call': function (arg) {
     var click = right.click;

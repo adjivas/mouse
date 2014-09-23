@@ -15,7 +15,11 @@ class Door(PyMouseEvent):
     else:
       Door.end = time.time();
       self.stop();
-      print('{"start": ' + str(Door.end if (Door.start is None) else Door.start) + ', "end": ' + str(Door.end) + '}');
+      print('{"start": ' + str(Door.end if (Door.start is None) else Door.start)
+          + ', "end": ' + str(Door.end)
+          + ', "x": ' + str(x)
+          + ', "y": ' + str(y)
+          + '}');
 
 C = Door();
 C.run();

@@ -10,6 +10,41 @@
 <script src='./app/script/move.js'></script>
 <script src='./app/script/call.js'></script>
 <script src='./app/script/left.js'></script>
+<script src='./app/script/down.js'></script>
 <script src='./app/script/right.js'></script>
 <script src='./app/script/speak.js'></script>
 <script src='./app/script/scroll.js'></script>
+<script>
+'use strict';
+var py = require('python-shell');
+
+var test = {
+  'listen': undefined,
+  'file': 'test.py',
+  'args': {
+    'scriptPath': './',
+    'mode': 'json '
+  },
+
+  'start': function (arg) {
+    var file = (typeof arg === 'string' ? arg : test.file);
+
+    test.listen = new py(file, test.args);
+    test.listen.on('message', test.on);
+    test.listen.end(test.end);
+  },
+  'on': function (message) {
+    console.log('message');
+    console.log(message);
+  },
+  'end': function (err) {
+    if (err)
+      throw (err);
+    console.log('end');
+    console.log(err);
+  },
+  'default': window.addEventListener('load', function (arg) {
+    test.start();
+  }, false)
+}
+</script>
