@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tool.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use strict';
 
 /*
@@ -5,52 +17,28 @@
 ** a independent event of cursor's type.
 */
 
-var tool = {
+var Tool = {
+  'atrib': 'selected',
   'target': 'mousetool',
-  'attribute': 'selected',
+  'find': 'mousetool > *[selected]',
 
-  'clear': function (arg) {
-    /* The function clears all tags who are selected. */
-    var target = document.querySelectorAll(tool.target + ' *');
-    var attribute = tool.attribute;
-    var count = -1;
-
-    while (target[++count])
-      if (target[count].getAttribute(attribute))
-        target[count].removeAttribute(attribute);
-  },
-  'select': function (arg) {
-    /* The function selects the mousetool's current parent tag. */
-    var attribute = tool.attribute;
-    var element = arg.toElement;
-
-    if (typeof element.parentNode.tagName === 'string') {
-      if (element.parentNode.tagName.toLowerCase() === tool.target) {
-        if (element.getAttribute(attribute) === null) {
-          tool.clear(arg);
-          element.setAttribute(attribute, attribute);
-        }
-      }
-    }
-  },
   'next': function (arg) {
-    var attribute = tool.attribute;
-    var elemt = document.querySelectorAll(tool.target + ' *');
+    var atrib = Tool.atrib;
+    var elemt = document.querySelectorAll(Tool.target + ' > *');
     var limit = elemt.length - 1;
     var count = -1;
 
-    if (elemt[limit].getAttribute(attribute) === null)
+    if (!elemt[limit].getAttribute(atrib))
       while (++count < limit)
-        if (elemt[count].getAttribute(attribute))
+        if (elemt[count].getAttribute(atrib))
           break ;
-    tool.select({
-      'toElement': elemt[count + 1]
-    });
-    speak.run({
-      'word': elemt[count + 1].tagName
-    });
-  },
-  'default': window.addEventListener('mouseup', function (arg) {
-    tool.select(arg);
-  }, false)
-}
+    if (elemt[count]) {
+      elemt[count].removeAttribute(atrib);
+      elemt[count + 1].setAttribute(atrib, atrib);
+    }
+    else {
+      elemt[elemt.length - 1].removeAttribute(atrib);
+      elemt[0].setAttribute(atrib, atrib); 
+    }
+  }
+};

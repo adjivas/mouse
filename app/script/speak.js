@@ -1,24 +1,37 @@
-'use strict';
-var py      = require('python-shell');
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   speak.js                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-**
+'use strict';
+
+/* 
+** The class speak request the socket of python's server
+** for say a word.
 */
 
-var speak = {
+var Speak = {
   'silent': !configuration.speech_synthesizer,
 
   'run': function (arg) {
-    var word = arg.word;
+    door.send({
+      'class': 'speak',
+      'method': 'say'
+    }, {
+      'sentence': arg
+    });
+  },
+  'call': function (arg) {
+    var elemt = document.querySelector(Tool.find);
 
-    if (!speak.silent) {
-      py.run('speak.py', {
-        'scriptPath': './app/python/',
-        'args': [word]
-      }, function (err, results) {
-        if (err)
-          throw (err);
-      });
-    }
+    if (!Speak.silent)
+      Speak.run(elemt.tagName);
   }
 }

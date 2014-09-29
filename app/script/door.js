@@ -1,46 +1,74 @@
-'use strict';
-var py = require('python-shell');
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   door.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-** Mouselog
+'use strict';
+
+var py     = require('python-shell');
+var socket = require('tcp.js').client(
+  configuration.ip,
+  configuration.port
+);
+
+/* 
+** The class door is the socket to a python's server
+** of command' control.
 */
 
 var door = {
-  'listen': undefined,
-  'file': 'door.py',
-  'cord': {
-    'x': 0,
-    'y': 0
-  },
-  'args': {
+  /* The procedure opens the socket. */
+  'socket': undefined,
+  'online': false,
+  'run': py.run('server.py', {
     'scriptPath': './app/python/',
-    'mode': 'json '
-  },
-
-  'open': function (arg) {
-    var file = (typeof arg === 'string' ? arg : door.file);
-
-    door.listen = new py(file, door.args);
-    door.listen.on('message', door.call);
-    door.listen.end(door.close);
-  },
-  'call': function (message) {
-    var find = tool.target + ' > *[' + tool.attribute + ']';
-    var mode = document.querySelector(find);
-    var json = JSON.parse(message);
-
-    json = (json.end - json.start);
-    door.cord.x = json.x;
-    door.cord.y = json.y;
-    if (2 < json)
-      tool.next();
-  },
-  'close': function (err) {
+    'pythonPath': 'C:/Python27/python.exe',
+    'args': [
+      configuration.ip,
+      configuration.port,
+      configuration.buffer
+    ]
+  }, function (err, results) {
     if (err)
       throw (err);
-    door.open();
+    door.online = false;
+  }),
+
+  /* The function closes the server when the event's close is activated. */
+  'close': function (arg) {
+    if (door.online) {
+      door.online = false;
+      door.socket.send(null, null);
+    }
   },
-  'default': window.addEventListener('load', function (arg) {
-    door.open();
+  /* The function is a new message from the server. */
+  'connect': function (data) {
+    door.online = true;
+  },
+  /* The function event a json to the socket -{event, content}-. */
+  'send': function (event, content) {
+    if (door.online) {
+      door.socket.send(event, content); 
+    }
+    else window.setTimeout(function (arg) {
+      door.socket.send(event, content);
+    }, 1000);
+  },
+  /* The function connects the socket. */
+  'default': window.addEventListener('load', function() {
+    socket.on('connection', function (dsocket) {
+      door.socket = dsocket;
+      door.socket.on('connect', door.connect);
+      door.socket.on('console', Event.console)
+      door.socket.on('mousedown', Event.down);
+      door.socket.on('mouseup', Event.up);
+    });
   }, false)
-}
+};

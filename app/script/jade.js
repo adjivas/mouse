@@ -1,21 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   jade.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use strict';
+
 var jade = require('jade');
 
-var body = {
+var Body = {
   'root': './app/view/',
   'node': window.addEventListener('load', function() {
-    body.node = document.body;
+    Body.node = document.body;
   }, false),
 
   'inner': function (arg) {
-    var root = body.root;
-    var node = body.node;
+    var root = Body.root;
+    var node = Body.node;
     var fn = jade.compileFile(root + arg, {});
 
     if (node)
       node.innerHTML = fn();
   },
   'default': window.addEventListener('load', function() {
-    body.inner('mouse.jade');
+    Body.inner('mouse.jade');
   }, false)
 }

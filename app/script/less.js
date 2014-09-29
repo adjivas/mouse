@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   less.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use strict';
+
 var less = require('less');
 
-var style = {
+var Style = {
   'root': './app/style/',
   'node': document.head,
 
@@ -16,19 +29,20 @@ var style = {
     });
   },
   'append': function (arg) {
-    var node = style.node;
-    var root = style.root;
+    var node = Style.node;
+    var root = Style.root;
     var address = root + arg;
     var link;
   
     link = document.createElement('style');
     node.appendChild(link);
-    style.content({
+    Style.content({
       'address': address,
       'node': link
     })
   },
   'default': window.addEventListener('load', function() {
-    style.append('env.less');
+    Style.append('source.less');
+    Style.append('default.less');
   }, false)
 }

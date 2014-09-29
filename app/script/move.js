@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 'use strict';
 
 var move = {
   'target': 'pointer',
   'attribute': 'style',
   'time': undefined,
-  'timeno': undefined,
   'degret': 0,
 
   'circular': function (arg) {
@@ -23,14 +34,9 @@ var move = {
   'rotate': function (arg) {
     if (move.time === undefined) {
       move.time = window.setInterval(move.circular, 1);
-      if (move.timeno !== undefined)
-        move.timeno = window.clearInterval(move.timeno);
     }
     else {
       move.time = window.clearInterval(move.time);
-      if (move.timeno === undefined)
-        if (arg === undefined)
-          move.timeno = window.setInterval(exec.move, 100);
     }
   },
   'default': window.addEventListener('load', function() {

@@ -1,0 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   default.js                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+@charset 'UTF-8';
+
+:root {
+  @background-color: rgb(118, 84, 144);
+  @mouse-color: rgb(101, 105, 109);
+  @pointer-color: rgb(0, 0, 0);
+  @border-color: rgb(0, 0, 0);
+  @font-color: rgb(255, 255, 255);
+  @selected-color: rgb(206, 178, 223);
+
+  mousetool {
+    background-color: @background-color;
+    text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+    drag {
+      background-image: url('./app/style/drag.png');
+      background-repeat: no-repeat;
+      background-size: 67px;
+      background-position-x: 6px;
+      background-position-y: 5px;
+    }
+    right {
+      background-image: url('./app/style/right.png');
+      background-repeat: no-repeat;
+      background-size: 67px;
+      background-position-x: 6px;
+      background-position-y: 5px;
+    }
+    empty {
+      background-image: url('./app/style/empty.png');
+      background-repeat: no-repeat;
+      background-size: 65px;
+      background-position-x: 14px;
+      background-position-y: -webkit-calc(100% - 10px);
+    }
+    arrow {
+      background-image: url('./app/style/arrow.png');
+      background-repeat: no-repeat;
+      background-size: 65px;
+      background-position-x: 14px;
+      background-position-y: -webkit-calc(100% - 10px);
+    }
+    * {
+      color: @font-color;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    *[selected] {
+      background-color: @selected-color;
+    }
+  }
+  mousecontent {
+    border-radius: 100%;
+    background-color: @mouse-color;
+    box-shadow: 0 0 0 4px rgb(0, 0, 0),
+                0 0 0 16px rgb(39, 41, 43),
+                0 0 0 19px rgb(212, 178, 232);
+    pointer {
+      background-color: @pointer-color;
+    }
+  }
+}
