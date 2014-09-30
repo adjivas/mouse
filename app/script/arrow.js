@@ -14,7 +14,7 @@
 
 var Arrow = {
   'stop': true,
-  'delay': 150,
+  'delay': Configuration.mouse.speed.arrow,
   'interval': undefined,
   'click': 0,
 

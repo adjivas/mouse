@@ -2,34 +2,45 @@
   "main": "main.html",
   "name": "nw-demo",
   "description": "demo app of node-webkit",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "configuration": {
-    "speech_synthesizer": true,
-    "mouse_speed_pixel": 10,
-    "mouse_move_pixel": false,
-    "directional_move": false,
-    "ip": "127.0.0.1",
-    "port": 1337,
-    "buffer": 200
+    "mouse": {
+      "speed": {
+        "default": 5,
+        "drag": 25,
+        "left": 25,
+        "right": 25,
+        "empty": 25,
+        "arrow": 25
+      },
+      "change": 700,
+      "active": false
+    },
+    "socket": {
+      "ip": "127.0.0.1",
+      "port": 1337,
+      "buffer": 200
+    },
+    "synthse": {
+      "active": false
+    },
+    "style": "default.less",
+    "language": "default"
   },
   "keywords": [
-    "Special access system",
-    "Scanning mechanisms",
-    "Adaptation",
-    "Virtual mouse"
+    "special access system",
+    "scanning mechanisms",
+    "adaptation",
+    "virtual mouse"
   ],
   "window": {
     "icon": "link.png",
     "always-on-top": true,
     "frameless": false,
-    "toolbar": true,
+    "toolbar": false,
     "frame": true,
     "width": 420,
     "height": 420,
-    "position": "mouse",
-    "min_width": 400,
-    "min_height": 200,
-    "max_width": 800,
-    "max_height": 600
+    "position": "mouse"
   }
 }

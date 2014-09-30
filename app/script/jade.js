@@ -14,6 +14,10 @@
 
 var jade = require('jade');
 
+/*
+** The Body's Class is auto calls for load the view.
+*/
+
 var Body = {
   'root': './app/view/',
   'node': window.addEventListener('load', function() {

@@ -12,10 +12,14 @@
 
 'use strict';
 
+/*
+** The Right's class is calls for moves the cursor and right click.
+*/
+
 var Right = {
   'stop': true,
   'action': false,
-  'delay': 50,
+  'delay': Configuration.mouse.speed.right,
   'click': 2,
 
   'run': function (arg) {

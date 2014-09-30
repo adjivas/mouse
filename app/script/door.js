@@ -14,12 +14,12 @@
 
 var py     = require('python-shell');
 var socket = require('tcp.js').client(
-  configuration.ip,
-  configuration.port
+  Configuration.socket.ip,
+  Configuration.socket.port
 );
 
 /* 
-** The class door is the socket to a python's server
+** The Door's class is the socket to a python's server
 ** of command' control.
 */
 
@@ -31,9 +31,9 @@ var door = {
     'scriptPath': './app/python/',
     'pythonPath': 'C:/Python27/python.exe',
     'args': [
-      configuration.ip,
-      configuration.port,
-      configuration.buffer
+      Configuration.socket.ip,
+      Configuration.socket.port,
+      Configuration.socket.buffer
     ]
   }, function (err, results) {
     if (err)
@@ -69,6 +69,7 @@ var door = {
       door.socket.on('console', Event.console)
       door.socket.on('mousedown', Event.down);
       door.socket.on('mouseup', Event.up);
+      door.socket.on('mouseup', Zoom.resize);
     });
   }, false)
 };

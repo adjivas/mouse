@@ -12,8 +12,8 @@
 
 'use strict';
 
-var toCapitalizeCase = function (string) {
-  return (string.toLowerCase().replace( /\b./g, function (character) {
+String.prototype.toCapitalizeCase = function (arg) {
+  return (this.toLowerCase().replace( /\b./g, function (character) {
     return (character.toUpperCase());
   }));
 };
@@ -21,8 +21,8 @@ var toCapitalizeCase = function (string) {
 var Event = {
   'interval': undefined,
   'timestamp': undefined,
-  'action': 0,
-  'delay': 700,
+  'action': false,
+  'delay': Configuration.mouse.change,
   'find': Tool.find,
 
   'console': function (data) {
@@ -31,8 +31,9 @@ var Event = {
   'call': function (data) {
     var mode = document.querySelector(Event.find);
 
-    mode = toCapitalizeCase(mode.tagName);
-    if (window[mode]) {
+    mode = mode.tagName;
+    mode = mode.toCapitalizeCase();
+    if (!mouse.silent && window[mode]) {
       door.send({
         'class': 'eventcall',
         'method': 'capture'

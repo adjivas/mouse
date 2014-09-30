@@ -17,8 +17,8 @@
 */
 
 var mouse = {
-  'silent': !configuration.mouse_move_pixel,
-  'speed': configuration.mouse_speed_pixel,
+  'silent': !Configuration.mouse.active,
+  'speed': Configuration.mouse.speed.default,
 
   'run': function (arg) {
     /* The function execs a move's python script who does the move
@@ -27,13 +27,15 @@ var mouse = {
     var y = !arg.y ? 0 : mouse.speed * arg.y * -1;
     var c = !arg.click ? 0 : arg.click;
 
-    door.send({
-      'class': 'mouse',
-      'method': 'move'
-    }, {
-      'x': x,
-      'y': y
-    });
+    if (!mouse.silent) {
+      door.send({
+        'class': 'mouse',
+        'method': 'move'
+      }, {
+        'x': x,
+        'y': y
+      });
+    }
   },
   'move': function (arg) {
     /* The function does a conversion from polar to cartesian coordinates,

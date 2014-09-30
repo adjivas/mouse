@@ -13,8 +13,7 @@
 'use strict';
 
 /*
-** The Tool's Object is never call by another Object, it's
-** a independent event of cursor's type.
+** The Tool's class is call for change the cursor's mode.
 */
 
 var Tool = {

@@ -12,22 +12,18 @@
 
 'use strict';
 
+/*
+** The Drag's class is calls for simple moves the cursor.
+*/
+
 var Drag = {
   'stop': false,
-  'delay': 50,
+  'delay': Configuration.mouse.speed.drag,
   'interval': undefined,
   'click': 1,
 
-  'run': function (arg) {
-    door.send({
-      'class': 'mouse',
-      'method': 'click'
-    }, {
-      'click': Drag.click
-    });
-  },
   'call': function (arg) {
-    if (Drag.interval === undefined) {
+    if (!Drag.interval) {
       Event.action = true;
       Drag.interval = window.setInterval(mouse.move, Drag.delay);
     }

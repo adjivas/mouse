@@ -14,9 +14,14 @@
 
 var less = require('less');
 
+/*
+** The Style's class is auto lauches and adds the stylesheets.
+*/
+
 var Style = {
   'root': './app/style/',
   'node': document.head,
+  'theme': Configuration.style,
 
   'content': function (arg) {
     var address = arg.address;
@@ -43,6 +48,6 @@ var Style = {
   },
   'default': window.addEventListener('load', function() {
     Style.append('source.less');
-    Style.append('default.less');
+    Style.append(Style.theme);
   }, false)
 }

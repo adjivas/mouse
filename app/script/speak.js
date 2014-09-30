@@ -13,25 +13,26 @@
 'use strict';
 
 /* 
-** The class speak request the socket of python's server
-** for say a word.
+** The Speak's class is calls for request the socket of
+** says a word.
 */
 
 var Speak = {
-  'silent': !configuration.speech_synthesizer,
+  'silent': !Configuration.synthse.active,
 
   'run': function (arg) {
-    door.send({
-      'class': 'speak',
-      'method': 'say'
-    }, {
-      'sentence': arg
-    });
+    if (!Speak.silent) {
+      door.send({
+        'class': 'speak',
+        'method': 'say'
+      }, {
+        'sentence': arg
+      });
+    }
   },
   'call': function (arg) {
     var elemt = document.querySelector(Tool.find);
 
-    if (!Speak.silent)
-      Speak.run(elemt.tagName);
+    Speak.run(elemt.tagName);
   }
 }

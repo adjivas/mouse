@@ -12,9 +12,13 @@
 
 'use strict';
 
+/*
+** The Empty's class is calls for simple moves the cursor.
+*/
+
 var Empty = {
   'stop': true,
-  'delay': 50,
+  'delay': Configuration.mouse.speed.empty,
   'interval': undefined,
   'click': 0,
 

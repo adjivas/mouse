@@ -32,12 +32,10 @@ var move = {
       target.setAttribute(attribute, value);
   },
   'rotate': function (arg) {
-    if (move.time === undefined) {
+    if (move.time === undefined)
       move.time = window.setInterval(move.circular, 1);
-    }
-    else {
+    else
       move.time = window.clearInterval(move.time);
-    }
   },
   'default': window.addEventListener('load', function() {
     move.rotate();
