@@ -34,13 +34,14 @@
     "virtual mouse"
   ],
   "window": {
-    "icon": "link.png",
+    "position": "center",
     "always-on-top": true,
     "frameless": false,
     "toolbar": false,
-    "frame": true,
+    "frame": false,
     "width": 420,
     "height": 420,
-    "position": "mouse"
+    "min_width": 140,
+    "min_height": 140
   }
 }

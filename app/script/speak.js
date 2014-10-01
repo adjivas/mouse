@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+var py = require('python-shell');
+
 'use strict';
 
 /* 
@@ -20,13 +22,15 @@
 var Speak = {
   'silent': !Configuration.synthse.active,
 
-  'run': function (arg) {
+  'run': function (word) {
     if (!Speak.silent) {
-      door.send({
-        'class': 'speak',
-        'method': 'say'
-      }, {
-        'sentence': arg
+      py.run('speak.py', {
+        'scriptPath': './app/python/',
+        'pythonPath': 'C:/Python27/python.exe',
+        'args': [word]
+      }, function (err, results) {
+        if (err)
+          console.log('Speak /!\\:', err);
       });
     }
   },

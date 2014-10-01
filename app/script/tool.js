@@ -17,27 +17,46 @@
 */
 
 var Tool = {
-  'atrib': 'selected',
   'target': 'mousetool',
+  'atrib': 'selected',
   'find': 'mousetool > *[selected]',
+  'distance': 180,
 
   'next': function (arg) {
     var atrib = Tool.atrib;
-    var elemt = document.querySelectorAll(Tool.target + ' > *');
-    var limit = elemt.length - 1;
+    var items = document.querySelectorAll(Tool.target + ' > *');
+    var limit = items.length - 1;
     var count = -1;
 
-    if (!elemt[limit].getAttribute(atrib))
+    if (!items[limit].getAttribute(atrib))
       while (++count < limit)
-        if (elemt[count].getAttribute(atrib))
+        if (items[count].getAttribute(atrib))
           break ;
-    if (elemt[count]) {
-      elemt[count].removeAttribute(atrib);
-      elemt[count + 1].setAttribute(atrib, atrib);
+    if (items[count]) {
+      items[count].removeAttribute(atrib);
+      items[count + 1].setAttribute(atrib, atrib);
     }
     else {
-      elemt[elemt.length - 1].removeAttribute(atrib);
-      elemt[0].setAttribute(atrib, atrib); 
+      items[items.length - 1].removeAttribute(atrib);
+      items[0].setAttribute(atrib, atrib); 
+    }
+  },
+  'run': function (body) {
+    var items = body.querySelectorAll(Tool.target + ' > *');
+    var deg   = 360 / items.length;
+    var cnt   = -1;
+    var crd   = {
+      'left': 0,
+      'top': 0
+    };
+    var rad;
+
+    while (items[++cnt]) {
+      rad = window.Math.PI * (deg * cnt) / 180;
+      crd.left = window.Math.sin(rad) * Tool.distance | 0;
+      crd.top = window.Math.cos(rad) * Tool.distance | 0;
+      items[cnt].style.left = crd.left + 'px';
+      items[cnt].style.top = crd.top + 'px';
     }
   }
 };

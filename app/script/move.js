@@ -23,10 +23,10 @@ var move = {
     var attribute = move.attribute;
     var value = '-webkit-transform:';
 
-    if (0 <= move.degret && move.degret < 360)
-      move.degret += (arg ? arg : 1);
+    if (0 < move.degret && move.degret <= 360)
+      move.degret += -1;
     else
-      move.degret = 0;
+      move.degret = 360;
     value += 'rotate(' + move.degret + 'deg);';
     if (target)
       target.setAttribute(attribute, value);

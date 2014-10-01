@@ -17,23 +17,25 @@
 */
 
 var mouse = {
+  'position': {
+    'x': window.screen.availWidth / 2,
+    'y': window.screen.availHeight / 2
+  },
   'silent': !Configuration.mouse.active,
   'speed': Configuration.mouse.speed.default,
 
   'run': function (arg) {
     /* The function execs a move's python script who does the move
        of the cursor. */
-    var x = !arg.x ? 0 : mouse.speed * arg.x;
-    var y = !arg.y ? 0 : mouse.speed * arg.y * -1;
-    var c = !arg.click ? 0 : arg.click;
-
     if (!mouse.silent) {
+      mouse.position.x += mouse.speed * arg.x;
+      mouse.position.y -= mouse.speed * arg.y;
       door.send({
         'class': 'mouse',
-        'method': 'move'
+        'method': 'warp'
       }, {
-        'x': x,
-        'y': y
+        'x': mouse.position.x,
+        'y': mouse.position.y
       });
     }
   },
@@ -41,11 +43,11 @@ var mouse = {
     /* The function does a conversion from polar to cartesian coordinates,
        and calls the run's function for move the cursor. */
     var deg = move.degret;
-    var rad = Math.PI * deg / 180;
+    var rad = window.Math.PI * deg / 180;
 
     mouse.run({
-      'x': Math.sin(rad),
-      'y': Math.cos(rad)
+      'x': window.Math.sin(rad),
+      'y': window.Math.cos(rad)
     });
   }
 }

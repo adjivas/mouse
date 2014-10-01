@@ -15,46 +15,30 @@
 :root {
   @background-color: rgb(118, 84, 144);
   @mouse-color: rgb(101, 105, 109);
-  @pointer-color: rgb(0, 0, 0);
   @border-color: rgb(0, 0, 0);
   @font-color: rgb(255, 255, 255);
   @selected-color: rgb(206, 178, 223);
 
+  background-color: @background-color;
   mousetool {
-    background-color: @background-color;
     text-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+    left {
+      background-image: url('./app/image/default/left.png');
+    }
     drag {
-      background-image: url('./app/style/drag.png');
-      background-repeat: no-repeat;
-      background-size: 67px;
-      background-position-x: 6px;
-      background-position-y: 5px;
+      background-image: url('./app/image/default/drag.png');
     }
     right {
-      background-image: url('./app/style/right.png');
-      background-repeat: no-repeat;
-      background-size: 67px;
-      background-position-x: 6px;
-      background-position-y: 5px;
+      background-image: url('./app/image/default/right.png');
     }
     empty {
-      background-image: url('./app/style/empty.png');
-      background-repeat: no-repeat;
-      background-size: 65px;
-      background-position-x: 14px;
-      background-position-y: -webkit-calc(100% - 10px);
+      background-image: url('./app/image/default/empty.png');
     }
     arrow {
-      background-image: url('./app/style/arrow.png');
-      background-repeat: no-repeat;
-      background-size: 65px;
-      background-position-x: 14px;
-      background-position-y: -webkit-calc(100% - 10px);
+      background-image: url('./app/image/default/arrow.png');
     }
-    * {
-      color: @font-color;
-      font-size: 25px;
-      font-weight: bold;
+    ghost {
+      background-image: url('./app/image/default/ghost.png');
     }
     *[selected] {
       background-color: @selected-color;
@@ -67,7 +51,7 @@
                 0 0 0 16px rgb(39, 41, 43),
                 0 0 0 19px rgb(212, 178, 232);
     pointer {
-      background-color: @pointer-color;
+      background-image: url('./app/image/default/pointer.png');
     }
   }
 }

@@ -10,24 +10,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-import speech
-
-class Speak():
-  def say(self, args):
-    speech.say(args['sentence']);
-
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    keyboard.py                                        :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#              #
-#    Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 import pykeyboard
 
 class Keyboard():
@@ -65,17 +47,21 @@ class Mouse():
   y_limit = int(py.screen_size()[1]);
 
   def move(self, args):
-    """The function safes x and y and moves
-       the mouse.""";
+    """The function moves the mouse.""";
     x = int(float(args['x']) + float(Mouse.py.position()[0]));
     y = int(float(args['y']) + float(Mouse.py.position()[1]));
 
     Mouse.py.move(x, y);
-    return ('{"x": ' + str(x) + ', "y": ' + str(y) + '}');
+
+  def warp(self, args):
+    """The function warps the mouse.""";
+    x = int(float(args['x']));
+    y = int(float(args['y']));
+
+    Mouse.py.move(x, y);
 
   def click(self, args):
-    """The function safes x and y and moves
-       the mouse.""";
+    """The function do one click.""";
     x = int(Mouse.py.position()[0]);
     y = int(Mouse.py.position()[1]);
     c = int(args['click']);
@@ -164,8 +150,6 @@ class Server():
       content = getattr(Event(), data['event']['method'])(data['content']);
     elif (data['event']['class'] == 'eventcall'):
       content = getattr(Eventcall(), data['event']['method'])(data['content']);
-    elif (data['event']['class'] == 'speak'):
-      content = getattr(Speak(), data['event']['method'])(data['content']);
     if (content):
       Server.send(self, event, content);
 

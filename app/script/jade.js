@@ -20,7 +20,7 @@ var jade = require('jade');
 
 var Body = {
   'root': './app/view/',
-  'node': window.addEventListener('load', function() {
+  'node': window.addEventListener('load', function(arg) {
     Body.node = document.body;
   }, false),
 
@@ -31,8 +31,11 @@ var Body = {
 
     if (node)
       node.innerHTML = fn();
+    return (node);
   },
-  'default': window.addEventListener('load', function() {
-    Body.inner('mouse.jade');
+  'default': window.addEventListener('load', function(arg) {
+    var node = Body.inner('mouse.jade');
+
+    Tool.run(node);
   }, false)
 }
