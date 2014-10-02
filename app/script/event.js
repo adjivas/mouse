@@ -25,15 +25,12 @@ var Event = {
   'delay': Configuration.mouse.change,
   'find': Tool.find,
 
-  'console': function (data) {
-    console.log('console', data);
-  },
-  'call': function (data) {
+  'call': function (arg) {
     var mode = document.querySelector(Event.find);
 
     mode = mode.tagName;
     mode = mode.toCapitalizeCase();
-    if (!mouse.silent && window[mode]) {
+    if (window[mode]) {
       door.send({
         'class': 'eventcall',
         'method': 'capture'
@@ -44,7 +41,20 @@ var Event = {
       move.rotate();
     }
   },
-  'down': function (data) {
+  'domchange': function (arg) {
+    var modes = document.querySelectorAll(Tool.target + ' > *');
+    var count = -1;
+    var mode;
+
+    while (modes[++count]) {
+      mode = modes[count];
+      mode = mode.tagName;
+      mode = mode.toCapitalizeCase();
+      if (window[mode] && window[mode].domchange)
+        window[mode].domchange();
+    }
+  },
+  'down': function (arg) {
     if (!Event.action)
       if (!Event.interval)
         Event.interval = window.setInterval(Tool.next, Event.delay);
@@ -55,7 +65,9 @@ var Event = {
       Event.interval = window.clearInterval(Event.interval);
     if ((+new Date()) - Event.timestamp < Event.delay)
       Event.call();
-    else if (!Event.action)
+    else if (!Event.action) {
+      Event.domchange();
       Speak.call();
+    }
   }
 };

@@ -14,8 +14,6 @@
 
 var win = require('nw.gui').Window.get();
 
-win.showDevTools();
-
 /*
 ** The Zoom's Class is auto calls for resize the window.
 */

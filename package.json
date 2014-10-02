@@ -10,11 +10,11 @@
         "drag": 25,
         "left": 25,
         "right": 25,
-        "empty": 25,
+        "empty": 50,
         "arrow": 25
       },
       "change": 700,
-      "active": false
+      "active": true
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -25,7 +25,8 @@
       "active": false
     },
     "style": "default.less",
-    "language": "default"
+    "language": "default",
+    "debug": true
   },
   "keywords": [
     "special access system",

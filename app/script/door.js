@@ -66,7 +66,7 @@ var door = {
     socket.on('connection', function (dsocket) {
       door.socket = dsocket;
       door.socket.on('connect', door.connect);
-      door.socket.on('console', Event.console)
+      door.socket.on('console', Debug.console)
       door.socket.on('mousedown', Event.down);
       door.socket.on('mouseup', Event.up);
       door.socket.on('mouseup', Zoom.resize);

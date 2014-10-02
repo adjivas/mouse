@@ -1,0 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zoom.js                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+'use strict';
+
+var win = require('nw.gui').Window.get();
+
+var Debug = {
+  'active': Configuration.debug,
+
+  'open': function (arg) {
+  	var active = Debug.active;
+
+    if (active)
+      win.showDevTools();
+  },
+  'console': function (data) {
+    console.log('console', data);
+  },
+  'default': window.addEventListener('load', function (arg) {
+  	Debug.open(arg);
+  }, false)
+};
