@@ -26,17 +26,17 @@ var Speak = {
     if (!Speak.silent) {
       py.run('speak.py', {
         'scriptPath': './app/python/',
-        'pythonPath': 'C:/Python27/python.exe',
+        'pythonPath': Configuration.python.path,
         'args': [word]
       }, function (err, results) {
         if (err)
-          console.log('Speak /!\\:', err);
+          console.log(err);
       });
     }
   },
   'call': function (arg) {
-    var elemt = document.querySelector(Tool.find);
+    var elemt = document.querySelector(Menu.find);
 
     Speak.run(elemt.tagName);
   }
-}
+};

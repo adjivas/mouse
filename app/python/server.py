@@ -18,12 +18,26 @@ class Keyboard():
 
   def press(self, args):
     """The function press the key.""";
+    py     = Keyboard.py;
+    key    = str(args['key']);
+
+    if (len(key) != 1):
+      key += '_key';
+      key  = int(py.__dict__[key]);
+    else:
+      key  = str(key);
+    py.press_key(key);
+
+  def release(self, args):
+    """The function press the key.""";
     py  =  Keyboard.py;
     key =  str(args['key']);
-    key += '_key';
-    key =  int(py.__dict__[key]);
 
-    py.press_key(key);
+    if (len(key) != 1):
+      key += '_key';
+      key  = int(py.__dict__[key]);
+    else:
+      key  = str(key);
     py.release_key(key);
 
 # **************************************************************************** #
@@ -110,6 +124,8 @@ class Eventcall():
 #                                                                              #
 # **************************************************************************** #
 
+import sys;
+
 import json;
 import socket;
 
@@ -164,4 +180,8 @@ class Server():
     Server.connct.send(send);
 
 if (__name__ == '__main__'):
-  Server().init(('127.0.0.1', 1337), 200);
+  ip = str(sys.argv[1]);
+  port = int(sys.argv[2]);
+  buffer = int(sys.argv[3]);
+
+  Server().init((ip, port), buffer);

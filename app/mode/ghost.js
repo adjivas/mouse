@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   empty.js                                           :+:      :+:    :+:   */
+/*   ghost.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,24 +12,24 @@
 
 'use strict';
 
+var win = require('nw.gui').Window.get();
+
 /*
-** The Empty's class is calls for simple moves the cursor.
+** The Ghost's class is calls about the invisibility window.
 */
 
-var Empty = {
-  'stop': true,
-  'delay': Configuration.mouse.speed.empty,
-  'interval': undefined,
-  'click': 0,
+var Ghost = {
+  'status': false,
 
   'call': function (arg) {
-    if (Empty.interval === undefined) {
-      Event.action = true;
-      Empty.interval = window.setInterval(mouse.move, Empty.delay);
-    }
-    else {
-      Event.action = false;
-      Empty.interval = window.clearInterval(Empty.interval);
-    }
-  }
+    /* Does invisible or not invisible according to Ghost status. */
+    win.show(Ghost.status);
+    Ghost.status = !Ghost.status;
+  },
+  'end': function (arg) {
+    /* If the mode is change and the window is always invisible. */
+    /* Than the window is does not invisible. */
+    if (Ghost.status)
+      Ghost.call(arg);
+  },
 };

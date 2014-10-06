@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drag.js                                            :+:      :+:    :+:   */
+/*   left.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,23 +13,25 @@
 'use strict';
 
 /*
-** The Drag's class is calls for simple moves the cursor.
+** The Left's class is calls for moves the cursor and left click.
 */
 
-var Drag = {
-  'stop': false,
-  'delay': Configuration.mouse.speed.drag,
+var Left = {
+  'speed': Configuration.mode.speed.left,
   'interval': undefined,
   'click': 1,
 
+  'start': function (number) {
+    Event.forget = (typeof number !== 'number' ? 2 : number);
+
+    Door.send({'class': 'mouse', 'method': 'click'}, {'click': Left.click});
+  },
   'call': function (arg) {
-    if (!Drag.interval) {
-      Event.action = true;
-      Drag.interval = window.setInterval(mouse.move, Drag.delay);
-    }
-    else {
-      Event.action = false;
-      Drag.interval = window.clearInterval(Drag.interval);
-    }
+    Event.action = !Event.action;
+
+    if (!Event.action)
+      Left.start(1);
+    Cursor.action(Left.speed);
+    Pointer.rotate();
   }
 };

@@ -31,4 +31,4 @@ var file = {
     });
     return (deferred.promise);
   }
-}
+};

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   left.js                                            :+:      :+:    :+:   */
+/*   drag.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,39 +13,27 @@
 'use strict';
 
 /*
-** The Left's class is calls for moves the cursor and left click.
+** The Drag's class is calls for simple moves the cursor.
 */
 
-var Left = {
-  'stop': true,
-  'action': false,
-  'delay': Configuration.mouse.speed.left,
+/* !Bug: this object cannot be selected in mouse.jade. */
+/* !Bug: this object cannot good work with another click than one. */
+
+var Drag = {
+  'speed': Configuration.mode.speed.drag,
+  'interval': undefined,
   'click': 1,
 
-  'run': function (arg) {
-    door.send({
-      'class': 'mouse',
-      'method': 'click'
-    }, {
-      'click': Left.click
-    });
+  'start': function (arg) {
+    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': false});
   },
   'call': function (arg) {
-    if (!Left.action) {
-      if (Left.interval === undefined) {
-        Left.interval = window.setInterval(mouse.move, Left.delay);
-        Event.action = true;
-      }
-      else {
-        Left.action = true;
-        Left.interval = window.clearInterval(Left.interval);
-        Left.run();
-        Event.action = false;
-      }
-    }
-    else {
-      Left.action = false;
-      move.rotate();
-    }
+    Event.action = !Event.action;
+
+    Cursor.action(Left.speed);
+    Pointer.rotate();
+  },
+  'end': function (arg) {
+    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
   }
 };

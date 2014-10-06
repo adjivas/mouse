@@ -20,8 +20,8 @@ var win = require('nw.gui').Window.get();
 
 var close = {
   'hidden': win.on('close', function() {
-    if (typeof door !== 'undefined')
-      door.close();
+    if (typeof Door !== 'undefined')
+      Door.close();
     this.close(true);
   })
 };

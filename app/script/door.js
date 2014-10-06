@@ -15,7 +15,8 @@
 var py     = require('python-shell');
 var socket = require('tcp.js').client(
   Configuration.socket.ip,
-  Configuration.socket.port
+  Configuration.socket.port,
+  Configuration.socket.buffer
 );
 
 /* 
@@ -23,13 +24,14 @@ var socket = require('tcp.js').client(
 ** of command' control.
 */
 
-var door = {
+var Door = {
   /* The procedure opens the socket. */
   'socket': undefined,
   'online': false,
+  'active': Configuration.mode.active,
   'run': py.run('server.py', {
     'scriptPath': './app/python/',
-    'pythonPath': 'C:/Python27/python.exe',
+    'pythonPath': Configuration.python.path,
     'args': [
       Configuration.socket.ip,
       Configuration.socket.port,
@@ -38,38 +40,42 @@ var door = {
   }, function (err, results) {
     if (err)
       throw (err);
-    door.online = false;
+    Door.online = false;
   }),
 
   /* The function closes the server when the event's close is activated. */
   'close': function (arg) {
-    if (door.online) {
-      door.online = false;
-      door.socket.send(null, null);
+    if (Door.online) {
+      Door.online = false;
+      Door.socket.send(null, null);
     }
   },
   /* The function is a new message from the server. */
-  'connect': function (data) {
-    door.online = true;
+  'open': function (data) {
+    Door.online = true;
+    Cursor.warp(Cursor.position);
+    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
   },
   /* The function event a json to the socket -{event, content}-. */
   'send': function (event, content) {
-    if (door.online) {
-      door.socket.send(event, content); 
+    if (Door.online) {
+      Door.socket.send(event, content); 
     }
     else window.setTimeout(function (arg) {
-      door.socket.send(event, content);
+      Door.socket.send(event, content);
     }, 1000);
   },
   /* The function connects the socket. */
   'default': window.addEventListener('load', function() {
     socket.on('connection', function (dsocket) {
-      door.socket = dsocket;
-      door.socket.on('connect', door.connect);
-      door.socket.on('console', Debug.console)
-      door.socket.on('mousedown', Event.down);
-      door.socket.on('mouseup', Event.up);
-      door.socket.on('mouseup', Zoom.resize);
+      Door.socket = dsocket;
+      Door.socket.on('console', Debug.console)
+      if (Door.active) {
+        Door.socket.on('connect', Door.open);
+        Door.socket.on('mousedown', Event.down);
+        Door.socket.on('mouseup', Event.up);
+        Door.socket.on('mouseup', Zoom.resize);
+      }
     });
   }, false)
 };

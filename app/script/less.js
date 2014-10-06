@@ -50,4 +50,4 @@ var Style = {
     Style.append('source.less');
     Style.append(Style.theme);
   }, false)
-}
+};

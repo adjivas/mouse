@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   double.js                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,34 +12,27 @@
 
 'use strict';
 
-var Arrow = {
-  'stop': true,
-  'delay': Configuration.mouse.speed.arrow,
-  'interval': undefined,
-  'click': 0,
+/*
+** The Double's class is calls for moves the cursor and double click.
+*/
 
-  'run': function (arg) {
-    door.send({
-      'class': 'keyboard',
-      'method': 'press'
-    }, {
-      'key': arg
-    });
-  },
-  'move': function (arg) {
-    if (45 < move.degret && move.degret <= 135) Arrow.run('right');
-    else if (135 < move.degret && move.degret <= 225) Arrow.run('down');
-    else if (225 < move.degret && move.degret <= 315) Arrow.run('left');
-    else Arrow.run('up');
+var Double = {
+  'speed': Configuration.mode.speed.double,
+  'interval': undefined,
+  'click': 1,
+
+  'start': function (number) {
+    Event.forget = (typeof number !== 'number' ? 3 : number);
+
+    Door.send({'class': 'mouse', 'method': 'click'}, {'click': Double.click});
+    Door.send({'class': 'mouse', 'method': 'click'}, {'click': Double.click});
   },
   'call': function (arg) {
-    if (!Arrow.interval) {
-      Event.action = true;
-      Arrow.interval = window.setInterval(Arrow.move, Arrow.delay);
-    }
-    else {
-      Event.action = false;
-      Arrow.interval = window.clearInterval(Arrow.interval);
-    }
+    Event.action = !Event.action;
+
+    if (!Event.action)
+      Double.start(2);
+    Cursor.action(Double.speed);
+    Pointer.rotate();
   }
 };

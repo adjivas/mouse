@@ -12,32 +12,32 @@
 
 'use strict';
 
-var move = {
-  'target': 'pointer',
-  'attribute': 'style',
-  'time': undefined,
-  'degret': 0,
+/*
+** The Move's class is calls for simple move a window.
+*/
 
-  'circular': function (arg) {
-    var target = document.querySelector(move.target);
-    var attribute = move.attribute;
-    var value = '-webkit-transform:';
+var Move = {
+  'speed': Configuration.mode.speed.move,
+  'interval': undefined,
+  'click': 1,
 
-    if (0 < move.degret && move.degret <= 360)
-      move.degret += -1;
-    else
-      move.degret = 360;
-    value += 'rotate(' + move.degret + 'deg);';
-    if (target)
-      target.setAttribute(attribute, value);
+  'start': function (arg) {
+    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'alt_l'});
+    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': ' '});
+    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': ' '});
+    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'alt_l'});
+    window.setTimeout(function (arg) {
+      Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'l'});
+      Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'l'});
+    }, 750);
   },
-  'rotate': function (arg) {
-    if (move.time === undefined)
-      move.time = window.setInterval(move.circular, 1);
-    else
-      move.time = window.clearInterval(move.time);
+  'call': function (arg) {
+    Event.action = !Event.action;
+
+    Selector.action(Move.speed);
+    Pointer.rotate();
   },
-  'default': window.addEventListener('load', function() {
-    move.rotate();
-  }, false)
-}
+  'end': function (arg) {
+    Left.start();
+  }
+};

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tool.js                                            :+:      :+:    :+:   */
+/*   menu.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,36 +13,41 @@
 'use strict';
 
 /*
-** The Tool's class is call for change the cursor's mode.
+** The Menu's class is call for change the cursor's mode.
 */
 
-var Tool = {
-  'target': 'mousetool',
+var Menu = {
+  'target': 'menu',
   'atrib': 'selected',
-  'find': 'mousetool > *[selected]',
+  'find': 'menu > *[selected]',
   'distance': 180,
+  'last': undefined,
+  'new': undefined,
 
   'next': function (arg) {
-    var atrib = Tool.atrib;
-    var items = document.querySelectorAll(Tool.target + ' > *');
+    var atrib = Menu.atrib;
+    var items = document.querySelectorAll(Menu.target + ' > *');
     var limit = items.length - 1;
     var count = -1;
+    var last;
 
     if (!items[limit].getAttribute(atrib))
       while (++count < limit)
         if (items[count].getAttribute(atrib))
           break ;
     if (items[count]) {
-      items[count].removeAttribute(atrib);
-      items[count + 1].setAttribute(atrib, atrib);
+      last = items[count];
+      Menu.new  = items[count + 1];
     }
     else {
-      items[items.length - 1].removeAttribute(atrib);
-      items[0].setAttribute(atrib, atrib); 
+      last = items[items.length - 1];
+      Menu.new  = items[0];
     }
+    last.removeAttribute(atrib);
+    Menu.new.setAttribute(atrib, atrib);
   },
-  'run': function (body) {
-    var items = body.querySelectorAll(Tool.target + ' > *');
+  'init': function (body) {
+    var items = body.querySelectorAll(Menu.target + ' > *');
     var deg   = 360 / items.length;
     var cnt   = -1;
     var crd   = {
@@ -53,8 +58,8 @@ var Tool = {
 
     while (items[++cnt]) {
       rad = window.Math.PI * (deg * cnt) / 180;
-      crd.left = window.Math.sin(rad) * Tool.distance | 0;
-      crd.top = window.Math.cos(rad) * Tool.distance | 0;
+      crd.left = window.Math.sin(rad) * Menu.distance | 0;
+      crd.top = window.Math.cos(rad) * Menu.distance | 0;
       items[cnt].style.left = crd.left + 'px';
       items[cnt].style.top = crd.top + 'px';
     }

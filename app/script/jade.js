@@ -36,6 +36,7 @@ var Body = {
   'default': window.addEventListener('load', function(arg) {
     var node = Body.inner('mouse.jade');
 
-    Tool.run(node);
+    Menu.init(node);
+    Version.init(node);
   }, false)
-}
+};

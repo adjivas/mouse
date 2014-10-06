@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conf.js                                            :+:      :+:    :+:   */
+/*   control.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-'use unstrict';
+'use strict';
 
-var package = require('package')();
+/*
+** The Control's class is call for moves the cursor and left clicks
+** and press the control key.
+*/
 
-var Configuration = package.configuration;
+var Control = {
+  'speed': Configuration.mode.speed.control,
+  'interval': undefined,
 
-var Version = {
-  'target': 'version',
-  'content': package.version,
+  'start': function (number) {
+    Event.forget = (typeof number !== 'number' ? 2 : number);
 
-  'init': function (body) {
-    var dom = body.querySelector(Version.target);
+    Door.send({'class': 'keyboard', 'method': 'press'}, {'key':  'control'  });
+    Door.send({'class': 'mouse'   , 'method': 'click'}, {'click': Left.click});
+  },
+  'call': function (arg) {
+    Event.action = !Event.action;
 
-    dom.textContent = Version.content + '\'s version.';
+    if (!Event.action)
+      Left.start(1);
+    Cursor.action(Left.speed);
+    Pointer.rotate();
+  },
+  'end': function (arg) {
+    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'control' });
   }
-}
+};

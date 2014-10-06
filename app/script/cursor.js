@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mouse.js                                           :+:      :+:    :+:   */
+/*   cursor.js                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,41 +13,54 @@
 'use strict';
 
 /*
-** The Mouse's Object is thought for be call by Move's Object.
+** The Cursor's Class is call by anothers function for 
+** request the server of move the cursor.
 */
 
-var mouse = {
+var Cursor = {
   'position': {
     'x': window.screen.availWidth / 2,
     'y': window.screen.availHeight / 2
   },
-  'silent': !Configuration.mouse.active,
-  'speed': Configuration.mouse.speed.default,
+  'speed': Configuration.mode.speed.default,
+  'interval': undefined,
 
-  'run': function (arg) {
+  'warp': function (cord) {
     /* The function execs a move's python script who does the move
        of the cursor. */
-    if (!mouse.silent) {
-      mouse.position.x += mouse.speed * arg.x;
-      mouse.position.y -= mouse.speed * arg.y;
-      door.send({
-        'class': 'mouse',
-        'method': 'warp'
-      }, {
-        'x': mouse.position.x,
-        'y': mouse.position.y
-      });
-    }
+    var warp = Warp[Warp.choice]({
+      'x': cord.x,
+      'y': cord.y
+    });
+
+    Cursor.position.x = warp.x;
+    Cursor.position.y = warp.y;
+    Door.send({
+      'class': 'mouse',
+      'method': 'warp'
+    }, {
+      'x': Cursor.position.x,
+      'y': Cursor.position.y
+    });
   },
   'move': function (arg) {
     /* The function does a conversion from polar to cartesian coordinates,
-       and calls the run's function for move the cursor. */
-    var deg = move.degret;
+       and requests the server for move the cursor. */
+    var deg = Pointer.degret;
     var rad = window.Math.PI * deg / 180;
 
-    mouse.run({
-      'x': window.Math.sin(rad),
-      'y': window.Math.cos(rad)
+    Cursor.warp({
+      'x': Cursor.position.x + window.Math.sin(rad),
+      'y': Cursor.position.y - window.Math.cos(rad)
     });
+  },
+  'action': function (number) {
+    /* The function starts or stops the move. */
+    var speed = (typeof number !== 'number' ? Cursor.speed : number);
+
+    if (Cursor.interval !== undefined)
+      Cursor.interval = window.clearInterval(Cursor.interval);
+    else
+      Cursor.interval = window.setInterval(Cursor.move, speed);
   }
-}
+};

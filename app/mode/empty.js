@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   conf.js                                            :+:      :+:    :+:   */
+/*   empty.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-'use unstrict';
+'use strict';
 
-var package = require('package')();
+/*
+** The Empty's class is calls for simple moves the cursor and never clicks.
+*/
 
-var Configuration = package.configuration;
+var Empty = {
+  'speed': Configuration.mode.speed.empty,
+  'interval': undefined,
 
-var Version = {
-  'target': 'version',
-  'content': package.version,
+  'call': function (arg) {
+    Event.action = !Event.action;
 
-  'init': function (body) {
-    var dom = body.querySelector(Version.target);
-
-    dom.textContent = Version.content + '\'s version.';
+    Cursor.action(Empty.speed);
+    Pointer.rotate();
   }
-}
+};

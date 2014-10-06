@@ -1,20 +1,25 @@
 {
   "main": "main.html",
-  "name": "nw-demo",
-  "description": "demo app of node-webkit",
-  "version": "0.5.1",
+  "name": "mouse-pad",
+  "description": "beta program of virtual mouse",
+  "version": "0.7.0",
   "configuration": {
-    "mouse": {
+    "warp": "default",
+    "mode": {
+      "active": true,
+      "next": 700,
       "speed": {
         "default": 5,
+        "arrow": 100,
+        "control": 100,
+        "double": 1,
         "drag": 25,
-        "left": 25,
-        "right": 25,
-        "empty": 50,
-        "arrow": 25
-      },
-      "change": 700,
-      "active": true
+        "left": 1,
+        "move": 100,
+        "empty": 10,
+        "resize": 100,
+        "right": 1
+      }
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -23,6 +28,9 @@
     },
     "synthse": {
       "active": false
+    },
+    "python": {
+       "path": "./python27/python.exe"
     },
     "style": "default.less",
     "language": "default",

@@ -17,35 +17,21 @@
 */
 
 var Right = {
-  'stop': true,
-  'action': false,
-  'delay': Configuration.mouse.speed.right,
+  'speed': Configuration.mode.speed.right,
+  'interval': undefined,
   'click': 2,
 
-  'run': function (arg) {
-    door.send({
-      'class': 'mouse',
-      'method': 'click'
-    }, {
-      'click': Right.click
-    });
+  'start': function (number) {
+    Event.forget = (typeof number !== 'number' ? 2 : number);
+
+    Door.send({'class': 'mouse', 'method': 'click'}, {'click': Right.click});
   },
   'call': function (arg) {
-    if (!Right.action) {
-      if (Right.interval === undefined) {
-        Right.interval = window.setInterval(mouse.move, Right.delay);
-        Event.action = true;
-      }
-      else {
-        Right.action = true;
-        Right.interval = window.clearInterval(Right.interval);
-        Right.run();
-        Event.action = false;
-      }
-    }
-    else {
-      Right.action = false;
-      move.rotate();
-    }
+    Event.action = !Event.action;
+
+    if (!Event.action)
+      Right.start(1);
+    Cursor.action(Right.speed);
+    Pointer.rotate();
   }
 };

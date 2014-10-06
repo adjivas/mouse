@@ -14,6 +14,11 @@
 
 var win = require('nw.gui').Window.get();
 
+/* 
+** The Debug's class is auto call, if it's activated
+** then the terminal is open.
+*/
+
 var Debug = {
   'active': Configuration.debug,
 

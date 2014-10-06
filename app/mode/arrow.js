@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ghost.js                                           :+:      :+:    :+:   */
+/*   arrow.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,26 +12,18 @@
 
 'use strict';
 
-var win = require('nw.gui').Window.get();
-
 /*
-** The Ghost's class is calls about the invisibility window.
+** The Arrow's class is call for move the text's cursor.
 */
 
-var Ghost = {
-  'target': 'pointer',
-  'stop': true,
-  'active': false,
-  'click': 0,
+var Arrow = {
+  'speed': Configuration.mode.speed.arrow,
+  'interval': undefined,
 
-  'domchange': function (arg) {
-    if (Ghost.active) {
-      Ghost.call(arg);
-      move.rotate(arg);
-    }
-  },
   'call': function (arg) {
-    win.show(Ghost.active);
-    Ghost.active = !Ghost.active;
+    Event.action = !Event.action;
+
+    Selector.action(Arrow.speed);
+    Pointer.rotate();
   }
 };

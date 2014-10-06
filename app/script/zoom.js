@@ -30,7 +30,7 @@ var Zoom = {
     Zoom.node = document.body;
   }, false),
 
-  'resize': function (arg) {
+  'resize': function (arg) {   
     var rest = {
       '0': {
         '0': Zoom.last.x,
@@ -54,6 +54,10 @@ var Zoom = {
     }
   },
   'define': function (size) {
+    /* The function register the status' action for width's and height's windos:
+       0-0-1: The cursor upper moves.
+       0-1-0: The cursor not moves.
+       1-0-0: The cursor lower moves. */
     var node = Zoom.node;
     var last = Zoom.last;
     var rest = {
