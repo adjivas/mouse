@@ -1,0 +1,13 @@
+{
+  "empty": "clic neutre activé",
+  "drag": "clic de déplacement activé",
+  "double": "clics gauches doubles activés",
+  "left": "clic gauche activé",
+  "right": "clic droit activé",
+  "ghost": "clic fantôme activé",
+  "arrow": "touches directionnelles activés",
+  "control": "clic gauche avec la touche control activé",
+  "resize": "clic de redimension activé",
+  "move": "clic de déplacement activé",
+  "version": "version {{number}}."
+}

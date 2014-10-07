@@ -27,7 +27,7 @@ var Style = {
     var address = arg.address;
     var node = arg.node;
 
-    file.read(address).then(function(res, err) {
+    File.read(address).then(function(res, err) {
       less.render(res, function (e, css) {
         node.textContent = css;
       });

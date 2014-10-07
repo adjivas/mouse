@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-var py = require('python-shell');
-
 'use strict';
+
+var py = require('python-shell');
 
 /* 
 ** The Speak's class is calls for request the socket of
@@ -30,13 +30,15 @@ var Speak = {
         'args': [word]
       }, function (err, results) {
         if (err)
-          console.log(err);
+          Debug.console(err);
       });
     }
   },
   'call': function (arg) {
     var elemt = document.querySelector(Menu.find);
 
-    Speak.run(elemt.tagName);
+    elemt = elemt.tagName.toLowerCase();
+    elemt = Lang.translate(elemt, {});
+    Speak.run(elemt);
   }
 };

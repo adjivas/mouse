@@ -33,7 +33,6 @@ var Event = {
   'signal': function (dom, func) {
     var mode = dom.tagName.toCapitalizeCase();
 
-    console.log(mode, func);
     if (window[mode])
       if (window[mode][func])
         window[mode][func](null);
@@ -67,6 +66,7 @@ var Event = {
       Menu.last = Menu.new;
       Event.signal(Menu.new, 'start');
       Speak.call();
+      Notification.call();
     }
   }
 };

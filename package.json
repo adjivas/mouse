@@ -7,11 +7,11 @@
     "warp": "default",
     "mode": {
       "active": true,
-      "next": 700,
+      "next": 500,
       "speed": {
         "default": 5,
         "arrow": 100,
-        "control": 100,
+        "control": 1,
         "double": 1,
         "drag": 25,
         "left": 1,
@@ -29,11 +29,17 @@
     "synthse": {
       "active": false
     },
+    "notification": {
+      "active": true
+    },
     "python": {
-       "path": "./python27/python.exe"
+      "path": "C:/python27/python.exe"
     },
     "style": "default.less",
-    "language": "default",
+    "lang": {
+      "path": "./app/lang/",
+      "locale": "fr"
+    },
     "debug": true
   },
   "keywords": [

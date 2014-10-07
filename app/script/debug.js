@@ -23,7 +23,7 @@ var Debug = {
   'active': Configuration.debug,
 
   'open': function (arg) {
-  	var active = Debug.active;
+    var active = Debug.active;
 
     if (active)
       win.showDevTools();
@@ -32,6 +32,6 @@ var Debug = {
     console.log('console', data);
   },
   'default': window.addEventListener('load', function (arg) {
-  	Debug.open(arg);
+    Debug.open(arg);
   }, false)
 };

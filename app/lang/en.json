@@ -1,0 +1,13 @@
+{
+  "empty": "empty clicks activated",
+  "drag": "drag clicks activated",
+  "double": "double clicks activated",
+  "left": "left clicks activated",
+  "right": "right clicks activated",
+  "ghost": "ghost clicks activated",
+  "arrow": "arrow clicks activated",
+  "control": "control clicks activated",
+  "resize": "resize clicks activated",
+  "move": "move clicks activated",
+  "version": "{{number}}'s version."
+}

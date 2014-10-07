@@ -15,12 +15,16 @@
 var q  = require('q');
 var fs = require('fs');
 
-var file = {
+/*
+** The File's class is calls for read a file.
+*/
+
+var File = {
   'charset': 'utf8',
 
   'read': function (arg) {
     var deferred = q.defer();
-    var charset  = file.charset;
+    var charset  = File.charset;
     var link     = arg;
 
     fs.readFile(link, charset, function (err, data) {
