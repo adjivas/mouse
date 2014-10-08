@@ -17,7 +17,7 @@
 */
 
 var Double = {
-  'speed': Configuration.mode.speed.double,
+  'speed': Configuration.mode.double.speed,
   'interval': undefined,
   'click': 1,
 

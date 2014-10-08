@@ -17,7 +17,7 @@
 */
 
 var Move = {
-  'speed': Configuration.mode.speed.move,
+  'speed': Configuration.mode.move.speed,
   'interval': undefined,
   'click': 1,
 

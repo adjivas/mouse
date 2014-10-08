@@ -17,7 +17,7 @@
 */
 
 var Empty = {
-  'speed': Configuration.mode.speed.empty,
+  'speed': Configuration.mode.empty.speed,
   'interval': undefined,
 
   'call': function (arg) {

@@ -17,7 +17,7 @@
 */
 
 var Arrow = {
-  'speed': Configuration.mode.speed.arrow,
+  'speed': Configuration.mode.arrow.speed,
   'interval': undefined,
 
   'call': function (arg) {

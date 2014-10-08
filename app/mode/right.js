@@ -17,7 +17,7 @@
 */
 
 var Right = {
-  'speed': Configuration.mode.speed.right,
+  'speed': Configuration.mode.right.speed,
   'interval': undefined,
   'click': 2,
 

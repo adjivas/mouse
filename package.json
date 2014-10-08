@@ -8,17 +8,45 @@
     "mode": {
       "active": true,
       "next": 500,
-      "speed": {
-        "default": 5,
-        "arrow": 100,
-        "control": 1,
-        "double": 1,
-        "drag": 25,
-        "left": 1,
-        "move": 100,
-        "empty": 10,
-        "resize": 100,
-        "right": 1
+      "default": {
+        "speed": 5,
+        "active": true
+      },
+      "arrow": {
+        "speed": 100,
+        "active": true
+      },
+      "control": {
+        "speed": 1,
+        "active": true
+      },
+      "double": {
+        "speed": 1,
+        "active": true
+      },
+      "drag": {
+        "speed": 25,
+        "active": true
+      },
+      "left": {
+        "speed": 1,
+        "active": true
+      },
+      "move": {
+        "speed": 100,
+        "active": true
+      },
+      "empty": {
+        "speed": 10,
+        "active": true
+      },
+      "resize": {
+        "speed": 100,
+        "active": true
+      },
+      "right": {
+        "speed": 1,
+        "active": true
       }
     },
     "socket": {

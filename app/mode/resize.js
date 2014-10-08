@@ -17,7 +17,7 @@
 */
 
 var Resize = {
-  'speed': Configuration.mode.speed.resize,
+  'speed': Configuration.mode.resize.speed,
   'interval': undefined,
   'click': 1,
 

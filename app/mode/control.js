@@ -18,7 +18,7 @@
 */
 
 var Control = {
-  'speed': Configuration.mode.speed.control,
+  'speed': Configuration.mode.control.speed,
   'interval': undefined,
 
   'start': function (number) {
