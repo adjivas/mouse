@@ -1,6 +1,6 @@
 {
-  "main": "main.html",
-  "name": "mouse-pad",
+  "main": "mouscreen.html",
+  "name": "mouscreen",
   "description": "beta program of virtual mouse",
   "version": "0.7.0",
   "configuration": {
@@ -12,42 +12,15 @@
         "speed": 5,
         "active": true
       },
-      "arrow": {
-        "speed": 100,
-        "active": true
-      },
-      "control": {
-        "speed": 1,
-        "active": true
-      },
-      "double": {
-        "speed": 1,
-        "active": true
-      },
-      "drag": {
-        "speed": 25,
-        "active": true
-      },
-      "left": {
-        "speed": 1,
-        "active": true
-      },
-      "move": {
-        "speed": 100,
-        "active": true
-      },
-      "empty": {
-        "speed": 10,
-        "active": true
-      },
-      "resize": {
-        "speed": 100,
-        "active": true
-      },
-      "right": {
-        "speed": 1,
-        "active": true
-      }
+      "arrow": {"speed": 100, "active": true},
+      "control": {"speed": 1, "active": true},
+      "double": {"speed": 1, "active": true},
+      "drag": {"speed": 25, "active": true},
+      "left": {"speed": 1, "active": true},
+      "move": {"speed": 100, "active": true},
+      "empty": {"speed": 10, "active": true},
+      "resize": {"speed": 100, "active": true},
+      "right": {"speed": 1, "active": true}
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -57,8 +30,20 @@
     "synthse": {
       "active": false
     },
+    "mouscreen": {
+      "_position": "to",
+      "left": null,
+      "top": null
+    },
     "notification": {
-      "active": true
+      "_position": "by",
+      "active": true,
+      "file": "./notification.html",
+      "time": 1,
+      "left": 0,
+      "top": 400,
+      "width": null,
+      "height": 50
     },
     "python": {
       "path": "C:/python27/python.exe"
@@ -66,7 +51,7 @@
     "style": "default.less",
     "lang": {
       "path": "./app/lang/",
-      "locale": "fr"
+      "locale": "en"
     },
     "debug": true
   },

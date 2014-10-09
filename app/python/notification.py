@@ -12,7 +12,7 @@
 
 import sys
 
-import tkinter
+import Tkinter
 
 class Kinter(object):
   font_policy = 'Times New Roman';
@@ -22,7 +22,7 @@ class Kinter(object):
   background_color = 'black';
 
   def __init__(self, sentence, show_interval = 2):
-    self.root = tkinter.Label(text = sentence)
+    self.root = Tkinter.Label(text = sentence)
     self.root.config(font = (Kinter.font_policy,
                              Kinter.font_size,
                              Kinter.font_weight));
@@ -30,15 +30,17 @@ class Kinter(object):
     self.root.config(bg = Kinter.background_color);
     self.root.config(bd = 0);
     self.root.config(justify = 'center');
-    self.root.config(width = 50);
+#    self.root.config(width = 2);
     self.root.config(highlightcolor = Kinter.background_color);
     self.root.master.overrideredirect(True);
-    geometry = '+0+' + str(self.root.winfo_screenheight() - 100);
-    self.root.master.geometry(geometry);
+#    geometry = '+0+' + str(self.root.winfo_screenheight() - 100);
+#    self.root.master.geometry(geometry);
+#    self.root.master.geometry(geometry);
+
     self.root.master.lift();
     self.root.master.wm_attributes('-topmost', True);
     self.root.master.wm_attributes('-disabled', True);
-    self.root.pack(expand = "yes", fill = "both");
+    self.root.pack(expand = "yes", fill = "both", side='bottom');
     self.root.after(4000, self.end);
 
   def end(self):

@@ -15,16 +15,3 @@
 var package = require('package')();
 
 var Configuration = package.configuration;
-
-var Version = {
-  'target': 'version',
-  'content': package.version,
-
-  'init': function (body) {
-    var dom = body.querySelector(Version.target);
-
-    dom.textContent = Lang.translate('version', {
-      'number': Version.content
-    });
-  }
-}
