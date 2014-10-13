@@ -22,7 +22,7 @@ var Cursor = {
     'x': window.screen.availWidth / 2,
     'y': window.screen.availHeight / 2
   },
-  'speed': Configuration.mode.default.speed,
+  'speed': 1,
   'interval': undefined,
 
   'warp': function (cord) {

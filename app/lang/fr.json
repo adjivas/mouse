@@ -9,5 +9,9 @@
   "control": "clic gauche avec la touche control activé",
   "resize": "clic de redimension activé",
   "move": "clic de déplacement activé",
+  "free": "clic gauche sans trajectoire activé",
+  "close": "fermeture du programme dans {{time}} milliseconde(s).",
+  "fr": "français",
+  "en": "anglais",
   "version": "version {{number}}."
 }

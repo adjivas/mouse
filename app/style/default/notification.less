@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   default.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-'use strict';
+@charset 'UTF-8';
 
-/*
-** The Arrow's class is call for move the text's cursor.
-*/
+:root {
+  @background-color: rgb(118, 84, 144);
+  @border-color: rgb(0, 0, 0);
+  @font-color: rgb(255, 255, 255);
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
-
-  'call': function (arg) {
-    Event.action = !Event.action;
-
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
+  background-color: @background-color;
+  notif {
+    font-family: fantasy;
+    -webkit-text-fill-color: @font-color;
+    -webkit-text-stroke-color: @border-color;
+    -webkit-text-stroke-width: 2px;
   }
-};
+  * {
+    -webkit-app-region: drag;
+  }
+}
+
+
+:root {
+  -webkit-user-select: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  body {
+    notif {
+      position: fixed;
+      text-align: center;
+      font-size: 80vh;
+      width: 100%;
+      height: 100%;
+    }
+    * {
+      pointer-events: none;
+    }
+  }
+}

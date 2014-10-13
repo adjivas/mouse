@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   start.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,18 @@
 
 'use strict';
 
-/*
-** The Arrow's class is call for move the text's cursor.
-*/
+var win = require('nw.gui').Window.get();
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Start = {
 
-  'call': function (arg) {
-    Event.action = !Event.action;
-
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
-  }
+  'show': function (arg) {
+    win.show(true);
+  },
+  'kiosk': function (arg) {
+    win.enterKioskMode(true);
+  },
+  'default': window.addEventListener('load', function() {
+    Start.kiosk();
+    Start.show();
+  }, false)
 };

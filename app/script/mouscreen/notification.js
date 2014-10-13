@@ -14,37 +14,31 @@
 
 var gui = require('nw.gui'); 
 var win = gui.Window.get();
-var py = require('python-shell');
 var Base64 = require('js-base64').Base64;
 
 /* 
-** The Notification's class is calls for request the python's script of
-** writes a sentence on the device screen.
-*/
-
-/*
-Notification.open('clic gauche avec la touche control activé')
+** The Notification's class is calls for open 
+** a new window during a time with a message.
 */
 
 var Notification = {
   'win': undefined,
-  'url': Configuration.notification.file,
-  'time': Configuration.notification.time * 1000,
-  'silent': !Configuration.notification.active,
+  'url': Conf.notification.file,
+  'time': Conf.notification.time * 1000,
+  'silent': !Conf.notification.active,
   'window': {
     "position": 'center',
-    "_position": Configuration.notification._position,
-    "width": Configuration.notification.width !== null ?
-                      Configuration.notification.width :
-                      window.screen.width / 2 | 0,
-    "height": Configuration.notification.height,
+    "func": Conf.notification.func,
+    "width": Conf.notification.width,
+    "height": Conf.notification.height,
     "always-on-top": true,
     "frameless": false,
     "toolbar": false,
     "frame": false,
-    "top": Configuration.notification.top,
-    "left": Configuration.notification.left,
-    "name": undefined
+    "show": false,
+    "top": Conf.notification.top,
+    "left": Conf.notification.left,
+    "name": null
   },
 
   'open': function (name) {
@@ -62,7 +56,7 @@ var Notification = {
       Notification.win = gui.Window.open(url + '?' + wcp, wid);
   },
   'call': function (arg) {
-    var elemt = document.querySelector(Menu.find);
+    var elemt = document.querySelector(Menu.item);
 
     elemt = elemt.tagName.toLowerCase();
     elemt = Lang.translate(elemt, {});

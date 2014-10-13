@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   close.js                                           :+:      :+:    :+:   */
+/*   options.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,15 @@
 
 'use strict';
 
-var win = require('nw.gui').Window.get();
+var Options = {
+  'target': 'options',
 
-/*
-** The class is a procedure of program exit.
-*/
+  'init': function (body) {
+    var dom = body.querySelector(Options.target);
 
-var close = {
-  'hidden': win.on('close', function() {
-    if (typeof Door !== 'undefined')
-      Door.close();
-    this.close(true);
-  })
+    Language.build(dom);
+    Notification.build(dom);
+    Synthse.build(dom);
+    Menu.init(dom);
+  }
 };

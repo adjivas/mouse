@@ -20,7 +20,7 @@
 /* !Bug: this object cannot good work with another click than one. */
 
 var Drag = {
-  'speed': Configuration.mode.drag.speed,
+  'speed': Conf.mode.drag,
   'interval': undefined,
   'click': 1,
 

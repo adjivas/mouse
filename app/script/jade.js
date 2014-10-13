@@ -24,19 +24,23 @@ var Body = {
     Body.node = document.body;
   }, false),
 
-  'inner': function (arg) {
+  'inner': function (file) {
     var root = Body.root;
     var node = Body.node;
-    var fn = jade.compileFile(root + arg, {});
+    var fn = jade.compileFile(root + file, {});
 
     if (node)
       node.innerHTML = fn();
     return (node);
   },
   'default': window.addEventListener('load', function(arg) {
-    var node = Body.inner('mouse.jade');
+    var node = Body.inner(document.title + '.jade');
 
-    Menu.init(node);
-    Version.init(node);
+    if (window.Menu)
+      Menu.init(node);
+    if (window.Version)
+      Version.init(node);
+    if (window.Options)
+      Options.init(node);
   }, false)
 };

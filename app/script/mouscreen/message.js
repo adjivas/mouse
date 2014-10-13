@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   speak.js                                           :+:      :+:    :+:   */
+/*   message.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,33 +12,32 @@
 
 'use strict';
 
-var py = require('python-shell');
-
 /* 
-** The Speak's class is calls for request the socket of
-** says a word.
+** The Notification's class is puts message in the principal window.
 */
 
-var Speak = {
-  'silent': !Configuration.synthse.active,
+var Message = {
+  'attribute': 'hidden',
+  'target': 'program',
+  'target2': 'message',
+  'active': false,
 
-  'run': function (word) {
-    if (!Speak.silent) {
-      py.run('speak.py', {
-        'scriptPath': './app/python/',
-        'pythonPath': Configuration.python.path,
-        'args': [word]
-      }, function (err, results) {
-        if (err)
-          Debug.console(err);
-      });
-    }
+  'write': function (text) {
+    var dom = document.querySelector(Message.target2);
+
+    dom.textContent = text;
   },
-  'call': function (arg) {
-    var elemt = document.querySelector(Menu.find);
+  'clear': function (arg) {
+    var dom = document.querySelector(Message.target);
 
-    elemt = elemt.tagName.toLowerCase();
-    elemt = Lang.translate(elemt, {});
-    Speak.run(elemt);
+    dom.removeAttribute(Message.attribute);
+    Message.write('');
+  },
+  'out': function (text, variables) {
+    var dom  = document.querySelector(Message.target);
+    var text = Lang.translate(text, variables)
+
+    dom.setAttribute(Message.attribute, Message.attribute);
+    Message.write(text);
   }
 };

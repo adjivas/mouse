@@ -1,0 +1,70 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   configuration.less                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#             */
+/*   Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+@charset 'UTF-8';
+
+:root {
+  @background-color: rgb(118, 84, 144);
+
+  background-color: @background-color;
+  margin: 0px;
+  left * {
+    background-image: url('./app/image/default/left.png');
+  }
+  drag * {
+    background-image: url('./app/image/default/drag.png');
+  }
+  right * {
+    background-image: url('./app/image/default/right.png');
+  }
+  double * {
+    background-image: url('./app/image/default/double.png');
+  }
+  empty * {
+    background-image: url('./app/image/default/empty.png');
+  }
+  arrow * {
+    background-image: url('./app/image/default/arrow.png');
+  }
+  control * {
+    background-image: url('./app/image/default/control.png');
+  }
+  ghost * {
+    background-image: url('./app/image/default/ghost.png');
+  }
+  move * {
+    background-image: url('./app/image/default/move.png');
+  }
+  resize * {
+    background-image: url('./app/image/default/resize.png');
+  }
+  free * {
+    background-image: url('./app/image/default/free.png');
+  }
+  *[value=0] {
+    opacity: 0.5;
+  }
+  menu {
+    position: absolute;
+    width: 100%;
+    height: 700px;
+    padding: 0px;
+    * {
+      position: relative;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: inline-flex;
+      width: 300px;
+      height: 50%;
+    }
+  }
+}

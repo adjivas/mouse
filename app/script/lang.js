@@ -14,7 +14,7 @@
 
 var I18n = require('i18n-node')
 var i18n = new I18n({
-  'directory': Configuration.lang.path
+  'directory': Conf.lang.path
 });
 
 /* 
@@ -22,7 +22,7 @@ var i18n = new I18n({
 */
 
 var Lang = {
-  'locale': Configuration.lang.locale,
+  'locale': Conf.lang.locale,
 
   'translate': function (key, value) {
     var lang = i18n.t(Lang.locale, key, value)

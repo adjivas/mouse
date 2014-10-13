@@ -20,6 +20,7 @@ var Base64 = require('js-base64').Base64;
 ** and auto closes the program.
 */
 
+
 var Title = {
   'target': 'notif',
   'wind': gui.Window.get(),
@@ -59,12 +60,12 @@ var Title = {
   },
   'position': function (arg) {
     var json = Title.json;
-    var func = Title.json._position;
+    var func = Title.json.func;
     var left = Title.json.left;
     var top = Title.json.top;
 
     if (func && Position[func])
-      Position[func](left, top);
+      Start.init(func, left, top);
   },
   'default': window.addEventListener('load', function (arg) {
     Title.json();

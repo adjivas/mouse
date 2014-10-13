@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   synthse.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,17 +13,28 @@
 'use strict';
 
 /*
-** The Arrow's class is call for move the text's cursor.
+** The Synthse's class on or off the speech's message.
 */
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Synthse = {
+  'actived': Conf.synthse.active,
 
-  'call': function (arg) {
-    Event.action = !Event.action;
+  'change': function (arg) {
+    var name = arg.srcElement.id;
+    var dom  = document.getElementById(name);
 
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
+    Conf.synthse.active = !!dom.value;
+    console.log(name, dom.value);
+  },
+  'build': function (dom) {
+    var tag = document.createElement('input');
+    var cnt = -1;
+
+    tag.setAttribute('id', 'speech');
+    tag.setAttribute('type', 'checkbox');
+    tag.addEventListener('change', Synthse.change, false);
+    if (Synthse.actived)
+      tag.setAttribute('checked', 'checked');
+    dom.appendChild(tag);
   }
 };

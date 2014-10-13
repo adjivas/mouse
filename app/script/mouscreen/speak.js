@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   speak.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,33 @@
 
 'use strict';
 
-/*
-** The Arrow's class is call for move the text's cursor.
+var py = require('python-shell');
+
+/* 
+** The Speak's class is calls for request the socket of
+** says a sentence.
 */
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Speak = {
+  'silent': !Conf.synthse.active,
 
+  'run': function (sentence) {
+    if (!Speak.silent) {
+      py.run('speak.py', {
+        'scriptPath': './app/python/',
+        'pythonPath': Conf.python.path,
+        'args': [sentence]
+      }, function (err, results) {
+        if (err)
+          Debug.console(err);
+      });
+    }
+  },
   'call': function (arg) {
-    Event.action = !Event.action;
+    var elemt = document.querySelector(Menu.item);
 
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
+    elemt = elemt.tagName.toLowerCase();
+    elemt = Lang.translate(elemt, {});
+    Speak.run(elemt);
   }
 };

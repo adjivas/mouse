@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   free.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,17 +13,34 @@
 'use strict';
 
 /*
-** The Arrow's class is call for move the text's cursor.
+** The Free's class is call for not moves the cursor and left click.
 */
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Free = {
+  'attribute': 'hidden',
+  'click': 1,
 
+  'start': function (number) {
+    var dom;
+
+    Event.forget = (typeof number !== 'number' ? 3 : number);
+    Door.send({'class': 'mouse', 'method': 'click'}, {'click': Free.click});
+    if (Pointer.time) {
+      console.log('start');
+      dom = document.querySelector(Pointer.target);
+      dom.setAttribute(Free.attribute, Free.attribute);
+      Pointer.rotate();
+    }
+  },
   'call': function (arg) {
-    Event.action = !Event.action;
+    Free.start(1);
+  },
+  'end': function (arg) {
+    var dom;
 
-    Selector.action(Arrow.speed);
+    console.log('end');
+    dom = document.querySelector(Pointer.target);
+    dom.removeAttribute(Free.attribute);
     Pointer.rotate();
   }
 };

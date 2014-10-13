@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   resize.js                                          :+:      :+:    :+:   */
+/*   configuration.js                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,32 +12,38 @@
 
 'use strict';
 
-/*
-** The Resize's class is calls for simple resize a window.
-*/
+var gui = require('nw.gui');
 
-var Resize = {
-  'speed': Conf.mode.resize,
-  'interval': undefined,
-  'click': 1,
+var Configuration = {
+  'target': 'configuration',
+  'url': './configuration.html',
+  'active': false,
+  'window': {
+    "frameless": false,
+    "toolbar": false,
+    "frame": false,
+    "show": false
+  },
 
   'start': function (arg) {
-    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'alt_l'});
-    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': ' '});
-    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': ' '});
-    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'alt_l'});
-    window.setTimeout(function (arg) {
-      Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'T'});
-      Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'T'});
-    }, 750);
-  },
-  'call': function (arg) {
-    Event.action = !Event.action;
+    var url  = Configuration.url;
+    var wid  = Configuration.window;
 
-    Selector.action(Resize.speed);
-    Pointer.rotate();
+    Configuration.active = !Configuration.active;
+    gui.Window.open(url, wid).on('close', Configuration.end);
+    gui.Window.get().hide();
   },
   'end': function (arg) {
-    Left.start();
-  }
+    Configuration.active = !Configuration.active;
+    this.close(true);
+    gui.Window.get().show(true);
+  },
+  'default': window.addEventListener('mouseup', function(arg) {
+    var elemt = arg.toElement;
+
+    elemt = elemt.tagName.toLowerCase();
+    if (elemt === Configuration.target)
+      if (!Configuration.active)
+        Configuration.start();
+  }, false)
 };

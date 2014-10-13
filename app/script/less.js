@@ -21,7 +21,7 @@ var less = require('less');
 var Style = {
   'root': './app/style/',
   'node': document.head,
-  'theme': Configuration.style,
+  'theme': Conf.style,
 
   'content': function (arg) {
     var address = arg.address;
@@ -48,6 +48,6 @@ var Style = {
   },
   'default': window.addEventListener('load', function() {
     Style.append('source.less');
-    Style.append(Style.theme);
+    Style.append(Style.theme + document.title + '.less');
   }, false)
 };

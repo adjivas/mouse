@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   debug.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,26 @@
 
 'use strict';
 
-/*
-** The Arrow's class is call for move the text's cursor.
+var win = require('nw.gui').Window.get();
+
+/* 
+** The Debug's class is auto call, if it's activated
+** then the terminal is open.
 */
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Debug = {
+  'active': Conf.configuration.debug,
 
-  'call': function (arg) {
-    Event.action = !Event.action;
+  'open': function (arg) {
+    var active = Debug.active;
 
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
-  }
+    if (active)
+      win.showDevTools();
+  },
+  'console': function (data) {
+    console.log('console', data);
+  },
+  'default': window.addEventListener('load', function (arg) {
+    Debug.open(arg);
+  }, false)
 };

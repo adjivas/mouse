@@ -12,42 +12,59 @@
 
 'use strict';
 
+Object.prototype.index = function (find) {
+  var count = -1;
+  var limit = this.length - 1;
+  
+  while (++count < limit) {
+    if (this[count] == find)
+      break ;
+  }
+  return (this[count] == find ? count : -1);
+};
+
+Object.prototype.loop = function (start) {
+  var count = start ? this.index(start) : -1;
+  var limit = this.length - 1;
+  var close = this.length;
+  var items = [];
+
+  while (--close) {
+    count += (count == limit ? -count : 1)
+    items[items.length] = this[count];
+  }
+  return (items);
+};
+
 /*
 ** The Menu's class is call for change the cursor's mode.
 */
 
 var Menu = {
-  'target': 'menu',
-  'atrib': 'selected',
-  'find': 'menu > *[selected]',
+  'target': 'selected',
+  'item': 'menu > *[selected]',
+  'items': 'menu > *',
+  'jump': 'disabled',
   'distance': 180,
   'last': undefined,
   'new': undefined,
 
   'next': function (arg) {
-    var atrib = Menu.atrib;
-    var items = document.querySelectorAll(Menu.target + ' > *');
-    var limit = items.length - 1;
+    var start = document.querySelector(Menu.item);
+    var items = document.querySelectorAll(Menu.items);
     var count = -1;
-    var last;
 
-    if (!items[limit].getAttribute(atrib))
-      while (++count < limit)
-        if (items[count].getAttribute(atrib))
-          break ;
-    if (items[count]) {
-      last = items[count];
-      Menu.new  = items[count + 1];
-    }
-    else {
-      last = items[items.length - 1];
-      Menu.new  = items[0];
-    }
-    last.removeAttribute(atrib);
-    Menu.new.setAttribute(atrib, atrib);
+    items = items.loop(start);
+    while (items[++count])
+      if (!items[count].getAttribute(Menu.jump))
+        break ;
+
+    start.removeAttribute(Menu.target);
+    items[count].setAttribute(Menu.target, Menu.target);
+    Menu.new = items[count];
   },
   'init': function (body) {
-    var items = body.querySelectorAll(Menu.target + ' > *');
+    var items = body.querySelectorAll(Menu.items);
     var deg   = 360 / items.length;
     var cnt   = -1;
     var crd   = {

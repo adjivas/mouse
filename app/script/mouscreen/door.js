@@ -14,9 +14,9 @@
 
 var py     = require('python-shell');
 var socket = require('tcp.js').client(
-  Configuration.socket.ip,
-  Configuration.socket.port,
-  Configuration.socket.buffer
+  Conf.socket.ip,
+  Conf.socket.port,
+  Conf.socket.buffer
 );
 
 /* 
@@ -28,14 +28,14 @@ var Door = {
   /* The procedure opens the socket. */
   'socket': undefined,
   'online': false,
-  'active': Configuration.mode.active,
+  'active': Conf.mode.active,
   'run': py.run('server.py', {
     'scriptPath': './app/python/',
-    'pythonPath': Configuration.python.path,
+    'pythonPath': Conf.python.path,
     'args': [
-      Configuration.socket.ip,
-      Configuration.socket.port,
-      Configuration.socket.buffer
+      Conf.socket.ip,
+      Conf.socket.port,
+      Conf.socket.buffer
     ]
   }, function (err, results) {
     if (err)
@@ -53,8 +53,10 @@ var Door = {
   /* The function is a new message from the server. */
   'open': function (data) {
     Door.online = true;
-    Cursor.warp(Cursor.position);
-    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
+    if (Door.active) {
+      Cursor.warp(Cursor.position);
+      Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
+    }
   },
   /* The function event a json to the socket -{event, content}-. */
   'send': function (event, content) {
@@ -70,8 +72,9 @@ var Door = {
     socket.on('connection', function (dsocket) {
       Door.socket = dsocket;
       Door.socket.on('console', Debug.console)
+      Door.socket.on('connect', Door.open);
+      Door.socket.on('mouseup', Close.clear);
       if (Door.active) {
-        Door.socket.on('connect', Door.open);
         Door.socket.on('mousedown', Event.down);
         Door.socket.on('mouseup', Event.up);
         Door.socket.on('mouseup', Zoom.resize);

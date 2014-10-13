@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrow.js                                           :+:      :+:    :+:   */
+/*   close.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,36 @@
 
 'use strict';
 
+var win = require('nw.gui').Window.get();
+
 /*
-** The Arrow's class is call for move the text's cursor.
+** The class is a procedure of program exit.
 */
 
-var Arrow = {
-  'speed': Conf.mode.arrow,
-  'interval': undefined,
+var Close = {
+  'target': 'close',
+  'time': Conf.close.time * 1000,
+  'out': undefined,
 
-  'call': function (arg) {
-    Event.action = !Event.action;
+  'end': function (arg) {
+    console.log(win.x, win.y);
+    win.close();
+  },
+  'start': function (text) {
+    Close.out = window.setTimeout(Close.end, Close.time);
+    Message.out(text, Close);
+  },
+  'clear': function (arg) {
+    if (typeof Close.out === 'number') {
+      Message.clear();
+      Close.out = clearTimeout(Close.out);
+    }
+  },
+  'default': window.addEventListener('mouseup', function(arg) {
+    var elemt = arg.toElement;
 
-    Selector.action(Arrow.speed);
-    Pointer.rotate();
-  }
+    elemt = elemt.tagName.toLowerCase();
+    if (elemt === Close.target)
+      Close.start(elemt);
+  }, false)
 };

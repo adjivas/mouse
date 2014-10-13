@@ -27,8 +27,8 @@ var Event = {
   'timestamp': undefined,
   'action': false,
   'forget': 0,
-  'delay': Configuration.mode.next,
-  'find': Menu.find,
+  'delay': Conf.mode.next,
+  'find': Menu.item,
 
   'signal': function (dom, func) {
     var mode = dom.tagName.toCapitalizeCase();

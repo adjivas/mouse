@@ -14,4 +14,4 @@
 
 var package = require('package')();
 
-var Configuration = package.configuration;
+var Conf = package.configuration;

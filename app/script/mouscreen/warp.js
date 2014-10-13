@@ -18,7 +18,7 @@
 */
 
 var Warp = {
-  'choice': Configuration.warp,
+  'choice': Conf.warp,
   'limit': {
     'x': window.screen.width,
     'y': window.screen.height

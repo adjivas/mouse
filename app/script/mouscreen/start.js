@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zoom.js                                            :+:      :+:    :+:   */
+/*   start.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -14,24 +14,28 @@
 
 var win = require('nw.gui').Window.get();
 
-/* 
-** The Debug's class is auto call, if it's activated
-** then the terminal is open.
+/*
+** The Start's class is auto call for
 */
 
-var Debug = {
-  'active': Configuration.debug,
+var Start = {
+  'x': window.screen.availWidth - window.innerWidth,
+  'y': window.screen.availHeight - window.innerHeight,
 
-  'open': function (arg) {
-    var active = Debug.active;
-
-    if (active)
-      win.showDevTools();
+  'show': function (arg) {
+    win.show(true);
   },
-  'console': function (data) {
-    console.log('console', data);
+  'position': function (arg) {
+    var func = Conf.mouscreen.func;
+    var x = Conf.mouscreen.left;
+    var y = Conf.mouscreen.top;
+
+    x = (x !== null ? x : Start.x);
+    y = (y !== null ? y : Start.y);
+    Position[func](x, y);
   },
   'default': window.addEventListener('load', function (arg) {
-    Debug.open(arg);
+    Start.show();
+    Start.position();
   }, false)
 };
