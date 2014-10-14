@@ -12,6 +12,6 @@
 
 'use unstrict';
 
-var package = require('package')();
+var Package = require('package')();
 
-var Conf = package.configuration;
+var Conf = Package.configuration;

@@ -17,21 +17,19 @@
 */
 
 var Synthse = {
+  'target': 'speech',
   'actived': Conf.synthse.active,
 
   'change': function (arg) {
-    var name = arg.srcElement.id;
-    var dom  = document.getElementById(name);
-
-    Conf.synthse.active = !!dom.value;
-    console.log(name, dom.value);
+    Conf.synthse.active = !Conf.synthse.active;
   },
   'build': function (dom) {
     var tag = document.createElement('input');
     var cnt = -1;
 
-    tag.setAttribute('id', 'speech');
+    tag.setAttribute('id', Synthse.target);
     tag.setAttribute('type', 'checkbox');
+    tag.setAttribute('label', Lang.translate(Synthse.target, {}));
     tag.addEventListener('change', Synthse.change, false);
     if (Synthse.actived)
       tag.setAttribute('checked', 'checked');

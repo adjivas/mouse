@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-'use unstrict';
+'use strict';
 
 var Version = {
   'target': 'version',
-  'content': package.version,
+  'content': Package.version,
 
   'init': function (body) {
     var dom = body.querySelector(Version.target);

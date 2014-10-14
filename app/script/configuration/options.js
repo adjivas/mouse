@@ -18,6 +18,7 @@ var Options = {
   'init': function (body) {
     var dom = body.querySelector(Options.target);
 
+    Close.build(dom);
     Language.build(dom);
     Notification.build(dom);
     Synthse.build(dom);

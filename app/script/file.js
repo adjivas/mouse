@@ -22,16 +22,27 @@ var fs = require('fs');
 var File = {
   'charset': 'utf8',
 
-  'read': function (arg) {
+  'read': function (path) {
     var deferred = q.defer();
     var charset  = File.charset;
-    var link     = arg;
 
-    fs.readFile(link, charset, function (err, data) {
+    fs.readFile(path, charset, function (err, data) {
       if (err)
         deferred.reject(err);
       if (data)
         deferred.resolve(data);
+    });
+    return (deferred.promise);
+  },
+  'write': function (path, data) {
+    var deferred = q.defer();
+    var charset  = File.charset;
+
+    fs.writeFile(path, data, function(err) {
+      if (err)
+        deferred.reject(err);
+      if (data)
+        deferred.resolve(true);
     });
     return (deferred.promise);
   }

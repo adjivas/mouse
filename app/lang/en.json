@@ -10,6 +10,8 @@
   "resize": "resize clicks activated",
   "move": "move clicks activated",
   "free": "right clicks without track activated",
+  "notif": "notification",
+  "speech": "speech synthesis",
   "close": "the program will be closed in {{time}} millisecond(s)",
   "fr": "french",
   "en": "english",

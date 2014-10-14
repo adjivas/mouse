@@ -88,10 +88,21 @@
   }
   message:not([hidden]) {
     background-color: @background-color;
-    width: 100%;
-    height: 100%;
+    color: @font-color;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-image: url('./app/image/default/close.png');
+    margin: 10%;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: -webkit-center;
+    font-size: 26px;
+    font-weight: bold;
   }
-  message[hidden] {
+  *[hidden] {
     visibility: hidden
   }
   * {

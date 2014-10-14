@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   notification.js                                    :+:      :+:    :+:   */
+/*   close.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,27 +12,33 @@
 
 'use strict';
 
+var win = require('nw.gui').Window.get();
+
 /*
-** The Synthse's class on or off the notification's message.
+** The class is a procedure of program exit.
 */
 
-var Notification = {
-  'target': 'notif',
-  'actived': Conf.notification.active,
+var Close = {
+  'target': 'close',
+  'path': './package.json',
+  'out': undefined,
 
-  'change': function (arg) {
-    Conf.notification.active = !Conf.notification.active;
+  'end': function (arg) {
+    var path = Close.path;
+    var data = JSON.stringify(Package, null, 2, '\t');
+
+    data += '\n';
+    File.write(path, data).then(function(res, err) {
+      win.close();
+    });
   },
   'build': function (dom) {
     var tag = document.createElement('input');
     var cnt = -1;
 
-    tag.setAttribute('id', Notification.target);
-    tag.setAttribute('type', 'checkbox');
-    tag.setAttribute('label', Lang.translate(Notification.target, {}));
-    tag.addEventListener('change', Notification.change, false);
-    if (Notification.actived)
-      tag.setAttribute('checked', 'checked');
+    tag.setAttribute('id', 'close');
+    tag.setAttribute('type', 'submit');
+    tag.addEventListener('click', Close.end, false);
     dom.appendChild(tag);
   }
 };

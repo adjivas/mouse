@@ -10,7 +10,9 @@
   "resize": "clic de redimension activé",
   "move": "clic de déplacement activé",
   "free": "clic gauche sans trajectoire activé",
-  "close": "fermeture du programme dans {{time}} milliseconde(s).",
+  "notif": "sous-titre",
+  "speech": "synthèse vocale",
+  "close": "Fermeture du programme dans {{time}} seconde(s). <br /> Pour annuler, effectuer un clic",
   "fr": "français",
   "en": "anglais",
   "version": "version {{number}}."
