@@ -12,7 +12,7 @@
   "free": "right clicks without track activated",
   "notif": "notification",
   "speech": "speech synthesis",
-  "close": "the program will be closed in {{time}} millisecond(s)",
+  "close": "the program will be closed in {{time}} second(s). For cancel, do a click",
   "fr": "french",
   "en": "english",
   "version": "{{number}}'s version."

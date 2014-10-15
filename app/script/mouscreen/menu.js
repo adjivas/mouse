@@ -71,6 +71,7 @@ var Menu = {
       'left': 0,
       'top': 0
     };
+    var name;
     var rad;
 
     while (items[++cnt]) {
@@ -79,6 +80,9 @@ var Menu = {
       crd.top = window.Math.cos(rad) * Menu.distance | 0;
       items[cnt].style.left = crd.left + 'px';
       items[cnt].style.top = crd.top + 'px';
+      name = items[cnt].tagName.toLowerCase();
+      if (!Conf.mode[name])
+        items[cnt].setAttribute(Menu.jump, Menu.jump);
     }
   }
 };

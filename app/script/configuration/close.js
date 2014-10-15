@@ -19,6 +19,7 @@ var win = require('nw.gui').Window.get();
 */
 
 var Close = {
+  'save': Conf.configuration.save,
   'target': 'close',
   'path': './package.json',
   'out': undefined,
@@ -28,15 +29,20 @@ var Close = {
     var data = JSON.stringify(Package, null, 2, '\t');
 
     data += '\n';
-    File.write(path, data).then(function(res, err) {
+    if (Close.save) {
+      File.write(path, data).then(function(res, err) {
+        win.close();
+      });
+    }
+    else
       win.close();
-    });
   },
   'build': function (dom) {
     var tag = document.createElement('input');
     var cnt = -1;
 
     tag.setAttribute('id', 'close');
+    tag.setAttribute('value', 'close');
     tag.setAttribute('type', 'submit');
     tag.addEventListener('click', Close.end, false);
     dom.appendChild(tag);

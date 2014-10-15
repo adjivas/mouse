@@ -31,7 +31,7 @@ var Language = {
     tag.textContent = Lang.translate(key, {});
     tag.setAttribute('value', key);
     if (key === Conf.lang.locale)
-      tag.setAttribute('checked', 'checked');
+      tag.setAttribute('selected', 'selected');
     return (tag);
   },
   'build': function (dom) {

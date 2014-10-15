@@ -47,7 +47,6 @@ var Style = {
     })
   },
   'default': window.addEventListener('load', function() {
-    Style.append('source.less');
     Style.append(Style.theme + document.title + '.less');
   }, false)
 };

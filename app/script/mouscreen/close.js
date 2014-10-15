@@ -20,12 +20,27 @@ var win = require('nw.gui').Window.get();
 
 var Close = {
   'target': 'close',
+  'path': './package.json',
+  'save': Conf.mouscreen.save,
   'time': Conf.close.time * 1000,
   'out': undefined,
 
   'end': function (arg) {
-    console.log(win.x, win.y);
-    win.close();
+    var path = Close.path;
+    var data;
+
+    if (Close.save && (Conf.mouscreen.left !== win.x 
+                   ||  Conf.mouscreen.right !== win.y)) {
+      Conf.mouscreen.left = win.x;
+      Conf.mouscreen.top = win.y;
+      data = JSON.stringify(Package, null, 2, '\t');
+      data += '\n';
+      File.write(path, data).then(function(res, err) {
+        win.close(true);
+      });
+    }
+    else
+      win.close(true);
   },
   'start': function (text) {
     Close.out = window.setTimeout(Close.end, Close.time);
@@ -37,6 +52,9 @@ var Close = {
       Close.out = clearTimeout(Close.out);
     }
   },
+  'forced': win.on('close', function() {
+    Close.end();
+  }),
   'default': window.addEventListener('mouseup', function(arg) {
     var elemt = arg.toElement;
 

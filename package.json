@@ -7,17 +7,19 @@
     "warp": "portal",
     "mode": {
       "next": 500,
-      "active": false,
-      "arrow": 55,
-      "control": 1,
-      "double": 19,
-      "drag": 25,
-      "left": 58,
+      "pointer": 2,
+      "active": true,
+      "arrow": 100,
+      "control": 0,
+      "double": 0,
+      "drag": 0,
+      "left": 1,
       "move": 100,
-      "empty": 54,
+      "empty": 100,
       "resize": 100,
-      "right": 16,
-      "ghost": 51
+      "right": 0,
+      "ghost": 0,
+      "free": 100
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -28,7 +30,7 @@
       "active": false
     },
     "notification": {
-      "active": false,
+      "active": true,
       "file": "./notification.html",
       "func": "to",
       "time": 5,
@@ -39,11 +41,11 @@
       "debug": false
     },
     "mouscreen": {
-      "save": false,
+      "save": true,
       "func": "to",
       "left": null,
       "top": null,
-      "debug": false
+      "debug": true
     },
     "configuration": {
       "save": true,

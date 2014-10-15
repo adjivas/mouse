@@ -20,6 +20,7 @@
 var Pointer = {
   'target': 'pointer',
   'attribute': 'style',
+  'speed': Conf.mode.pointer,
   'time': undefined,
   'degret': 0,
 
@@ -38,7 +39,7 @@ var Pointer = {
   },
   'rotate': function (arg) {
     if (Pointer.time === undefined)
-      Pointer.time = window.setInterval(Pointer.circular, 1);
+      Pointer.time = window.setInterval(Pointer.circular, Pointer.speed);
     else
       Pointer.time = window.clearInterval(Pointer.time);
   },

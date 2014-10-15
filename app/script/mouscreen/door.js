@@ -38,8 +38,9 @@ var Door = {
       Conf.socket.buffer
     ]
   }, function (err, results) {
-    if (err)
-      throw (err);
+    console.log('here');
+    /*if (err)
+      throw (err);*/
     Door.online = false;
   }),
 
