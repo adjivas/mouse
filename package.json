@@ -8,17 +8,17 @@
     "mode": {
       "next": 500,
       "pointer": 2,
-      "active": true,
-      "arrow": 100,
+      "active": false,
+      "arrow": 0,
       "control": 0,
       "double": 0,
       "drag": 0,
       "left": 1,
       "move": 100,
-      "empty": 100,
+      "empty": 59,
       "resize": 100,
       "right": 0,
-      "ghost": 0,
+      "ghost": 100,
       "free": 100
     },
     "socket": {
@@ -43,9 +43,9 @@
     "mouscreen": {
       "save": true,
       "func": "to",
-      "left": null,
-      "top": null,
-      "debug": true
+      "left": 860,
+      "top": 570,
+      "debug": false
     },
     "configuration": {
       "save": true,
@@ -64,7 +64,7 @@
         "en"
       ],
       "path": "./app/lang/",
-      "locale": "fr"
+      "locale": "en"
     }
   },
   "keywords": [
