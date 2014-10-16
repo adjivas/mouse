@@ -8,6 +8,7 @@
   "arrow": "arrow clicks activated",
   "control": "control clicks activated",
   "resize": "resize clicks activated",
+  "alpha": "transparency clicks activated",
   "move": "move clicks activated",
   "free": "right clicks without track activated",
   "notif": "notification",

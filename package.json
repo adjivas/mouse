@@ -8,13 +8,15 @@
     "mode": {
       "next": 500,
       "pointer": 2,
-      "active": false,
+      "active": true,
       "arrow": 0,
       "control": 0,
       "double": 0,
+      "alpha": 3,
       "drag": 0,
       "left": 1,
       "move": 100,
+      "altab": 500,
       "empty": 59,
       "resize": 100,
       "right": 0,
@@ -43,9 +45,9 @@
     "mouscreen": {
       "save": true,
       "func": "to",
-      "left": 860,
-      "top": 570,
-      "debug": false
+      "left": 687,
+      "top": 97,
+      "debug": true
     },
     "configuration": {
       "save": true,
@@ -55,7 +57,7 @@
       "time": 8
     },
     "python": {
-      "path": "C:/python27/python.exe"
+      "path": "./python27/python.exe"
     },
     "style": "./default/",
     "lang": {

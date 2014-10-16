@@ -1,6 +1,39 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
+#    transparency.py                                    :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2014/09/15 10:02:36 by adjivas           #+#    #+#              #
+#    Updated: 2014/09/15 10:02:36 by adjivas          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+from win32gui import GetForegroundWindow;
+from win32gui import GetWindowText;
+
+import win32con
+import win32gui
+import winxpgui
+import win32api
+import subprocess
+import time
+
+class Transparency():
+  def alpha(self, args):
+    """The function make transparency on the current window.""";
+    alpha = int(args['alpha']);
+    id = GetForegroundWindow();
+
+    win32gui.SetWindowLong(id, win32con.GWL_EXSTYLE, win32gui.GetWindowLong(
+      id, win32con.GWL_EXSTYLE
+    ) | win32con.WS_EX_LAYERED )
+    win32gui.SetLayeredWindowAttributes(id, 100, alpha, win32con.LWA_ALPHA)
+
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
 #    keyboard.py                                        :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+         #
@@ -162,6 +195,8 @@ class Server():
       content = getattr(Mouse(), data['event']['method'])(data['content']);
     elif (data['event']['class'] == 'keyboard'):
       content = getattr(Keyboard(), data['event']['method'])(data['content']);
+    elif (data['event']['class'] == 'transparency'):
+      content = getattr(Transparency(), data['event']['method'])(data['content']);
     elif (data['event']['class'] == 'event'):
       content = getattr(Event(), data['event']['method'])(data['content']);
     elif (data['event']['class'] == 'eventcall'):

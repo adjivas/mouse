@@ -8,6 +8,7 @@
   "arrow": "touches directionnelles activés",
   "control": "clic gauche avec la touche control activé",
   "resize": "clic de redimension activé",
+  "alpha": "clic de transparence activé",
   "move": "clic de déplacement activé",
   "free": "clic gauche sans trajectoire activé",
   "notif": "sous-titre",

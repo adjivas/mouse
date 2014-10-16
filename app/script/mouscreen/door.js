@@ -24,71 +24,67 @@ var socket = require('tcp.js').client(
 ** of command' control.
 */
 
-try {
-  var Door = {
-    /* The procedure opens the socket. */
-    'socket': undefined,
-    'online': false,
-    'active': Conf.mode.active,
-    'run': py.run('server.py', {
-      'scriptPath': './app/python/',
-      'pythonPath': Conf.python.path,
-      'args': [
-        Conf.socket.ip,
-        Conf.socket.port,
-        Conf.socket.buffer
-      ]
-    }, function (err, results) {
-      if (err)
-        console.log('door.run', err);
-      Door.online = false;
-    }),
+var Door = {
+  /* The procedure opens the socket. */
+  'socket': undefined,
+  'online': false,
+  'active': Conf.mode.active,
+  'run': py.run('server.py', {
+    'scriptPath': './app/python/',
+    'pythonPath': Conf.python.path,
+    'args': [
+      Conf.socket.ip,
+      Conf.socket.port,
+      Conf.socket.buffer
+    ]
+  }, function (err, results) {
+    if (err)
+      console.log('door.run', err);
+    Door.online = false;
+  }),
 
-    /* The function closes the server when the event's close is activated. */
-    'close': function (arg) {
+  /* The function closes the server when the event's close is activated. */
+  'close': function (arg) {
+    if (Door.online) {
+      Door.online = false;
+      Door.socket.send(null, null);
+    }
+  },
+  /* The function is a new message from the server. */
+  'open': function (data) {
+    Door.online = true;
+    if (Door.active) {
+      Cursor.warp(Cursor.position);
+      Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
+    }
+  },
+  /* The function event a json to the socket -{event, content}-. */
+  'send': function (event, content) {
+    try {
       if (Door.online) {
-        Door.online = false;
-        Door.socket.send(null, null);
+        console.log(event, content);
+        Door.socket.send(event, content); 
       }
-    },
-    /* The function is a new message from the server. */
-    'open': function (data) {
-      Door.online = true;
+      else window.setTimeout(function (arg) {
+        Door.socket.send(event, content);
+      }, 1000);
+    }
+    catch (err) {
+      console.log('door.send', err.message);
+    }
+  },
+  /* The function connects the socket. */
+  'default': window.addEventListener('load', function() {
+    socket.on('connection', function (dsocket) {
+      Door.socket = dsocket;
+      Door.socket.on('console', Debug.console)
+      Door.socket.on('connect', Door.open);
+      Door.socket.on('mouseup', Close.clear);
       if (Door.active) {
-        Cursor.warp(Cursor.position);
-        Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
+        Door.socket.on('mousedown', Event.down);
+        Door.socket.on('mouseup', Event.up);
+        Door.socket.on('mouseup', Zoom.resize);
       }
-    },
-    /* The function event a json to the socket -{event, content}-. */
-    'send': function (event, content) {
-      try {
-        if (Door.online) {
-          Door.socket.send(event, content); 
-        }
-        else window.setTimeout(function (arg) {
-          Door.socket.send(event, content);
-        }, 1000);
-      }
-      catch (err) {
-        console.log('door.send', err.message);
-      }
-    },
-    /* The function connects the socket. */
-    'default': window.addEventListener('load', function() {
-      socket.on('connection', function (dsocket) {
-        Door.socket = dsocket;
-        Door.socket.on('console', Debug.console)
-        Door.socket.on('connect', Door.open);
-        Door.socket.on('mouseup', Close.clear);
-        if (Door.active) {
-          Door.socket.on('mousedown', Event.down);
-          Door.socket.on('mouseup', Event.up);
-          Door.socket.on('mouseup', Zoom.resize);
-        }
-      });
-    }, false)
-  };
-}
-catch (err) {
-  console.log('door', err.message);
-}
+    });
+  }, false)
+};
