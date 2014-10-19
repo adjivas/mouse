@@ -24,15 +24,17 @@ var Notification = {
     Conf.notification.active = !Conf.notification.active;
   },
   'build': function (dom) {
-    var tag = document.createElement('input');
-    var cnt = -1;
+    var label = document.createElement('label');
+    var input = document.createElement('input');
 
-    tag.setAttribute('id', Notification.target);
-    tag.setAttribute('type', 'checkbox');
-    tag.setAttribute('label', Lang.translate(Notification.target, {}));
-    tag.addEventListener('change', Notification.change, false);
+    label.setAttribute('for', Notification.target);
+    label.textContent = Lang.translate(Notification.target, {});
+    input.setAttribute('id', Notification.target);
+    input.setAttribute('type', 'checkbox');
+    input.addEventListener('change', Notification.change, false);
     if (Notification.actived)
-      tag.setAttribute('checked', 'checked');
-    dom.appendChild(tag);
+      input.setAttribute('checked', 'checked');
+    label.appendChild(input);
+    dom.appendChild(label);
   }
 };

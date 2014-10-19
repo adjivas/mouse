@@ -44,11 +44,11 @@ var Close = {
   },
   'start': function (text) {
     Close.out = window.setTimeout(Close.end, Close.time);
-    Message.out(text, Close);
+    Program.out(text);
   },
   'clear': function (arg) {
     if (typeof Close.out === 'number') {
-      Message.clear();
+      Program.clear();
       Close.out = clearTimeout(Close.out);
     }
   },
@@ -60,6 +60,7 @@ var Close = {
 
     elemt = elemt.tagName.toLowerCase();
     if (elemt === Close.target)
-      Close.start(elemt);
+      if (Close.out === undefined)
+        Close.start(elemt);
   }, false)
 };

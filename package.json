@@ -2,26 +2,26 @@
   "main": "mouscreen.html",
   "name": "mouse",
   "description": "beta program of virtual mouse",
-  "version": "0.7.5",
+  "version": "0.7.6",
   "configuration": {
     "warp": "portal",
     "mode": {
       "next": 500,
       "pointer": 2,
-      "active": true,
+      "active": false,
       "arrow": 0,
       "control": 0,
-      "double": 0,
+      "double": 58,
       "alpha": 3,
-      "drag": 0,
+      "drag": 46,
       "left": 1,
-      "move": 100,
+      "move": 1,
       "altab": 500,
-      "empty": 59,
-      "resize": 100,
+      "empty": 11,
+      "resize": 1,
       "right": 0,
-      "ghost": 100,
-      "free": 100
+      "ghost": 1,
+      "free": 1
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -29,7 +29,7 @@
       "buffer": 200
     },
     "synthse": {
-      "active": false
+      "active": true
     },
     "notification": {
       "active": true,
@@ -39,14 +39,14 @@
       "left": null,
       "top": null,
       "width": null,
-      "height": 50,
+      "height": 100,
       "debug": false
     },
     "mouscreen": {
       "save": true,
       "func": "to",
-      "left": 687,
-      "top": 97,
+      "left": null,
+      "top": null,
       "debug": true
     },
     "configuration": {
@@ -54,10 +54,10 @@
       "debug": true
     },
     "close": {
-      "time": 8
+      "time": 10
     },
     "python": {
-      "path": "./python27/python.exe"
+      "path": "C:/python27/python.exe"
     },
     "style": "./default/",
     "lang": {
@@ -85,6 +85,7 @@
     "width": 420,
     "height": 420,
     "min_width": 140,
-    "min_height": 140
+    "min_height": 140,
+    "transparent": true
   }
 }

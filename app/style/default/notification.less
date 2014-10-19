@@ -17,18 +17,16 @@
   @border-color: rgb(0, 0, 0);
   @font-color: rgb(255, 255, 255);
 
-  background-color: @background-color;
   notif {
     font-family: fantasy;
     -webkit-text-fill-color: @font-color;
     -webkit-text-stroke-color: @border-color;
-    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-width: 4px;
   }
   * {
     -webkit-app-region: drag;
   }
 }
-
 
 :root {
   -webkit-user-select: none;
@@ -37,10 +35,11 @@
   height: 100%;
 
   body {
+    margin: 0px;
     notif {
       position: fixed;
       text-align: center;
-      font-size: 80vh;
+      font-size: 90vh;
       width: 100%;
       height: 100%;
     }

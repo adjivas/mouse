@@ -19,8 +19,6 @@ var Version = {
   'init': function (body) {
     var dom = body.querySelector(Version.target);
 
-    dom.textContent = Lang.translate('version', {
-      'number': Version.content
-    });
+    dom.textContent = 'v' + Version.content;
   }
 }

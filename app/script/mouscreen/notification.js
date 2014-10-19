@@ -31,6 +31,7 @@ var Notification = {
     "func": Conf.notification.func,
     "width": Conf.notification.width,
     "height": Conf.notification.height,
+    "transparent": true,
     "always-on-top": true,
     "frameless": false,
     "toolbar": false,
@@ -41,13 +42,13 @@ var Notification = {
     "name": null
   },
 
-  'open': function (name) {
+  'open': function (name, time) {
     var url  = Notification.url;
     var wid  = Notification.window;
     var wcp  = wid;
 
     wcp.name = name;
-    wcp.time = Notification.time;
+    wcp.time = time;
     wcp      = JSON.stringify(wcp);
     wcp      = Base64.encode(wcp);
     if (Notification.win)
@@ -55,11 +56,13 @@ var Notification = {
     if (!Notification.silent)
       Notification.win = gui.Window.open(url + '?' + wcp, wid);
   },
-  'call': function (arg) {
-    var elemt = document.querySelector(Menu.item);
-
-    elemt = elemt.tagName.toLowerCase();
+  'call': function (elemt, time) {
+    if (typeof elemt !== 'string') {
+      elemt = document.querySelector(Menu.item);
+      elemt = elemt.tagName.toLowerCase();
+    }
+    time  = (typeof time === 'number' ? time : Notification.time);
     elemt = Lang.translate(elemt, {});
-    Notification.open(elemt);
+    Notification.open(elemt, time);
   }
 };

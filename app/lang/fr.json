@@ -13,8 +13,7 @@
   "free": "clic gauche sans trajectoire activé",
   "notif": "sous-titre",
   "speech": "synthèse vocale",
-  "close": "Fermeture du programme dans {{time}} seconde(s). <br /> Pour annuler, effectuer un clic",
+  "close": "fermeture en court ; pour annuler, cliqué",
   "fr": "français",
-  "en": "anglais",
-  "version": "version {{number}}."
+  "en": "anglais"
 }

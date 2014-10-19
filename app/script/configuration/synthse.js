@@ -24,15 +24,17 @@ var Synthse = {
     Conf.synthse.active = !Conf.synthse.active;
   },
   'build': function (dom) {
-    var tag = document.createElement('input');
-    var cnt = -1;
+    var label = document.createElement('label');
+    var input = document.createElement('input');
 
-    tag.setAttribute('id', Synthse.target);
-    tag.setAttribute('type', 'checkbox');
-    tag.setAttribute('label', Lang.translate(Synthse.target, {}));
-    tag.addEventListener('change', Synthse.change, false);
+    label.setAttribute('for', Synthse.target);
+    label.textContent = Lang.translate(Synthse.target, {});
+    input.setAttribute('id', Synthse.target);
+    input.setAttribute('type', 'checkbox');
+    input.addEventListener('change', Synthse.change, false);
     if (Synthse.actived)
-      tag.setAttribute('checked', 'checked');
-    dom.appendChild(tag);
+      input.setAttribute('checked', 'checked');
+    label.appendChild(input);
+    dom.appendChild(label);
   }
 };

@@ -64,7 +64,7 @@ var Title = {
     var left = Title.json.left;
     var top = Title.json.top;
 
-    if (func && Position[func])
+    if (func && Position[func] !== undefined)
       Start.init(func, left, top);
   },
   'default': window.addEventListener('load', function (arg) {

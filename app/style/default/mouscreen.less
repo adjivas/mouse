@@ -12,6 +12,15 @@
 
 @charset 'UTF-8';
 
+@-webkit-keyframes close {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 :root {
   @background-color: rgb(118, 84, 144);
   @mouse-color: rgb(101, 105, 109);
@@ -19,94 +28,93 @@
   @font-color: rgb(255, 255, 255);
   @selected-color: rgb(206, 178, 223);
 
-  background-color: @background-color;
-  menu {
-    text-shadow: 0 0 7px rgba(0, 0, 0, .5);
-    left {
-      background-image: url('./app/image/default/left.png');
+  program {
+    background-color: @background-color;
+    menu {
+      text-shadow: 0 0 7px rgba(0, 0, 0, .5);
+      left {
+        background-image: url('./app/image/default/left.png');
+      }
+      drag {
+        background-image: url('./app/image/default/drag.png');
+      }
+      right {
+        background-image: url('./app/image/default/right.png');
+      }
+      double {
+        background-image: url('./app/image/default/double.png');
+      }
+      empty {
+        background-image: url('./app/image/default/empty.png');
+      }
+      arrow {
+        background-image: url('./app/image/default/arrow.png');
+      }
+      control {
+        background-image: url('./app/image/default/control.png');
+      }
+      ghost {
+        background-image: url('./app/image/default/ghost.png');
+      }
+      move {
+        background-image: url('./app/image/default/move.png');
+      }
+      resize {
+        background-image: url('./app/image/default/resize.png');
+      }
+      free {
+        background-image: url('./app/image/default/free.png');
+      }
+      alpha {
+        background-image: url('./app/image/default/alpha.png');
+      }
+      *[selected] {
+        background-color: @selected-color;
+      }
+      *[disabled] {
+        opacity: 0.5;
+      }
     }
-    drag {
-      background-image: url('./app/image/default/drag.png');
+    version {
+      color: @font-color;
     }
-    right {
-      background-image: url('./app/image/default/right.png');
+    configuration {
+      cursor: pointer;
+      background-image: url('./app/image/default/configuration.png');
     }
-    double {
-      background-image: url('./app/image/default/double.png');
+    close {
+      cursor: pointer;
+      background-image: url('./app/image/default/close.png');
     }
-    empty {
-      background-image: url('./app/image/default/empty.png');
+    close:hover {
+      background-image: url('./app/image/default/close_hover.png');
     }
-    arrow {
-      background-image: url('./app/image/default/arrow.png');
+    dial {
+      border-radius: 100%;
+      background-color: @mouse-color;
+      box-shadow: 0 0 0 4px rgb(0, 0, 0),
+                  0 0 0 16px rgb(39, 41, 43),
+                  0 0 0 19px rgb(212, 178, 232);
+      pointer {
+        background-image: url('./app/image/default/pointer.png');
+      }
+      pointer[hidden] {
+        visibility: hidden
+      }
     }
-    control {
-      background-image: url('./app/image/default/control.png');
-    }
-    ghost {
-      background-image: url('./app/image/default/ghost.png');
-    }
-    move {
-      background-image: url('./app/image/default/move.png');
-    }
-    resize {
-      background-image: url('./app/image/default/resize.png');
-    }
-    free {
-      background-image: url('./app/image/default/free.png');
-    }
-    *[selected] {
-      background-color: @selected-color;
-    }
-    *[disabled] {
-      opacity: 0.5;
-    }
-  }
-  version {
-    color: @font-color;
-  }
-  configuration {
-    cursor: pointer;
-    background-image: url('./app/image/default/configuration.png');
-  }
-  close {
-    cursor: pointer;
-    background-image: url('./app/image/default/close.png');
-  }
-  dial {
-    border-radius: 100%;
-    background-color: @mouse-color;
-    box-shadow: 0 0 0 4px rgb(0, 0, 0),
-                0 0 0 16px rgb(39, 41, 43),
-                0 0 0 19px rgb(212, 178, 232);
-    pointer {
-      background-image: url('./app/image/default/pointer.png');
-    }
-    pointer[hidden] {
+    *[hidden] {
       visibility: hidden
     }
+    * {
+      -webkit-app-region: drag;
+    }
   }
-  message:not([hidden]) {
-    background-color: @background-color;
-    color: @font-color;
-    background-repeat: no-repeat;
-    background-position: top;
-    background-image: url('./app/image/default/close.png');
-    margin: 10%;
-    width: 80%;
-    height: 80%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: -webkit-center;
-    font-size: 26px;
-    font-weight: bold;
-  }
-  *[hidden] {
-    visibility: hidden
-  }
-  * {
-    -webkit-app-region: drag;
+  program[close] {
+    -webkit-animation-name: close;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: normal;
+    -webkit-animation-play-state: running;
   }
 }
 
@@ -117,7 +125,7 @@
   width: 100%;
   height: 100%;
 
-  body {
+  program, body {
     position: fixed;
     padding: 0px;
     margin: 0px;
@@ -154,10 +162,15 @@
     }
     version {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      width: 50px;
+      height: 25px;
       text-align: right;
-      margin-top: 400px;
+      right: 0px;
+      bottom: 0px;
+      font-size: 4.7vmin;
+      margin: 10px;
+      display: table;
+      vertical-align: bottom;
     }
     configuration {
       position: absolute;
@@ -180,9 +193,6 @@
       width: 50px;
       height: 50px;
       -webkit-app-region: no-drag;
-    }
-    message {
-      position: absolute;
     }
     * {
       pointer-events: none;

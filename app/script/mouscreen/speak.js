@@ -34,10 +34,11 @@ var Speak = {
       });
     }
   },
-  'call': function (arg) {
-    var elemt = document.querySelector(Menu.item);
-
-    elemt = elemt.tagName.toLowerCase();
+  'call': function (elemt) {
+    if (typeof elemt !== 'string') {
+      elemt = document.querySelector(Menu.item)
+      elemt = elemt.tagName.toLowerCase();
+    }
     elemt = Lang.translate(elemt, {});
     Speak.run(elemt);
   }
