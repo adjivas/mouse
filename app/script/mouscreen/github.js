@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   options.js                                         :+:      :+:    :+:   */
+/*   github.js                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,16 +12,21 @@
 
 'use strict';
 
-var Options = {
-  'target': 'options',
+var gui = require('nw.gui');
 
-  'init': function (body) {
-    var dom = body.querySelector(Options.target);
+/*
+** The Github's class is a procedure for open a link to the constructor's link.
+*/
 
-    Close.build(dom);
-    Language.build(dom);
-    Notification.build(dom);
-    Synthse.build(dom);
-    Menu.init(dom);
-  }
+var Github = {
+  'target': 'github',
+  'link': 'https://github.com/adjivas/mouscreen-WINDOWS/',
+
+  'default': window.addEventListener('mouseup', function(arg) {
+    var elemt = arg.toElement;
+
+    elemt = elemt.tagName.toLowerCase();
+    if (elemt === Github.target)
+      gui.Shell.openExternal(Github.link);
+  }, false)
 };

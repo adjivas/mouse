@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.js                                           :+:      :+:    :+:   */
+/*   tools.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,18 +12,16 @@
 
 'use strict';
 
-var win = require('nw.gui').Window.get();
+var Tools = {
+  'target': 'tools',
 
-var Start = {
-  'target': 'program',
+  'init': function (body) {
+    var dom = body.querySelector(Tools.target);
 
-  'show': function (arg) {
-    win.show(true);
-  },
-  'default': window.addEventListener('load', function() {
-    var dom = document.querySelector(Start.target);
-
-    Tools.init(dom);
-    Start.show();
-  }, false)
+    Close.build(dom);
+    Language.build(dom);
+    Warp.build(dom);
+    Notification.build(dom);
+    Synthse.build(dom);
+  }
 };

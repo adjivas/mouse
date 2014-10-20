@@ -68,6 +68,9 @@
       alpha {
         background-image: url('./app/image/default/alpha.png');
       }
+      altab {
+        background-image: url('./app/image/default/altab.png');
+      }
       *[selected] {
         background-color: @selected-color;
       }
@@ -81,6 +84,10 @@
     configuration {
       cursor: pointer;
       background-image: url('./app/image/default/configuration.png');
+    }
+    github {
+      cursor: pointer;
+      background-image: url('./app/image/default/github.svg');
     }
     close {
       cursor: pointer;
@@ -171,6 +178,17 @@
       margin: 10px;
       display: table;
       vertical-align: bottom;
+    }
+    github {
+      position: absolute;
+      pointer-events: all;
+      background-size: 50px;
+      left: 0px;
+      top: 0px;
+      margin: 10px;
+      width: 50px;
+      height: 50px;
+      -webkit-app-region: no-drag;
     }
     configuration {
       position: absolute;

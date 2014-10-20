@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu.js                                            :+:      :+:    :+:   */
+/*   warp.js                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -13,38 +13,35 @@
 'use strict';
 
 /*
-** The Menu's class updates speed of click's mode.
+** The Warp's class updates the new warp's mode.
 */
 
-var Menu = {
-  'target': 'menu > *',
+var Warp = {
+  'locales': Conf.warp.locales,
 
   'change': function (arg) {
     var name = arg.srcElement.id;
     var dom  = document.getElementById(name);
 
-    dom.setAttribute("value", dom.value);
-    Conf.mode[name] = window.parseInt(dom.value);
-    console.log(name, dom.value);
+    Conf.warp.locale = dom.value;
   },
-  'build': function (dom, name) {
-    var tag;
+  'option': function (key) {
+    var tag = document.createElement('option');
 
-    tag = document.createElement('input');
-    tag.setAttribute("id", name);
-    tag.setAttribute("type", "range");
-    tag.setAttribute("value", Conf.mode[name]);
-    tag.addEventListener('change', Menu.change, false);
-    dom.appendChild(tag);
+    tag.textContent = Lang.translate(key, {});
+    tag.setAttribute('value', key);
+    if (key === Conf.warp.locale)
+      tag.setAttribute('selected', 'selected');
+    return (tag);
   },
-  'init': function (body) {
-    var dom = body.querySelectorAll(Menu.target);
+  'build': function (dom) {
+    var tag = document.createElement('select');
     var cnt = -1;
-    var name;
 
-    while (dom[++cnt]) {
-      name = dom[cnt].tagName.toLowerCase();
-      Menu.build(dom[cnt], name);
-    }
+    tag.setAttribute('id', 'warp');
+    tag.addEventListener('change', Warp.change, false);
+    while (Warp.locales[++cnt])
+      tag.appendChild(Warp.option(Warp.locales[cnt]));
+    dom.appendChild(tag);
   }
 };

@@ -32,14 +32,12 @@ var Configuration = {
 
     Configuration.active = !Configuration.active;
     gui.Window.open(url, wid).on('close', Configuration.end);
-//    Configuration.win.hide();
   },
   'end': function (arg) {
     Configuration.active = !Configuration.active;
     this.close(true);
     Door.close();
     Configuration.win.reload();
-//    Configuration.win.show(true);
   },
   'default': window.addEventListener('mouseup', function(arg) {
     var elemt = arg.toElement;

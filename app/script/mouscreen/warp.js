@@ -18,7 +18,7 @@
 */
 
 var Warp = {
-  'choice': Conf.warp,
+  'choice': Conf.warp.locale,
   'limit': {
     'x': window.screen.width,
     'y': window.screen.height

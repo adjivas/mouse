@@ -42,7 +42,7 @@ var Close = {
     var cnt = -1;
 
     tag.setAttribute('id', 'close');
-    tag.setAttribute('value', 'close');
+    tag.setAttribute('value', Lang.translate('save_and_close', {}));
     tag.setAttribute('type', 'submit');
     tag.addEventListener('click', Close.end, false);
     dom.appendChild(tag);

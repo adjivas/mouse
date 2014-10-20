@@ -37,7 +37,6 @@ var Transparency = {
       Alpha.value += key[count][0];
     else
       return ;
-    console.log(Alpha.value, key[count][0]);
     Door.send({'class': 'transparency', 'method': 'alpha'}, {'alpha': Alpha.value});
   },
   'action': function (number) {

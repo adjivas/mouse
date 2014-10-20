@@ -4,17 +4,24 @@
   "description": "beta program of virtual mouse",
   "version": "0.7.6",
   "configuration": {
-    "warp": "portal",
+    "warp": {
+      "locales": [
+        "default",
+        "portal",
+        "solar"
+      ],
+      "locale": "solar"
+    },
     "mode": {
       "next": 500,
-      "pointer": 2,
-      "active": false,
+      "active": true,
+      "pointer": 8,
       "arrow": 0,
       "control": 0,
       "double": 58,
       "alpha": 3,
       "drag": 46,
-      "left": 1,
+      "left": 10,
       "move": 1,
       "altab": 500,
       "empty": 11,
@@ -47,11 +54,11 @@
       "func": "to",
       "left": null,
       "top": null,
-      "debug": true
+      "debug": false
     },
     "configuration": {
       "save": true,
-      "debug": true
+      "debug": false
     },
     "close": {
       "time": 10
@@ -66,7 +73,7 @@
         "en"
       ],
       "path": "./app/lang/",
-      "locale": "en"
+      "locale": "fr"
     }
   },
   "keywords": [
