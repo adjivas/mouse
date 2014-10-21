@@ -28,7 +28,7 @@ var Door = {
   /* The procedure opens the socket. */
   'socket': undefined,
   'online': false,
-  'active': Conf.mode.active,
+  'active': Conf.mouscreen.active,
   'run': py.run('server.py', {
     'scriptPath': './app/python/',
     'pythonPath': Conf.python.path,
@@ -62,7 +62,6 @@ var Door = {
   'send': function (event, content) {
     try {
       if (Door.online) {
-        console.log(event, content);
         Door.socket.send(event, content); 
       }
       else window.setTimeout(function (arg) {

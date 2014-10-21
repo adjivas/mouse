@@ -27,8 +27,8 @@ var Start = {
   },
   'position': function (arg) {
     var func = Conf.mouscreen.func;
-    var x = Conf.mouscreen.left;
-    var y = Conf.mouscreen.top;
+    var x    = Conf.mouscreen.left;
+    var y    = Conf.mouscreen.top;
 
     x = (x !== null ? x : Start.x);
     y = (y !== null ? y : Start.y);

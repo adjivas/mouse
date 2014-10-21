@@ -10,18 +10,17 @@
         "portal",
         "solar"
       ],
-      "locale": "solar"
+      "locale": "portal"
     },
     "mode": {
       "next": 500,
-      "active": true,
       "pointer": 8,
       "arrow": 0,
       "control": 0,
       "double": 58,
       "alpha": 3,
-      "drag": 46,
-      "left": 10,
+      "drag": 47,
+      "left": 0,
       "move": 1,
       "altab": 500,
       "empty": 11,
@@ -50,6 +49,7 @@
       "debug": false
     },
     "mouscreen": {
+      "active": true,
       "save": true,
       "func": "to",
       "left": null,
