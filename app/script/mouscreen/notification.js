@@ -30,7 +30,9 @@ var Notification = {
     "position": 'center',
     "func": Conf.notification.func,
     "width": Conf.notification.width,
-    "height": Conf.notification.height,
+    "height": Conf.notification.height ?
+              Conf.notification.height :
+              window.screen.availHeight / 8 | 0 ,
     "transparent": true,
     "always-on-top": true,
     "frameless": false,

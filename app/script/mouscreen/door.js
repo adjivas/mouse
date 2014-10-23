@@ -12,17 +12,17 @@
 
 'use strict';
 
-var py     = require('python-shell');
-var socket = require('tcp.js').client(
-  Conf.socket.ip,
-  Conf.socket.port,
-  Conf.socket.buffer
-);
+var py      = require('python-shell');
+var process = require('process').on('uncaughtException', function(err) {
+  Door.start();
+});
+var socket;
 
 /* 
 ** The Door's class is the socket to a python's server
 ** of command' control.
 */
+
 
 var Door = {
   /* The procedure opens the socket. */
@@ -72,8 +72,7 @@ var Door = {
       console.log('door.send', err.message);
     }
   },
-  /* The function connects the socket. */
-  'default': window.addEventListener('load', function() {
+  'lauch': function (socket) {
     socket.on('connection', function (dsocket) {
       Door.socket = dsocket;
       Door.socket.on('console', Debug.console)
@@ -85,5 +84,17 @@ var Door = {
         Door.socket.on('mouseup', Zoom.resize);
       }
     });
+  },
+  /* The function connects the socket. */
+  'start': function(arg) {
+    socket = require('tcp.js').client(
+      Conf.socket.ip,
+      Conf.socket.port,
+      Conf.socket.buffer
+    );
+    Door.lauch(socket);
+  },
+  'default': window.addEventListener('load', function() {
+    Door.start();
   }, false)
 };

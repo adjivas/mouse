@@ -12,9 +12,16 @@
 
 @charset 'UTF-8';
 
-@media only screen and (min-device-width: 0px) and (max-device-width: 900px) {
-  body {
-    background-color: red;
+@media (max-width: 1280px) {
+  body notif {
+    font-size: 40vh;
+    -webkit-text-stroke-width: 2px;
+  }
+}
+@media (max-width: 800px) {
+  body notif {
+    font-size: 35vh;
+    -webkit-text-stroke-width: 2px;
   }
 }
 
@@ -27,7 +34,6 @@
     font-family: fantasy;
     -webkit-text-fill-color: @font-color;
     -webkit-text-stroke-color: @border-color;
-    -webkit-text-stroke-width: 4px;
   }
   * {
     -webkit-app-region: drag;
@@ -45,7 +51,7 @@
     notif {
       position: fixed;
       text-align: center;
-      font-size: 90vh;
+      word-wrap:break-word;
       width: 100%;
       height: 100%;
     }

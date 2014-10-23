@@ -52,8 +52,8 @@
       "active": true,
       "save": true,
       "func": "to",
-      "left": null,
-      "top": null,
+      "left": 312,
+      "top": 324,
       "debug": false
     },
     "configuration": {
