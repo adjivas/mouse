@@ -17,7 +17,7 @@
 */
 
 var Move = {
-  'speed': Conf.mode.move,
+  'speed': Conf.mode.move * 100,
   'interval': undefined,
   'click': 1,
 

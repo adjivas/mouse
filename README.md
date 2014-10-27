@@ -12,9 +12,9 @@ This software is a **medical project** build in the fundation [I-COM](https://tw
   * Codes Open Source and **Modular/Hackable**.
 
 ### Dependencies:
-  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8)
-  * [pywin-win32-py2.7](http://sourceforge.net/projects/pywin32)
-  * [pyhook-1.5.1](http://sourceforge.net/projects/pyhook)
+  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8).
+  * [pywin-win32-py2.7](http://sourceforge.net/projects/pywin32).
+  * [pyhook-1.5.1](http://sourceforge.net/projects/pyhook).
 
 
 # License
@@ -34,4 +34,5 @@ This software is a **medical project** build in the fundation [I-COM](https://tw
   * [kasmura/tcp.js](https://github.com/kasmura/tcp.js) modified by [@adjivas](https://github.com/adjivas).
   * [kriskowal/q](https://github.com/kriskowal/q).
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput) and [pepijndevos/PyMouse](https://github.com/pepijndevos/PyMouse).
-  * [gundlac/pyspeech](http://code.google.com/p/pyspeech/)
+  * [gundlac/pyspeech](http://code.google.com/p/pyspeech).
+  * [schickling/calculate-size](https://github.com/schickling/calculate-size).

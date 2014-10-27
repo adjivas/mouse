@@ -11,10 +11,11 @@
   "alpha": "clic de transparence activé",
   "move": "clic de déplacement activé",
   "free": "clic gauche sans trajectoire activé",
-  "notif": "sous-titre",
-  "speech": "synthèse vocale",
+  "altab": "clic de sélection de fenêtre activé",
   "close": "fermeture en court ; pour annuler, cliquez",
   "save_and_close": "sauvegarder et quitter",
+  "notif": "sous-titre",
+  "speech": "synthèse vocale",
   "fr": "français",
   "en": "anglais",
   "ja": "japon"

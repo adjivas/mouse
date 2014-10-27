@@ -36,14 +36,31 @@ var Title = {
     Title.body = document.body;
   }, false),
 
+  'size': function (message) {
+    var size = 1 + window.innerHeight * 0.9 | 0;
+    var calc;
+
+    while (--size) {
+      calc = calculateSize(message, {
+         'font': 'fantasy',
+         'fontSize': size + 'px'
+      });
+      if (calc.width <= window.innerWidth
+      &&  calc.height <= window.innerHeight)
+        break ;
+    }
+    return (size);
+  },
   'name': function (arg) {
     var body = Title.body;
-    var json = Title.json;
+    var name = Title.json.name;
     var node = document.createElement(Title.target);
+    var size = 'font-size:' + Title.size(name) + 'px';
     var content;
 
-    if (json.name) {
-      content = document.createTextNode(json.name);
+    if (name) {
+      content = document.createTextNode(name);
+      node.setAttribute('style', size);
       node.appendChild(content);
       body.appendChild(node);
     }

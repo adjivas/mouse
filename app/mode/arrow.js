@@ -17,7 +17,7 @@
 */
 
 var Arrow = {
-  'speed': Conf.mode.arrow,
+  'speed': Conf.mode.arrow * 100,
   'interval': undefined,
 
   'call': function (arg) {

@@ -11,10 +11,11 @@
   "alpha": "transparency clicks activated",
   "move": "move clicks activated",
   "free": "right clicks without track activated",
-  "notif": "notification",
-  "speech": "speech synthesis",
+  "altab": "selector clicks of windows activated",
   "close": "closure in short; for cancel, do a click",
   "save_and_close": "save and close",
+  "notif": "notification",
+  "speech": "speech synthesis",
   "fr": "french",
   "en": "english",
   "ja": "japon"

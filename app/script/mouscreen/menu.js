@@ -76,9 +76,9 @@ var Menu = {
     var rad;
 
     while (items[++cnt]) {
-      rad = window.Math.PI * (deg * cnt) / 180;
+      rad      = window.Math.PI * (deg * cnt) / 180;
       crd.left = window.Math.sin(rad) * Menu.distance | 0;
-      crd.top = window.Math.cos(rad) * Menu.distance | 0;
+      crd.top  = window.Math.cos(rad) * Menu.distance | 0;
       items[cnt].style.left = crd.left + 'px';
       items[cnt].style.top = crd.top + 'px';
       name = items[cnt].tagName.toLowerCase();
