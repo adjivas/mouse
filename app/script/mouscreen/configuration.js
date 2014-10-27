@@ -18,12 +18,21 @@ var Configuration = {
   'target': 'configuration',
   'url': './configuration.html',
   'win': gui.Window.get(),
+  'left': window.screen.availWidth - window.innerWidth,
+  'top': (window.screen.availHeight - window.innerHeight) / 2,
   'active': false,
   'window': {
-    "frameless": false,
-    "toolbar": false,
-    "frame": false,
-    "show": false
+    'position': 'center',
+    'always-on-top': true,
+    'frameless': false,
+    'resizable': false,
+    'toolbar': false,
+    'frame': false,
+    'width': 800,
+    'height': 420,
+    'show': false,
+    'top': Conf.configuration.top,
+    'left': Conf.configuration.left,
   },
 
   'start': function (arg) {
@@ -32,6 +41,7 @@ var Configuration = {
 
     Configuration.active = !Configuration.active;
     gui.Window.open(url, wid).on('close', Configuration.end);
+    Position.to(Configuration.left, Configuration.top);
   },
   'end': function (arg) {
     Configuration.active = !Configuration.active;

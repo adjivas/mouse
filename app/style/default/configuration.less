@@ -12,160 +12,152 @@
 
 @charset 'UTF-8';
 
-:root {
-  @background-color: rgb(118, 84, 144);
+/*
+** Instructions on the colors, radius and images.
+*/
 
-  background-color: @background-color;
-  left {
-    background-image: url('./app/image/default/left.png');
-  }
-  drag {
-    background-image: url('./app/image/default/drag.png');
-  }
-  right {
-    background-image: url('./app/image/default/right.png');
-  }
-  double {
-    background-image: url('./app/image/default/double.png');
-  }
-  empty {
-    background-image: url('./app/image/default/empty.png');
-  }
-  arrow {
-    background-image: url('./app/image/default/arrow.png');
-  }
-  control {
-    background-image: url('./app/image/default/control.png');
-  }
-  ghost {
-    background-image: url('./app/image/default/ghost.png');
-  }
-  move {
-    background-image: url('./app/image/default/move.png');
-  }
-  resize {
-    background-image: url('./app/image/default/resize.png');
-  }
-  free {
-    background-image: url('./app/image/default/free.png');
-  }
-  alpha {
-    background-image: url('./app/image/default/alpha.png');
-  }
-  altab {
-    background-image: url('./app/image/default/altab.png');
-  }
+:root {
+  @items: left, drag, right, double, empty, arrow, control, ghost, move,
+          resize, free, alpha, altab;
+  @background: rgb(118, 84, 144);
+  @background-border: rgb(211, 178, 217);
+  @background-tools: rgb(43, 44, 46);
+  @background-top-tools: rgba(20, 22, 24, 0.5);
+  @font-color: rgb(255, 255, 255);
+  @font-size: 20px;
+  @font-policy: 'fantasy';
+
+  background-color: @background;
   program {
-    position: absolute;
     tools {
-      position: relative;
-      * {
-        margin: 5px;
+      border-bottom-style: solid;
+      border-top-style: solid;
+      border-bottom-color: @background-border;
+      border-top-color: @background-top-tools;
+      *:only-of-type {
+        background-color: transparent;
+      }
+      > * {
+        -webkit-app-region: no-drag;
+        cursor: pointer;
         text-align: center;
-        text-shadow: 0 3px rgba(0, 0, 0, 0.8);
-        font-family: 'fantasy';
-        font-size: 20px;
-        color: white;
-        font-weight: 900;
+        font-family: @font-policy;
+        font-size: @font-size;
+        font-weight: bold;
+      }
+      &, * {
+        color: @font-color;
+        background-color: @background-tools;
       }
     }
     menu {
-      position: relative;
-      *[value=0] {
-        opacity: 0.5;
+      .menu(@iterator: 1) when(@iterator <= length(@items)) {
+        @root: './app/image/default/';
+        @item: extract(@items, @iterator);
+        @{item} {
+          @link: "@{root}@{item}.png";
+          -webkit-app-region: drag;
+          background-image: url(@link);
+        }.menu((@iterator + 1));
+      }.menu();
+      & {
+        border-bottom-left-radius: 10px 40px;
+        border-left: 3px solid @background-border;
+      }
+      *:nth-last-child(1n+0) {
+        border-bottom: 1px solid @background-border;
+        border-bottom-left-radius: 50px 10px;
+      }
+      *:nth-last-child(2n+0) {
+        border-bottom: 1px solid @background-border;
+        border-bottom-left-radius: 1px;
+        border-bottom-right-radius: 30px 2px;
+      }
+      &, * {
+        -webkit-app-region: no-drag;
       }
       * {
-        position: relative;
         background-repeat: no-repeat;
         background-position: left;
-        background-size: 50px;
-        padding-left: 60px;
-        padding-right: 10px;
-        display: inline-block;
-        width: -webkit-calc(~"50% - 70px");
-        height: 60px;
         input {
-          width: 100%;
-          padding-left: 0px;
-          padding-right: 0px;
-          position: relative;
+          cursor: pointer;
+          &:after {
+            content: attr(label);
+          }
         }
-        input:after {
-          content: attr(label);
+        &[value=0] {
+          opacity: 0.5;
         }
       }
+    }
+  }
+  *[type='submit'] {
+    &:hover {
+      color: red;
     }
   }
   * {
     -webkit-app-region: drag;
   }
-  *:first-letter {
-    text-transform: uppercase;
-  }
 }
+
+/*
+** Instructions on the positions and dimensions.
+*/
 
 :root {
   body {
     position: absolute;
+    margin: 0px;
+    padding: 0px;
     width: 100%;
     height: 100%;
   }
   program {
+    position: absolute;
     width: -webkit-calc(~"100% - 20px");
     height: -webkit-calc(~"100% - 20px - 12px");
     margin: 10px;
-    tools, menu {
-      width: 100%;
-      display: block;
-    }
     tools {
+      position: relative;
+      display: block;
+      overflow: hidden;
+      border-bottom-width: 6px;
+      border-top-width: 6px;
       height: 50px;
-      background-color: #27282A;
-      border-bottom: 6px solid #D3B2D9;
-      border-top: 6px solid rgba(20, 22, 24, 0.5);
-      select, label, input[type='submit'] {
-        -webkit-app-region: no-drag;
+      width: 100%;
+      > * {
         border: none;
-        height: 25px;
-        border-bottom: 1px solid #fff;
-        background-color: transparent;
+        height: -webkit-calc(~"100% - 10px");
+      }
+      * {
         margin: 5px;
       }
-      input[type='submit'] {
-        height: 24px;
-      }
-      select {
-        background-color: transparent;
-        option {
-          background-color: #27282A;
+    }
+    menu {
+      position: relative;
+      overflow-y: scroll;
+      display: block;
+      margin: 0px;
+      padding: 0px;
+      height: -webkit-calc(~"100% - 50px");
+      width: -webkit-calc(~"100% - 3px");
+      * {
+        position: relative;
+        display: inline-block;
+        background-size: 50px;
+        padding-left: 60px;
+        padding-right: 10px;
+        height: 60px;
+        width: -webkit-calc(~"50% - 70px");
+        & input {
+          -webkit-transform: scale(-1, 1);
+          width: 100%;
+          padding-left: 0px;
+          padding-right: 0px;
+          position: relative;
         }
       }
     }
-    menu {
-      -webkit-app-region: no-drag;
-      height: -webkit-calc(~"100% - 50px");
-      width: -webkit-calc(~"100% - 3px");
-      overflow-y: scroll;
-      border-bottom-left-radius: 10px 40px;
-      border-left: 3px solid #D3B2D9;
-      input {
-        -webkit-app-region: no-drag;
-      }
-    }
-    menu {
-      *:nth-last-child(1n+0) {
-        border-bottom: 1px solid #D3B2D9;
-        border-bottom-left-radius: 50px 10px;
-      }
-      *:nth-last-child(2n+0) {
-        border-bottom: 1px solid #D3B2D9;
-        border-bottom-left-radius: 1px;
-        border-bottom-right-radius: 30px 2px;
-      }
-    }
-  }
-  * {
-    margin: 0px;
-    padding: 0px;
   }
 }

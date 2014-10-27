@@ -29,10 +29,10 @@ var Pointer = {
     var attribute = Pointer.attribute;
     var value = '-webkit-transform:';
 
-    if (0 < Pointer.degret && Pointer.degret <= 360)
-      Pointer.degret += (typeof degret === 'number' ? degret : -1);
+    if (0 <= Pointer.degret && Pointer.degret < 360)
+      Pointer.degret += (typeof degret === 'number' ? degret : 1);
     else
-      Pointer.degret = 360;
+      Pointer.degret = 0;
     value += 'rotate(' + Pointer.degret + 'deg);';
     if (target)
       target.setAttribute(attribute, value);

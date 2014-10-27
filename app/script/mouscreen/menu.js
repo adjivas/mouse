@@ -45,6 +45,7 @@ var Menu = {
   'item': 'menu > *[selected]',
   'items': 'menu > *',
   'jump': 'disabled',
+  'disabled': Conf.mouscreen.disabled,
   'distance': 180,
   'last': undefined,
   'new': undefined,
@@ -56,12 +57,12 @@ var Menu = {
 
     items = items.loop(start);
     while (items[++count])
-      if (!items[count].getAttribute(Menu.jump))
+      if (Menu.disabled === items[count].getAttribute(Menu.jump))
         break ;
 
     start.removeAttribute(Menu.target);
-    items[count].setAttribute(Menu.target, Menu.target);
-    Menu.new = items[count];
+    items[count - 1].setAttribute(Menu.target, Menu.target);
+    Menu.new = items[count - 1];
   },
   'init': function (body) {
     var items = body.querySelectorAll(Menu.items);
@@ -81,7 +82,7 @@ var Menu = {
       items[cnt].style.left = crd.left + 'px';
       items[cnt].style.top = crd.top + 'px';
       name = items[cnt].tagName.toLowerCase();
-      if (!Conf.mode[name])
+      if (Menu.disabled === Conf.mode[name])
         items[cnt].setAttribute(Menu.jump, Menu.jump);
     }
   }

@@ -15,19 +15,19 @@
     "mode": {
       "next": 500,
       "pointer": 8,
-      "arrow": 0,
-      "control": 0,
-      "double": 58,
+      "arrow": 5,
+      "control": 5,
+      "double": 1,
       "alpha": 3,
-      "drag": 47,
-      "left": 0,
-      "move": 1,
-      "altab": 500,
-      "empty": 11,
-      "resize": 1,
-      "right": 0,
-      "ghost": 1,
-      "free": 1
+      "drag": 1,
+      "left": 5,
+      "move": 8,
+      "altab": 8,
+      "empty": 3,
+      "resize": 5,
+      "right": 4,
+      "ghost": 5,
+      "free": 7
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -49,15 +49,19 @@
       "debug": false
     },
     "mouscreen": {
-      "active": true,
+      "active": false,
       "save": true,
       "func": "to",
-      "left": 312,
-      "top": 324,
-      "debug": false
+      "left": 856,
+      "top": 246,
+      "disabled": 10,
+      "debug": true
     },
     "configuration": {
       "save": true,
+      "func": "to",
+      "left": 0,
+      "top": null,
       "debug": false
     },
     "close": {

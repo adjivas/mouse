@@ -18,6 +18,7 @@
 
 var Menu = {
   'target': 'menu > *',
+  'disabled': Conf.mouscreen.disabled,
 
   'change': function (arg) {
     var name = arg.srcElement.id;
@@ -33,6 +34,8 @@ var Menu = {
     tag = document.createElement('input');
     tag.setAttribute("id", name);
     tag.setAttribute("type", "range");
+    tag.setAttribute("min", 1);
+    tag.setAttribute("max", Menu.disabled);
     tag.setAttribute("value", Conf.mode[name]);
     tag.addEventListener('change', Menu.change, false);
     dom.appendChild(tag);

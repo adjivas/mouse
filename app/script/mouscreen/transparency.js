@@ -37,7 +37,8 @@ var Transparency = {
       Alpha.value += key[count][0];
     else
       return ;
-    Door.send({'class': 'transparency', 'method': 'alpha'}, {'alpha': Alpha.value});
+    Door.send({'class': 'transparency', 'method': 'alpha'},
+              {'alpha': Alpha.value});
   },
   'action': function (number) {
     /* The function starts or stops the move. */

@@ -27,21 +27,21 @@ var Notification = {
   'time': Conf.notification.time * 1000,
   'silent': !Conf.notification.active,
   'window': {
-    "position": 'center',
-    "func": Conf.notification.func,
-    "width": Conf.notification.width,
-    "height": Conf.notification.height ?
+    'position': 'center',
+    'func': Conf.notification.func,
+    'width': Conf.notification.width,
+    'height': Conf.notification.height ?
               Conf.notification.height :
               window.screen.availHeight / 8 | 0 ,
-    "transparent": true,
-    "always-on-top": true,
-    "frameless": false,
-    "toolbar": false,
-    "frame": false,
-    "show": false,
-    "top": Conf.notification.top,
-    "left": Conf.notification.left,
-    "name": null
+    'transparent': true,
+    'always-on-top': true,
+    'frameless': false,
+    'toolbar': false,
+    'frame': false,
+    'show': false,
+    'top': Conf.notification.top,
+    'left': Conf.notification.left,
+    'name': null
   },
 
   'open': function (name, time) {
