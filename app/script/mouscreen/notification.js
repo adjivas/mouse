@@ -32,7 +32,7 @@ var Notification = {
     'width': Conf.notification.width,
     'height': Conf.notification.height ?
               Conf.notification.height :
-              window.screen.availHeight / 8 | 0 ,
+              window.screen.availHeight / 8 | 0,
     'transparent': true,
     'always-on-top': true,
     'frameless': false,
@@ -54,7 +54,7 @@ var Notification = {
     wcp      = JSON.stringify(wcp);
     wcp      = Base64.encode(wcp);
     if (Notification.win)
-      Notification.win.close();
+      Notification.win = Notification.win.close();
     if (!Notification.silent)
       Notification.win = gui.Window.open(url + '?' + wcp, wid);
   },

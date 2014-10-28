@@ -23,7 +23,7 @@
       "left": 5,
       "move": 8,
       "altab": 8,
-      "empty": 3,
+      "empty": 8,
       "resize": 5,
       "right": 4,
       "ghost": 5,
@@ -35,7 +35,7 @@
       "buffer": 200
     },
     "synthse": {
-      "active": true
+      "active": false
     },
     "notification": {
       "active": true,
@@ -52,8 +52,8 @@
       "active": true,
       "save": true,
       "func": "to",
-      "left": null,
-      "top": null,
+      "left": 785,
+      "top": 434,
       "disabled": 10,
       "debug": false
     },
@@ -77,7 +77,7 @@
         "en"
       ],
       "path": "./app/lang/",
-      "locale": "en"
+      "locale": "fr"
     }
   },
   "keywords": [

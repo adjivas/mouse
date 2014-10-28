@@ -25,12 +25,12 @@ var Title = {
   'target': 'notif',
   'wind': gui.Window.get(),
   'json': function (arg) {
-    var json = document.location.toString();
+    var data = document.location.toString();
 
-    json = json.substr(json.indexOf('?') + 1);
-    json = Base64.decode(json);
-    json = JSON.parse(json);
-    Title.json = json;
+    data = data.substr(data.indexOf('?') + 1);
+    data = Base64.decode(data);
+    data = JSON.parse(data);
+    Title.json = data;
   },
   'body': window.addEventListener('load', function(arg) {
     Title.body = document.body;
