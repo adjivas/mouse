@@ -2,7 +2,7 @@ Mouscreen
 =========
 # Introduction
 
-This software is a **medical project** build in the fundation [I-COM](https://twitter.com/I_COM) for the training of first year from the school [42](https://twitter.com/42born2code).
+This software is a **medical project** builds in the foundation [I-COM](https://twitter.com/I_COM) for the first year training from the school [42](https://twitter.com/42born2code).
 
 ### Screenshot:
 ![Screen Shot](./screenshot.gif)
@@ -10,6 +10,7 @@ This software is a **medical project** build in the fundation [I-COM](https://tw
 ### Features:
   * Apps written in [JADE](http://jade-lang.com), [LESS](http://lesscss.org), JS and [PYTHON](https://www.python.org).
   * Codes Open Source and **Modular/Hackable**.
+  * Translates in english, japanese and french.
 
 ### Dependencies:
   * [python-2.7.8](https://www.python.org/ftp/python/2.7.8).
@@ -21,9 +22,9 @@ This software is a **medical project** build in the fundation [I-COM](https://tw
 *Mouscreen*'s code in this repo uses the [GNU GPL v2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) [license](https://github.com/adjivas/mouscreen-WINDOWS/blob/master/LICENSE).
 
 ### About japanese translation, thanks goes to:
-  * Natsumi -菜摘-.
+  * @Natsumi -@菜摘-.
 
-### About libs/modules, thanks and credits goes to:
+### About [modules](https://www.npmjs.org/), thanks and credits goes to:
   * [rogerwang/node-webkit](https://github.com/rogerwang/node-webkit).
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput).
   * [shtylman/node-process](https://github.com/shtylman/node-process).
