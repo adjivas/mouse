@@ -2,7 +2,7 @@
   "main": "mouscreen.html",
   "name": "mouse",
   "description": "beta program of virtual mouse",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "configuration": {
     "warp": {
       "locales": [
@@ -35,7 +35,7 @@
       "buffer": 200
     },
     "synthse": {
-      "active": false
+      "active": true
     },
     "notification": {
       "active": true,
@@ -52,8 +52,8 @@
       "active": true,
       "save": true,
       "func": "to",
-      "left": 785,
-      "top": 434,
+      "left": null,
+      "top": null,
       "disabled": 10,
       "debug": false
     },
@@ -73,11 +73,12 @@
     "style": "./default/",
     "lang": {
       "locales": [
-        "fr",
-        "en"
+        "en",
+        "ja",
+        "fr"
       ],
       "path": "./app/lang/",
-      "locale": "fr"
+      "locale": "en"
     }
   },
   "keywords": [

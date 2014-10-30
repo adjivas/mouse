@@ -20,7 +20,10 @@ This software is a **medical project** build in the fundation [I-COM](https://tw
 # License
 *Mouscreen*'s code in this repo uses the [GNU GPL v2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) [license](https://github.com/adjivas/mouscreen-WINDOWS/blob/master/LICENSE).
 
-### Thanks and credits goes to:
+### About japanese translation, thanks goes to:
+  * Natsumi -菜摘-.
+
+### About libs/modules, thanks and credits goes to:
   * [rogerwang/node-webkit](https://github.com/rogerwang/node-webkit).
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput).
   * [shtylman/node-process](https://github.com/shtylman/node-process).

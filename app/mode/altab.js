@@ -19,7 +19,7 @@ var win = require('nw.gui').Window.get();
 */
 
 var Altab = {
-  'speed': Conf.mode.altab,
+  'speed': Conf.mode.altab * 100,
   'interval': undefined,
 
   'start': function (number) {
