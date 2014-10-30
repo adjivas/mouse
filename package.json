@@ -19,19 +19,19 @@
       "control": 5,
       "double": 1,
       "alpha": 3,
-      "drag": 1,
+      "drag": 10,
       "left": 5,
-      "move": 8,
+      "move": 4,
       "altab": 8,
       "empty": 8,
       "resize": 5,
       "right": 4,
-      "ghost": 5,
+      "ghost": 100,
       "free": 7
     },
     "socket": {
       "ip": "127.0.0.1",
-      "port": 1337,
+      "port": 1963,
       "buffer": 200
     },
     "synthse": {

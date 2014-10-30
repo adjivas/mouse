@@ -43,7 +43,7 @@ Object.prototype.loop = function (start) {
 var Menu = {
   'target': 'selected',
   'item': 'menu > *[selected]',
-  'items': 'menu > *',
+  'items': 'menu > *:not([disabled])',
   'jump': 'disabled',
   'disabled': Conf.mouscreen.disabled,
   'distance': 180,
@@ -56,10 +56,10 @@ var Menu = {
     var count = -1;
 
     items = items.loop(start);
-    while (items[++count])
-      if (Menu.disabled === items[count].getAttribute(Menu.jump))
+    while (items[++count]) {
+      if (Menu.target === items[count].getAttribute(Menu.target))
         break ;
-
+    }
     start.removeAttribute(Menu.target);
     items[count - 1].setAttribute(Menu.target, Menu.target);
     Menu.new = items[count - 1];
