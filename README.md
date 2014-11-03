@@ -3,27 +3,27 @@ Mouscreen (Prototype)
 
 This software is a **medical project** builds in the foundation [I-COM](https://twitter.com/I_COM) for the first year training from the school [42](https://twitter.com/42born2code).
 
-### Screenshot:
+#### Screenshot:
 ![Screen Shot](https://raw.githubusercontent.com/adjivas/Mouscreen-WINDOWS/master/screenshot.gif)
 
-### Features:
+#### Features:
   * Apps written in [JADE](http://jade-lang.com), [LESS](http://lesscss.org), [V8-JavaScript](https://code.google.com/p/v8) and [PYTHON](https://www.python.org).
   * Codes Open Source and **Modular/Hackable**.
-  * **Subtitle/Speech-synthesis**' Notification.
+  * Notifications by **Subtitle/Speech-synthesis**' .
   * Translates in english, japanese and french language.
 
-### Dependencies:
-  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) in your C:/python27/python.exe.
+#### Dependencies:
+  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) in your directory **C:/python27/**.
   * [pywin-win32-py2.7](http://sourceforge.net/projects/pywin32).
   * [pyhook-1.5.1](http://sourceforge.net/projects/pyhook).
 
 # License
 *Mouscreen*'s code in this repo uses the [GNU GPL v2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) [license](https://github.com/adjivas/mouscreen-WINDOWS/blob/master/LICENSE).
 
-### About japanese translation, thanks goes to:
+#### About japanese translation, thanks goes to:
   * @Natsumi -@菜摘-.
 
-### About [npm](https://www.npmjs.org)/[pypi](https://pypi.python.org)'s modules/packtages, thanks and credits goes to:
+#### About [npm](https://www.npmjs.org)/[pypi](https://pypi.python.org)'s modules/packtages, thanks and credits goes to:
   * [rogerwang/node-webkit](https://github.com/rogerwang/node-webkit).
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput).
   * [shtylman/node-process](https://github.com/shtylman/node-process).
