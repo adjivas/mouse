@@ -6,6 +6,7 @@
   "right": "Right clicks activated.",
   "ghost": "Ghost clicks activated.",
   "arrow": "Arrow clicks activated.",
+  "shift": "Shift arrow clicks activated.",
   "control": "Control clicks activated.",
   "resize": "Resize clicks activated.",
   "alpha": "Transparency clicks activated.",
@@ -13,10 +14,13 @@
   "free": "Right clicks without track activated.",
   "altab": "Selector clicks of windows activated.",
   "close": "Closure in short; for cancel, do a click.",
-  "save_and_close": "Save and close.",
-  "notif": "Notification.",
-  "speech": "Speech synthesis.",
-  "fr": "French.",
-  "en": "English.",
-  "ja": "Japanese."
+  "save_and_close": "Save and close",
+  "notif": "Notification",
+  "speech": "Speech synthesis",
+  "default": "Default's mode",
+  "portal": "Portal's mode",
+  "solar": "Solar's mode",
+  "fr": "French",
+  "en": "English",
+  "ja": "Japanese"
 }

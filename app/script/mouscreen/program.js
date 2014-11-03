@@ -38,5 +38,7 @@ var Program = {
     elemt.removeAttribute(Close.target);
     if (Notification.win)
       Notification.win.close();
+    Notification.sentence = undefined;
+    Speak.sentence = undefined;
   }
 };

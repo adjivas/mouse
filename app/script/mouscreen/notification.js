@@ -23,6 +23,7 @@ var Base64 = require('js-base64').Base64;
 
 var Notification = {
   'win': undefined,
+  'sentence': undefined,
   'url': Conf.notification.file,
   'time': Conf.notification.time * 1000,
   'silent': !Conf.notification.active,
@@ -34,8 +35,9 @@ var Notification = {
               Conf.notification.height :
               window.screen.availHeight / 8 | 0,
     'transparent': true,
+    'focus': false,
     'always-on-top': true,
-    'frameless': false,
+    'resizable': false,
     'toolbar': false,
     'frame': false,
     'show': false,
@@ -44,19 +46,21 @@ var Notification = {
     'name': null
   },
 
-  'open': function (name, time) {
+  'open': function (sentence, time) {
     var url  = Notification.url;
     var wid  = Notification.window;
     var wcp  = wid;
 
-    wcp.name = name;
+    wcp.name = sentence;
     wcp.time = time;
     wcp      = JSON.stringify(wcp);
     wcp      = Base64.encode(wcp);
     if (Notification.win)
       Notification.win = Notification.win.close();
-    if (!Notification.silent)
+    if (Notification.sentence !== sentence
+    && !Notification.silent)
       Notification.win = gui.Window.open(url + '?' + wcp, wid);
+    Notification.sentence = sentence;
   },
   'call': function (elemt, time) {
     if (typeof elemt !== 'string') {

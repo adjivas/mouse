@@ -17,25 +17,30 @@
 */
 
 var Selector = {
+  'shift': false,
   'interval': undefined,
 
+  'door': function (key) {
+    var method = (Selector.shift ? 'shell' : 'tap');
+
+    Door.send({'class': 'keyboard', 'method': method}, {'key': key});
+  },
   'move': function (arg) {
     /* The function does a conversion from degret to direction,
        and requests the server for move the text's selector. */
     var key  = [
-      ['right', (45 < Pointer.degret && Pointer.degret <= 135)],
-      ['down', (135 < Pointer.degret && Pointer.degret <= 225)],
-      ['left', (225 < Pointer.degret && Pointer.degret <= 315)],
-      ['up', true]
+      ['right', '+{RIGHT}', (45 < Pointer.degret && Pointer.degret <= 135)],
+      ['down' , '+{DOWN}' , (135 < Pointer.degret && Pointer.degret <= 225)],
+      ['left' , '+{LEFT}' , (225 < Pointer.degret && Pointer.degret <= 315)],
+      ['up'   , '+{UP}'   , true]
     ];
     var count = -1;
 
     while (key[++count])
-      if (key[count][1])
+      if (key[count][2])
         break ;
-    key = key[count][0];
-    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': key});
-    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': key});
+    key = key[count][Selector.shift | 0];
+    Selector.door(key);
   },
   'action': function (number) {
     /* The function starts or stops the move. */

@@ -21,9 +21,11 @@ var py = require('python-shell');
 
 var Speak = {
   'silent': !Conf.synthse.active,
+  'sentence': undefined,
 
   'run': function (sentence) {
-    if (!Speak.silent) {
+    if (Speak.sentence !== sentence
+    && !Speak.silent) {
       py.run('speak.py', {
         'scriptPath': './app/python/',
         'pythonPath': Conf.python.path,
@@ -33,6 +35,7 @@ var Speak = {
           Debug.console(err);
       });
     }
+    Speak.sentence = sentence;
   },
   'call': function (elemt) {
     if (typeof elemt !== 'string') {

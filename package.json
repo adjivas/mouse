@@ -2,7 +2,7 @@
   "main": "mouscreen.html",
   "name": "mouse",
   "description": "beta program of virtual mouse",
-  "version": "0.8.2",
+  "version": "0.8.9",
   "configuration": {
     "warp": {
       "locales": [
@@ -19,14 +19,15 @@
       "control": 5,
       "double": 1,
       "alpha": 3,
-      "drag": 10,
+      "drag": 5,
       "left": 5,
-      "move": 4,
+      "move": 3,
+      "shift": 4,
       "altab": 8,
       "empty": 8,
       "resize": 5,
       "right": 4,
-      "ghost": 100,
+      "ghost": 1,
       "free": 7
     },
     "socket": {

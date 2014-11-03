@@ -24,8 +24,7 @@ var Altab = {
 
   'start': function (number) {
     Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'alt'});
-    Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'tab'});
-    Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'tab'});
+    Door.send({'class': 'keyboard', 'method': 'tap'    }, {'key': 'tab'});
     Pointer.rotate();
     Pointer.degret = 90;
     Selector.action(Altab.speed);
@@ -35,8 +34,7 @@ var Altab = {
     if (Event.action) {
       Event.action = !Event.action;
       Selector.action(Altab.speed);
-      Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'enter'});
-      Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'enter'});
+      Door.send({'class': 'keyboard', 'method': 'tap'  }, {'key': 'enter'});
       Pointer.rotate();
     }
     else

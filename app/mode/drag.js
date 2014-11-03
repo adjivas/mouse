@@ -16,24 +16,25 @@
 ** The Drag's class is calls for simple moves the cursor.
 */
 
-/* !Bug: this object cannot be selected in mouse.jade. */
-/* !Bug: this object cannot good work with another click than one. */
-
 var Drag = {
   'speed': Conf.mode.drag,
   'interval': undefined,
-  'click': 1,
+  'init': true,
 
   'start': function (arg) {
-    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': false});
+    Event.action = !Event.action;
+    Drag.init = !Drag.init;
+    Door.send({'class': 'mouse', 'method': 'press'}, {});
   },
   'call': function (arg) {
-    Event.action = !Event.action;
-
-    Cursor.action(Left.speed);
+    Cursor.action(Drag.speed);
     Pointer.rotate();
+    if (Drag.init)
+      Event.action = !Event.action;
+    else
+      Drag.init = !Drag.init;
   },
   'end': function (arg) {
-    Door.send({'class': 'eventcall', 'method': 'capture'}, {'stop': true});
+    Door.send({'class': 'mouse', 'method': 'release'}, {});
   }
 };

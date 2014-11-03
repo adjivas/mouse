@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   default.js                                         :+:      :+:    :+:   */
+/*   shift.js                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adjivas <adjivas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,38 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-@charset 'UTF-8';
+'use strict';
 
-:root {
-  @background-color: rgb(118, 84, 144);
-  @border-color: rgb(0, 0, 0);
-  @font-color: rgb(255, 255, 255);
+/*
+** The Shift's class is call for move the text's cursor.
+*/
 
-  notif {
-    font-family: fantasy;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-fill-color: @font-color;
-    -webkit-text-stroke-color: @border-color;
+var Shift = {
+  'speed': Conf.mode.shift * 100,
+  'interval': undefined,
+
+  'start': function (arg) {
+  	Selector.shift = !Selector.shift;
+  },
+  'call': function (arg) {
+    Event.action = !Event.action;
+
+    Selector.action(Shift.speed);
+    Pointer.rotate();
+  },
+  'end': function (arg) {
+  	Selector.shift = !Selector.shift;
   }
-}
-
-:root {
-  -webkit-user-select: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-
-  body {
-    margin: 0px;
-    notif {
-      position: fixed;
-      text-align: center;
-      word-wrap:break-word;
-      width: 100%;
-      height: 100%;
-    }
-    * {
-      pointer-events: none;
-    }
-  }
-}
+};

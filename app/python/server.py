@@ -44,10 +44,14 @@ class Transparency():
 # **************************************************************************** #
 
 import pykeyboard
+import win32api;
+import win32con;
+import win32com.client
 
 class Keyboard():
   """The class Keyboard is a simple library of basing functions.""";
-  py = pykeyboard.PyKeyboard();
+  py  = pykeyboard.PyKeyboard();
+  w32 = win32com.client.Dispatch("WScript.Shell");
 
   def press(self, args):
     """The function press the key.""";
@@ -62,7 +66,7 @@ class Keyboard():
     py.press_key(key);
 
   def release(self, args):
-    """The function press the key.""";
+    """The function release the key.""";
     py  =  Keyboard.py;
     key =  str(args['key']);
 
@@ -72,6 +76,26 @@ class Keyboard():
     else:
       key  = str(key);
     py.release_key(key);
+
+  def tap(self, args):
+    """The function press and release the key.""";
+    py  =  Keyboard.py;
+    key =  str(args['key']);
+
+    if (len(key) != 1):
+      key += '_key';
+      key  = int(py.__dict__[key]);
+    else:
+      key  = str(key);
+    py.tap_key(key);
+
+    
+  def shell(self, args):
+    """The function is a special shell.""";
+    shell = Keyboard.w32;
+    key   = str(args['key']);
+    
+    shell.SendKeys(key);
 
 # **************************************************************************** #
 #                                                                              #
@@ -106,6 +130,24 @@ class Mouse():
     y = int(float(args['y']));
 
     Mouse.py.move(x, y);
+
+  def press(self, args):
+    """The function press one click.""";
+    x = int(Mouse.py.position()[0]);
+    y = int(Mouse.py.position()[1]);
+
+    Event.py.capture = False;
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, x, y, 0, 0);
+    Event.py.capture = True;
+
+  def release(self, args):
+    """The function release one click.""";
+    x = int(Mouse.py.position()[0]);
+    y = int(Mouse.py.position()[1]);
+
+    Event.py.capture = False;
+    win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, x, y, 0, 0);
+    Event.py.capture = True;
 
   def click(self, args):
     """The function do one click.""";
@@ -189,7 +231,7 @@ class Server():
           Server.call(self, data);
 
   def call(self, data):
-    event   = data['event']['class'] + data['event']['method'];
+    event = data['event']['class'] + data['event']['method'];
 
     if (data['event']['class'] == 'mouse'):
       content = getattr(Mouse(), data['event']['method'])(data['content']);
