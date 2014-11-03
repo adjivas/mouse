@@ -24,7 +24,7 @@ This software is a **medical project** builds in the foundation [I-COM](https://
   * @Natsumi -@菜摘-.
 
 ### About [npm](https://www.npmjs.org)/[pypi](https://pypi.python.org)'s modules/packtages,
-thanks and credits goes to:
+### thanks and credits goes to:
   * [rogerwang/node-webkit](https://github.com/rogerwang/node-webkit).
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput).
   * [shtylman/node-process](https://github.com/shtylman/node-process).
