@@ -9,11 +9,11 @@ This software is a **medical project** builds in the foundation [I-COM](https://
 #### Features:
   * Apps written in [JADE](http://jade-lang.com), [LESS](http://lesscss.org), [V8-JavaScript](https://code.google.com/p/v8) and [PYTHON](https://www.python.org).
   * Codes Open Source and **Modular/Hackable**.
-  * Notifications by **Subtitle/Speech-synthesis**' .
+  * Notifications by **Subtitle/Speech-synthesis**.
   * Translates in english, japanese and french language.
 
 #### Dependencies:
-  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) in your directory **C:/python27/**.
+  * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) with python.exe added to the Path.
   * [pywin-win32-py2.7](http://sourceforge.net/projects/pywin32).
   * [pyhook-1.5.1](http://sourceforge.net/projects/pyhook).
 
