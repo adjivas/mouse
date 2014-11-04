@@ -15,9 +15,11 @@
 var Tools = {
   'target': 'tools',
 
-  'init': function (body) {
-    var dom = body.querySelector(Tools.target);
+  'init': function (arg) {
+    var dom = document.querySelector(Tools.target);
 
+    while (dom.firstChild)
+      dom.removeChild(dom.firstChild);
     Close.build(dom);
     Language.build(dom);
     Warp.build(dom);

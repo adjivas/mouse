@@ -17,7 +17,7 @@
 */
 
 var Resize = {
-  'speed': Conf.mode.resize,
+  'speed': Conf.mode.resize * 100,
   'interval': undefined,
   'click': 1,
 
@@ -29,7 +29,7 @@ var Resize = {
     window.setTimeout(function (arg) {
       Door.send({'class': 'keyboard', 'method': 'press'  }, {'key': 'T'});
       Door.send({'class': 'keyboard', 'method': 'release'}, {'key': 'T'});
-    }, 750);
+    }, 1000);
   },
   'call': function (arg) {
     Event.action = !Event.action;

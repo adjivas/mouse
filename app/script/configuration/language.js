@@ -24,6 +24,8 @@ var Language = {
     var dom  = document.getElementById(name);
 
     Conf.lang.locale = dom.value;
+    Lang.locale = dom.value;
+    Tools.init(arg);
   },
   'option': function (key) {
     var tag = document.createElement('option');
