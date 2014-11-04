@@ -17,7 +17,7 @@ var gui = require('nw.gui');
 var Configuration = {
   'target': 'configuration',
   'url': './configuration.html',
-  'win': gui.Window.get(),
+  'win': undefined,
   'left': window.screen.availWidth - window.innerWidth,
   'top': (window.screen.availHeight - window.innerHeight) / 2,
   'active': false,
@@ -40,14 +40,16 @@ var Configuration = {
     var wid  = Configuration.window;
 
     Configuration.active = !Configuration.active;
-    gui.Window.open(url, wid).on('close', Configuration.end);
+    Configuration.win = gui.Window.open(url, wid);
+    Configuration.win.on('close', Configuration.end);
     Position.to(Configuration.left, Configuration.top);
   },
   'end': function (arg) {
+    Configuration.win = undefined;
     Configuration.active = !Configuration.active;
     this.close(true);
     Door.close();
-    Configuration.win.reload();
+    gui.Window.get().reload();
   },
   'default': window.addEventListener('mouseup', function(arg) {
     var elemt = arg.toElement;

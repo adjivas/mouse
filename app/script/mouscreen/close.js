@@ -23,6 +23,7 @@ var Close = {
   'path': './package.json',
   'save': Conf.mouscreen.save,
   'time': Conf.close.time * 1000,
+  'active': false,
   'out': undefined,
 
   'end': function (arg) {
@@ -43,13 +44,20 @@ var Close = {
       win.close(true);
   },
   'start': function (text) {
-    Close.out = window.setTimeout(Close.end, Close.time);
-    Program.out(text);
+    if (Dial.active && !Door.active)
+      Close.end();
+    else {
+      Close.active = true;
+      Close.out = window.setTimeout(Close.end, Close.time);
+      Program.out(text);
+    }   
   },
   'clear': function (arg) {
-    if (typeof Close.out === 'number') {
-      Program.clear();
+    if (Close.active)
+      Close.active = false;
+    else if (typeof Close.out === 'number') {
       Close.out = clearTimeout(Close.out);
+      Program.clear();
     }
   },
   'forced': win.on('close', function() {
@@ -59,8 +67,11 @@ var Close = {
     var elemt = arg.toElement;
 
     elemt = elemt.tagName.toLowerCase();
-    if (elemt === Close.target)
-      if (Close.out === undefined)
+    if (elemt === Close.target) {
+      if (Configuration.win)
+        Configuration.win.close();
+      else if (Close.out === undefined)
         Close.start(elemt);
+    }
   }, false)
 };

@@ -26,12 +26,16 @@ var Control = {
 
     Door.send({'class': 'keyboard', 'method': 'press'}, {'key':  'control'  });
     Door.send({'class': 'mouse'   , 'method': 'click'}, {'click': Left.click});
+    Control.end();
   },
   'call': function (arg) {
     Event.action = !Event.action;
 
-    if (!Event.action)
+    if (!Event.action) {
+      Door.send({'class': 'keyboard', 'method': 'press'}, {'key':  'control'});
       Left.start(1);
+      Control.end();
+    }
     Cursor.action(Left.speed);
     Pointer.rotate();
   },

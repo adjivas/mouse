@@ -13,7 +13,7 @@
   "move": "Move clicks activated.",
   "free": "Right clicks without track activated.",
   "altab": "Selector clicks of windows activated.",
-  "close": "Closure in short; for cancel, do a click.",
+  "close": "Closing; for cancel, do a click.",
   "save_and_close": "Save and close",
   "notif": "Notification",
   "speech": "Speech synthesis",

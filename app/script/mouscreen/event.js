@@ -50,23 +50,28 @@ var Event = {
     }
   },
   'down': function (arg) {
-    if (!Event.action)
-      if (!Event.interval)
-        Event.interval = window.setInterval(Menu.next, Event.delay);
-    Event.timestamp = (+new Date());
+    if (Door.active) {
+      if (!Event.action)
+        if (!Event.interval)
+          Event.interval = window.setInterval(Menu.next, Event.delay);
+      Event.timestamp = (+new Date());
+    }
   },
   'up': function (data) {
-    if (Event.interval)
-      Event.interval = window.clearInterval(Event.interval);
-    if ((+new Date()) - Event.timestamp < Event.delay)
-      Event.call();
-    else if (!Event.action) {
-      if (Menu.last)
-        Event.signal(Menu.last, 'end');
-      Menu.last = Menu.new;
-      Event.signal(Menu.new, 'start');
-      Speak.call();
-      Notification.call();
+    if (Door.active
+    || Event.interval) {
+      if (Event.interval)
+        Event.interval = window.clearInterval(Event.interval);
+      if ((+new Date()) - Event.timestamp < Event.delay)
+        Event.call();
+      else if (!Event.action) {
+        if (Menu.last)
+          Event.signal(Menu.last, 'end');
+        Menu.last = Menu.new;
+        Event.signal(Menu.new, 'start');
+        Speak.call();
+        Notification.call();
+      }
     }
   }
 };

@@ -30,6 +30,8 @@
           resize, free, alpha, altab, shift;
   @background-color: rgb(118, 84, 144);
   @mouse-color: rgb(101, 105, 109);
+  @mouse-color-true: rgb(95, 146, 97);
+  @mouse-color-false: rgb(170, 75, 75);
   @border-color: rgb(0, 0, 0);
   @font-color: rgb(255, 255, 255);
   @selected-color: rgb(206, 178, 223);
@@ -72,8 +74,8 @@
       }
     }
     dial {
+      cursor: pointer;
       border-radius: 100%;
-      background-color: @mouse-color;
       box-shadow: 0 0 0 4px rgb(0, 0, 0),
                   0 0 0 16px rgb(39, 41, 43),
                   0 0 0 19px rgb(212, 178, 232);
@@ -82,6 +84,12 @@
       }
       pointer[hidden] {
         visibility: hidden
+      }
+      &[active='true'] {
+        background-color: @mouse-color-true;
+      }
+      &[active='false'] {
+        background-color: @mouse-color-false;
       }
     }
     * {
@@ -137,12 +145,16 @@
       left: 0px;
       top: 0px;
       margin: 90px;
+      pointer-events: all;
+      -webkit-app-region: no-drag;
       pointer {
         position: relative;
         display: block;
         width: 240px;
         height: 240px;
         background-size: 240px;
+        pointer-events: none;
+        -webkit-app-region: no-drag;
       }
     }
     version, github, configuration, close {
