@@ -44,7 +44,7 @@
         @root: './app/image/default/';
         @item: extract(@items, @iterator);
         @{item} {
-          @link: "@{root}@{item}.png";
+          @link: '@{root}@{item}.png';
           background-image: url(@link);
         }.menu((@iterator + 1));
       }.menu();
@@ -74,26 +74,29 @@
       }
     }
     dial {
+      -webkit-app-region: no-drag;
       cursor: pointer;
       border-radius: 100%;
-      box-shadow: 0 0 0 4px rgb(0, 0, 0),
-                  0 0 0 16px rgb(39, 41, 43),
+      box-shadow: 0 0 0  4px rgb(  0,   0,   0),
+                  0 0 0 16px rgb( 39,  41,  43),
                   0 0 0 19px rgb(212, 178, 232);
       pointer {
+        -webkit-app-region: no-drag;
+        cursor: pointer;
+        border-radius: 100%;
         background-image: url('./app/image/default/pointer.png');
       }
       pointer[hidden] {
-        visibility: hidden
+        background-image: none;
       }
-      &[active='true'] {
+      &[active='true'] pointer {
         background-color: @mouse-color-true;
       }
-      &[active='false'] {
+      &[active='false'] pointer {
         background-color: @mouse-color-false;
       }
     }
     * {
-      -webkit-app-region: drag;
       &[hidden] {
         visibility: hidden
       }
@@ -105,6 +108,9 @@
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: normal;
     -webkit-animation-play-state: running;
+  }
+  * {
+    -webkit-app-region: drag;
   }
 }
 
@@ -146,15 +152,12 @@
       top: 0px;
       margin: 90px;
       pointer-events: all;
-      -webkit-app-region: no-drag;
       pointer {
         position: relative;
         display: block;
         width: 240px;
         height: 240px;
         background-size: 240px;
-        pointer-events: none;
-        -webkit-app-region: no-drag;
       }
     }
     version, github, configuration, close {
