@@ -1,7 +1,7 @@
 Mouscreen (Prototype)
 =====================
 
-This software is a **medical project** builds in the foundation [I-COM](https://twitter.com/I_COM) for the first year training from the school [42](https://twitter.com/42born2code).
+This software is a **medical project** builds in the foundation ICOM for the first year training from the school [42](https://twitter.com/42born2code).
 
 #### Screenshot:
 ![Screen Shot](https://raw.githubusercontent.com/adjivas/Mouscreen-WINDOWS/master/screenshot.gif)
