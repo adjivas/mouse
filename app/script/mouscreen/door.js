@@ -65,7 +65,7 @@ var Door = {
         Door.socket.send(event, content); 
       }
       else window.setTimeout(function (arg) {
-        Door.socket.send(event, content);
+        Door.send(event, content);
       }, 1000);
     }
     catch (err) {
