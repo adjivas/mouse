@@ -1,7 +1,7 @@
 Mouscreen (Prototype)
 =====================
 
-This software is a **medical project** builds in the foundation ICOM for the first year training from the school [42](https://twitter.com/42born2code).
+This software is a **medical project** builds in the foundation [ICOM](https://twitter.com/IcomProvence) for the first year training from the school [42](https://twitter.com/42born2code).
 
 #### Screenshot:
 ![Screen Shot](https://raw.githubusercontent.com/adjivas/Mouscreen-WINDOWS/master/screenshot.gif)
@@ -10,7 +10,7 @@ This software is a **medical project** builds in the foundation ICOM for the fir
   * Apps written in [JADE](http://jade-lang.com), [HTML5](http://www.w3.org/TR/html5), [LESS](http://lesscss.org), [V8-JavaScript](https://code.google.com/p/v8) and [PYTHON](https://www.python.org).
   * Codes Open Source and **Modular/Hackable**.
   * Notifications by **Subtitle/Speech-synthesis**.
-  * Translates in english, japanese and french language.
+  * Translates in english, japanese and french languag.e
 
 #### Dependencies:
   * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) with python.exe added to the Path.
