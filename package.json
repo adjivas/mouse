@@ -2,7 +2,7 @@
   "main": "mouscreen.html",
   "name": "mouse",
   "description": "beta program of virtual mouse",
-  "version": "0.8.9",
+  "version": "0.9.0",
   "configuration": {
     "warp": {
       "locales": [
@@ -15,20 +15,20 @@
     "mode": {
       "next": 500,
       "pointer": 8,
-      "arrow": 5,
-      "control": 5,
-      "double": 1,
-      "alpha": 3,
+      "arrow": 10,
+      "control": 10,
+      "double": 5,
+      "alpha": 10,
       "drag": 5,
       "left": 5,
-      "move": 3,
-      "shift": 4,
-      "altab": 8,
+      "move": 10,
+      "shift": 10,
+      "altab": 10,
       "empty": 8,
-      "resize": 5,
+      "resize": 10,
       "right": 4,
-      "ghost": 1,
-      "free": 7
+      "ghost": 10,
+      "free": 10
     },
     "socket": {
       "ip": "127.0.0.1",
@@ -36,7 +36,7 @@
       "buffer": 200
     },
     "synthse": {
-      "active": true
+      "active": false
     },
     "notification": {
       "active": true,

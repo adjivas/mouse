@@ -37,7 +37,8 @@ Object.prototype.loop = function (start) {
 };
 
 /*
-** The Menu's class is call for change the cursor's mode.
+** The Menu's class is call for change the cursor's mode
+** and inits the menu's items.
 */
 
 var Menu = {
@@ -66,24 +67,29 @@ var Menu = {
   },
   'init': function (body) {
     var items = body.querySelectorAll(Menu.items);
-    var deg   = 360 / items.length;
+    var deg   = 360;
     var cnt   = -1;
     var crd   = {
       'left': 0,
       'top': 0
     };
-    var name;
+    var lists = [];
     var rad;
 
     while (items[++cnt]) {
-      rad      = window.Math.PI * (deg * cnt) / 180;
-      crd.left = window.Math.sin(rad) * Menu.distance | 0;
-      crd.top  = window.Math.cos(rad) * Menu.distance | 0;
-      items[cnt].style.left = crd.left + 'px';
-      items[cnt].style.top = crd.top + 'px';
-      name = items[cnt].tagName.toLowerCase();
-      if (Menu.disabled === Conf.mode[name])
+      if (Menu.disabled !== Conf.mode[items[cnt].tagName.toLowerCase()])
+        lists.push(items[cnt]);
+      else
         items[cnt].setAttribute(Menu.jump, Menu.jump);
+    }
+    deg /= lists.length;
+    cnt = -1;
+    while (lists[++cnt]) {
+      rad      = window.Math.PI * (deg * cnt) / 180;
+      crd.left = -(window.Math.sin(rad) * Menu.distance) | 0;
+      crd.top  = -(window.Math.cos(rad) * Menu.distance) | 0;
+      lists[cnt].style.left = crd.left + 'px';
+      lists[cnt].style.top = crd.top + 'px';
     }
   }
 };
