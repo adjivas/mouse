@@ -10,7 +10,7 @@ This software is a **medical project** builds in the foundation [ICOM](https://t
   * Apps written in [JADE](http://jade-lang.com), [HTML5](http://www.w3.org/TR/html5), [LESS](http://lesscss.org), [V8-JavaScript](https://code.google.com/p/v8) and [PYTHON](https://www.python.org).
   * Codes Open Source and **Modular/Hackable**.
   * Notifications by **Subtitle/Speech-synthesis**.
-  * Translates in english, japanese and french languag.e
+  * Translates in english, japanese and french language.
 
 #### Dependencies:
   * [python-2.7.8](https://www.python.org/ftp/python/2.7.8) with python.exe added to the Path.
