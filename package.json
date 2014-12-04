@@ -10,7 +10,7 @@
         "portal",
         "solar"
       ],
-      "locale": "portal"
+      "locale": "default"
     },
     "mode": {
       "next": 500,
