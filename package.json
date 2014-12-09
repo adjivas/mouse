@@ -2,7 +2,7 @@
   "main": "mouscreen.html",
   "name": "mouse",
   "description": "beta program of virtual mouse",
-  "version": "0.9.0",
+  "version": "0.9.2",
   "configuration": {
     "warp": {
       "locales": [
@@ -14,11 +14,13 @@
     },
     "safemode": [
       "left",
-      "empty"
+      "empty",
+      "pointer",
+      "next"
     ],
     "mode": {
-      "next": 500,
-      "pointer": 8,
+      "next": 3,
+      "pointer": 5,
       "arrow": 10,
       "control": 10,
       "double": 5,

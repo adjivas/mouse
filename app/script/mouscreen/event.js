@@ -27,7 +27,7 @@ var Event = {
   'timestamp': undefined,
   'action': false,
   'forget': 0,
-  'delay': Conf.mode.next,
+  'delay': Conf.mode.next * 250,
   'find': Menu.item,
 
   'signal': function (dom, func) {

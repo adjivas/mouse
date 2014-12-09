@@ -20,7 +20,7 @@
 var Pointer = {
   'target': 'pointer',
   'attribute': 'style',
-  'speed': Conf.mode.pointer,
+  'speed': Conf.mode.pointer * 2,
   'time': undefined,
   'degret': 0,
 
