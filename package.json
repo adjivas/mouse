@@ -12,6 +12,10 @@
       ],
       "locale": "default"
     },
+    "safemode": [
+      "left",
+      "empty"
+    ],
     "mode": {
       "next": 500,
       "pointer": 8,

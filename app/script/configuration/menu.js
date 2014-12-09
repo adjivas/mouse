@@ -19,6 +19,7 @@
 var Menu = {
   'target': 'menu > *',
   'disabled': Conf.mouscreen.disabled,
+  'safe': Conf.safemode,
 
   'change': function (arg) {
     var name = arg.srcElement.id;
@@ -29,13 +30,15 @@ var Menu = {
     console.log(name, dom.value);
   },
   'build': function (dom, name) {
+    var safe = Menu.safe;
+    var max = (safe.indexOf(name) !== -1) ? Menu.disabled - 1 : Menu.disabled;
     var tag;
 
     tag = document.createElement('input');
     tag.setAttribute("id", name);
     tag.setAttribute("type", "range");
-    tag.setAttribute("min", 1);
-    tag.setAttribute("max", Menu.disabled);
+    tag.setAttribute("min", 1);      
+    tag.setAttribute("max", max);
     tag.setAttribute("value", Conf.mode[name]);
     tag.addEventListener('change', Menu.change, false);
     dom.appendChild(tag);
