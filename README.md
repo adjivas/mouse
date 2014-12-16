@@ -18,7 +18,7 @@ This software is a **medical project** builds in the foundation [ICOM](https://t
   * [pyhook-1.5.1](http://sourceforge.net/projects/pyhook).
 
 # License
-*Mouscreen*'s code in this repo uses the [GNU GPL v2](http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) [license](https://github.com/adjivas/mouscreen-WINDOWS/blob/master/LICENSE).
+*Mouscreen*'s code in this repo uses the [GNU GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) [license](https://github.com/adjivas/mouscreen-WINDOWS/blob/master/LICENSE).
 
 #### About the infographic, thanks goes to:
   * [Delphine Guyomard](ergo@icomprovence.net) & [@adjivas](https://raw.githubusercontent.com/adjivas).
