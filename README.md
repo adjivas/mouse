@@ -1,5 +1,5 @@
-Mouscreen (Prototype)
-=====================
+ICOMouse's (Prototype)
+======================
 
 This software is a **medical project** builds in the foundation [ICOM](https://twitter.com/IcomProvence) for the first year training from the school [42](https://twitter.com/42born2code).
 
