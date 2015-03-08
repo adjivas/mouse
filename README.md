@@ -1,10 +1,7 @@
 ICOMouse's (Prototype)
 ======================
 
-This software is a **medical project** builds in the foundation [ICOM](https://twitter.com/IcomProvence) for the first year training from the school [42](https://twitter.com/42born2code).
-
-#### Context:
-![Video](http://www.dailymotion.com/video/x2dxghr_ecole-42-adjivas-icom-stage_school)
+This software is a **medical project** builds in the foundation [ICOM](https://twitter.com/IcomProvence) for the first year training from the school [42](https://twitter.com/42born2code). [More information in video here](http://www.dailymotion.com/video/x2dxghr_ecole-42-adjivas-icom-stage_school)!
 
 #### Screenshot:
 ![Screen Shot](https://raw.githubusercontent.com/adjivas/Mouscreen-WINDOWS/master/screenshot.gif)
