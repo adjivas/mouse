@@ -42,3 +42,7 @@ This software is a **medical project** builds in the foundation [ICOM](https://t
   * [SavinaRoja/PyUserInput](https://github.com/SavinaRoja/PyUserInput) and [pepijndevos/PyMouse](https://github.com/pepijndevos/PyMouse).
   * [gundlac/pyspeech](http://code.google.com/p/pyspeech).
   * [schickling/calculate-size](https://github.com/schickling/calculate-size).
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/adjivas/mouse/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
